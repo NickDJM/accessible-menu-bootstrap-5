@@ -1,0 +1,12 @@
+# Mac file
+.DS_Store
+
+# Auto-generated directories.
+node_modules
+.sass-cache
+
+# Lock files.
+package-lock.json
+
+# Auto generated docs
+docs/dist
