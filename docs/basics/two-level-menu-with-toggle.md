@@ -15,7 +15,7 @@ An example of this kind of menu is as follows:
         <a href="/about" class="nav-link">About</a>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle">Projects ▼</a>
+        <a href="#" class="nav-link dropdown-toggle">Projects</a>
         <ul class="dropdown-menu">
           <li class="nav-item">
             <a href="/projects/awesome" class="dropdown-item">Awesome project</a>
@@ -42,7 +42,7 @@ Given the above structure, the parameters needed for an accessible menu are:
 Depending on what kind of menu you'd like to create you can use [Bootstrap5DisclosureMenu](https://accessible-menu.netlify.app/disclosuremenu), [Bootstrap5Menubar](https://accessible-menu.netlify.app/menubar), or [Bootstrap5Treeview](https://accessible-menu.netlify.app/treeview).
 
 ```js
-const menu = new AccessibleMenu.Bootstrap5DisclosureMenu({
+const menu = new AccessibleMenuBootstrap5.Bootstrap5DisclosureMenu({
   menuElement: document.querySelector("#main-nav .navbar-nav"),
   controllerElement: document.querySelector("#main-nav .navbar-toggler"),
   containerElement: document.querySelector("#main-nav .navbar-collapse"),
