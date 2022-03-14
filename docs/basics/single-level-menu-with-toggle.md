@@ -31,12 +31,12 @@ Given the above structure, the parameters needed for an accessible menu are:
 - `controllerElement`
 - `containerElement`
 
-Depending on what kind of menu you'd like to create you can use [DisclosureMenu](https://accessible-menu.netlify.app/disclosuremenu), [Menubar](https://accessible-menu.netlify.app/menubar), or [Treeview](https://accessible-menu.netlify.app/treeview).
+Depending on what kind of menu you'd like to create you can use [Bootstrap5DisclosureMenu](https://accessible-menu.netlify.app/disclosuremenu), [Bootstrap5Menubar](https://accessible-menu.netlify.app/menubar), or [Bootstrap5Treeview](https://accessible-menu.netlify.app/treeview).
 
 ```js
-const menu = new AccessibleMenu.Bootstrap5DisclosureMenu({
-  menuElement: document.querySelector("#main-menu"),
-  controllerElement: document.querySelector("#main-menu-toggle"),
-  containerElement: document.querySelector("#main-nav"),
+const menu = new AccessibleMenuBootstrap5.Bootstrap5DisclosureMenu({
+  menuElement: document.querySelector("#main-nav .navbar-nav"),
+  controllerElement: document.querySelector("#main-nav .navbar-toggler"),
+  containerElement: document.querySelector("#main-nav .navbar-collapse"),
 });
 ```
