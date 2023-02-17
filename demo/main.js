@@ -1,5 +1,11 @@
 import AccessibleMenuBootstrap5 from "../index";
-import { singleLevel, twoLevel, threeLevel } from "./menus";
+import {
+  singleLevel,
+  twoLevel,
+  twoLevelTopLink,
+  threeLevel,
+  threeLevelTopLink,
+} from "./menus";
 
 /**
  * Generates an accessible-menu.
@@ -15,16 +21,26 @@ function generateMenu(type, structure, hover, container, options = {}) {
   const MenuClass = AccessibleMenuBootstrap5[type] || null;
   const menuDOM = menuStructures[structure];
 
-  container.innerHTML = menuDOM.default;
+  if (type === "Bootstrap5TopLinkDisclosureMenu") {
+    container.innerHTML = menuDOM.topLink;
+  } else {
+    container.innerHTML = menuDOM.default;
+  }
 
   const nav = container.querySelector("nav");
 
   nav.classList.remove("disclosure-menu");
   nav.classList.remove("menubar");
+  nav.classList.remove("top-link-disclosure-menu");
   nav.classList.remove("treeview");
 
   if (MenuClass !== null) {
     switch (type) {
+      case "Bootstrap5TopLinkDisclosureMenu":
+        nav.classList.add("top-link-disclosure-menu");
+
+        break;
+
       case "Bootstrap5DisclosureMenu":
         nav.classList.add("disclosure-menu");
 
@@ -62,12 +78,15 @@ const hoverButtons = document.querySelectorAll("#hoverButtons button");
 const menuStructures = {
   one: {
     default: singleLevel,
+    topLink: singleLevel,
   },
   two: {
     default: twoLevel,
+    topLink: twoLevelTopLink,
   },
   three: {
     default: threeLevel,
+    topLink: threeLevelTopLink,
   },
 };
 const menuOptions = {
@@ -75,6 +94,9 @@ const menuOptions = {
     optionalKeySupport: true,
   },
   Bootstrap5Menubar: {},
+  Bootstrap5TopLinkDisclosureMenu: {
+    optionalKeySupport: true,
+  },
   Bootstrap5Treeview: {},
 };
 
