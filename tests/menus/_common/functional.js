@@ -5,6 +5,7 @@
  */
 /* eslint-disable no-new */
 
+import { describe, test, expect, vi } from "vitest";
 import { twoLevelMenu, fullMenu } from "./test-menus";
 import {
   simulatePointer,
@@ -115,14 +116,14 @@ export function clickTests(MenuClass) {
       simulatePointer(controller.dom.toggle);
 
       // Toggle expectations.
-      expect(controller.isOpen).toBeTrue();
+      expect(controller.isOpen).toBeTruthy();
       expect(controller.dom.toggle.getAttribute("aria-expanded")).toBe("true");
 
       // Container expectations.
-      expect(controller.dom.container.classList.contains("show")).toBeTrue();
+      expect(controller.dom.container.classList.contains("show")).toBeTruthy();
       expect(
         controller.dom.container.classList.contains("collapse")
-      ).toBeTrue();
+      ).toBeTruthy();
 
       // Child menu expectations.
       expect(menu.focusState).toBe("none");
@@ -415,7 +416,7 @@ export function baseKeypressTests(MenuClass) {
         const menuItem = menu.elements.menuItems[0];
 
         // Set up the spy.
-        const spy = jest.spyOn(menuItem.dom.link, "click");
+        const spy = vi.spyOn(menuItem.dom.link, "click");
 
         // Enter the menu.
         menuItem.dom.link.focus();
@@ -446,7 +447,7 @@ export function baseKeypressTests(MenuClass) {
         controlledMenu.focusChild(0);
 
         // Set up the spy.
-        const spy = jest.spyOn(menuItem.dom.link, "click");
+        const spy = vi.spyOn(menuItem.dom.link, "click");
 
         // Enter the menu.
         menuItem.dom.link.focus();
@@ -471,7 +472,7 @@ export function baseKeypressTests(MenuClass) {
         const menuItem = subControlledMenu.elements.menuItems[0];
 
         // Set up the spy.
-        const spy = jest.spyOn(menuItem.dom.link, "click");
+        const spy = vi.spyOn(menuItem.dom.link, "click");
 
         // Enter the menu.
         menu.elements.menuItems[0].dom.link.focus();

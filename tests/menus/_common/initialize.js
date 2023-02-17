@@ -5,6 +5,7 @@
  */
 /* eslint-disable no-new */
 
+import { describe, test, expect, vi } from "vitest";
 import { oneLevelMenu } from "./test-menus";
 
 /**
@@ -17,7 +18,7 @@ export function defaultInitialization(MenuClass) {
 
   describe(`${menuType} default initialization`, () => {
     // Mock console.error.
-    console.error = jest.fn((error) => {
+    console.error = vi.fn((error) => {
       throw new Error(error.message);
     });
 
@@ -37,14 +38,14 @@ export function defaultInitialization(MenuClass) {
       expect(() => {
         new MenuClass({ menuElement: null });
       }).toThrow(
-        "AccessibleMenu: menuElement must be an instance of HTMLElement. object given."
+        'menuElement must be an instance of HTMLElement. "object" given.'
       );
     });
     test("will fail if menuElement is not passed", () => {
       expect(() => {
         new MenuClass({});
       }).toThrow(
-        "AccessibleMenu: menuElement must be an instance of HTMLElement. undefined given."
+        'menuElement must be an instance of HTMLElement. "undefined" given.'
       );
     });
   });
@@ -60,7 +61,7 @@ export function controlledMenu(MenuClass) {
 
   describe(`${menuType} controlled menu initialization`, () => {
     // Mock console.error.
-    console.error = jest.fn((error) => {
+    console.error = vi.fn((error) => {
       throw new Error(error.message);
     });
 
@@ -87,7 +88,7 @@ export function controlledMenu(MenuClass) {
           controllerElement,
         });
       }).toThrow(
-        "AccessibleMenu: containerElement must be an instance of HTMLElement. object given."
+        'containerElement must be an instance of HTMLElement. "object" given.'
       );
     });
 
@@ -98,7 +99,7 @@ export function controlledMenu(MenuClass) {
           containerElement,
         });
       }).toThrow(
-        "AccessibleMenu: controllerElement must be an instance of HTMLElement. object given."
+        'controllerElement must be an instance of HTMLElement. "object" given.'
       );
     });
 
@@ -110,7 +111,7 @@ export function controlledMenu(MenuClass) {
           containerElement,
         });
       }).toThrow(
-        "AccessibleMenu: controllerElement must be an instance of HTMLElement. number given."
+        'controllerElement must be an instance of HTMLElement. "number" given.'
       );
     });
 
@@ -122,7 +123,7 @@ export function controlledMenu(MenuClass) {
           containerElement: 123,
         });
       }).toThrow(
-        "AccessibleMenu: containerElement must be an instance of HTMLElement. number given."
+        'containerElement must be an instance of HTMLElement. "number" given.'
       );
     });
   });
@@ -138,7 +139,7 @@ export function customizedMenu(MenuClass) {
 
   describe(`${menuType} custom initialization`, () => {
     // Mock console.error.
-    console.error = jest.fn((error) => {
+    console.error = vi.fn((error) => {
       throw new Error(error.message);
     });
 
@@ -166,9 +167,7 @@ export function customizedMenu(MenuClass) {
           params[selector] = 123;
 
           new MenuClass(params);
-        }).toThrow(
-          `AccessibleMenu: ${selector} must be a valid CSS selector. "123" given.`
-        );
+        }).toThrow(`${selector} must be a valid CSS selector. "123" given.`);
       }
     );
 
@@ -180,7 +179,7 @@ export function customizedMenu(MenuClass) {
           submenuToggleSelector: 123,
         });
       }).toThrow(
-        'AccessibleMenu: submenuToggleSelector must be a valid CSS selector. "123" given.'
+        'submenuToggleSelector must be a valid CSS selector. "123" given.'
       );
     });
 
@@ -191,9 +190,7 @@ export function customizedMenu(MenuClass) {
           submenuItemSelector: "li.dropdown",
           submenuSelector: 123,
         });
-      }).toThrow(
-        'AccessibleMenu: submenuSelector must be a valid CSS selector. "123" given.'
-      );
+      }).toThrow('submenuSelector must be a valid CSS selector. "123" given.');
     });
 
     test.each(classLists)(
@@ -207,7 +204,7 @@ export function customizedMenu(MenuClass) {
 
           new MenuClass(params);
         }).toThrow(
-          `AccessibleMenu: ${classList} must be a string or an array of strings. number given.`
+          `${classList} must be a string or an array of strings. "number" given.`
         );
         expect(() => {
           const params = {
@@ -217,7 +214,7 @@ export function customizedMenu(MenuClass) {
 
           new MenuClass(params);
         }).toThrow(
-          `AccessibleMenu: ${classList} must be a string or an array of strings. An array containing non-strings given.`
+          `${classList} must be a string or an array of strings. An array containing non-strings given.`
         );
       }
     );
@@ -228,7 +225,7 @@ export function customizedMenu(MenuClass) {
           menuElement,
           isTopLevel: 123,
         });
-      }).toThrow("AccessibleMenu: isTopLevel must be a boolean. number given.");
+      }).toThrow('isTopLevel must be a boolean. "number" given.');
     });
 
     test(`will pass if parentMenu a ${menuType}`, () => {
@@ -247,9 +244,7 @@ export function customizedMenu(MenuClass) {
           menuElement,
           parentMenu: "parent menu",
         });
-      }).toThrow(
-        "AccessibleMenu: parentMenu must be an instance of BaseMenu. string given."
-      );
+      }).toThrow('parentMenu must be an instance of BaseMenu. "string" given.');
     });
 
     test("will fail if hoverType is invalid", () => {
@@ -259,7 +254,7 @@ export function customizedMenu(MenuClass) {
           hoverType: "fake",
         });
       }).toThrow(
-        'AccessibleMenu: hoverType must be one of the following values: off, on, dynamic. "fake" given.'
+        'hoverType must be one of the following values: off, on, dynamic. "fake" given.'
       );
     });
 
@@ -269,7 +264,7 @@ export function customizedMenu(MenuClass) {
           menuElement,
           hoverDelay: "250",
         });
-      }).toThrow("AccessibleMenu: hoverDelay must be a number. string given.");
+      }).toThrow('hoverDelay must be a number. "string" given.');
     });
   });
 }

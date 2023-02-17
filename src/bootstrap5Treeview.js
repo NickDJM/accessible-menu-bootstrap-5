@@ -12,6 +12,7 @@ class Bootstrap5Treeview extends Treeview {
    * The class to use when generating submenus.
    *
    * @type {typeof Bootstrap5Treeview}
+   *
    * @public
    */
   _MenuType = Bootstrap5Treeview;
@@ -20,6 +21,7 @@ class Bootstrap5Treeview extends Treeview {
    * The class to use when generating menu items.
    *
    * @type {typeof Bootstrap5TreeviewItem}
+   *
    * @public
    */
   _MenuItemType = Bootstrap5TreeviewItem;
@@ -28,6 +30,7 @@ class Bootstrap5Treeview extends Treeview {
    * The class to use when generating submenu toggles.
    *
    * @type {typeof Bootstrap5TreeviewToggle}
+   *
    * @public
    */
   _MenuToggleType = Bootstrap5TreeviewToggle;

@@ -6,10 +6,6 @@ module.exports = {
   },
   extends: ["standard", "plugin:jsdoc/recommended", "prettier"],
   plugins: ["jsdoc"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-  },
   parser: "@babel/eslint-parser",
   parserOptions: {
     sourceType: "module",
@@ -19,6 +15,17 @@ module.exports = {
       "warn",
       {
         allow: ["warn", "error"],
+      },
+    ],
+    "jsdoc/tag-lines": [
+      "warn",
+      "always",
+      {
+        noEndLines: true,
+        tags: {
+          property: { lines: "never" },
+          param: { lines: "never" },
+        },
       },
     ],
   },

@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, test, expect, expectTypeOf } from "vitest";
 import { oneLevelMenu, twoLevelMenu } from "./test-menus";
 
 /**
@@ -44,43 +45,51 @@ export function singleLevelSanity(MenuClass) {
       });
       test("menuItems", () => {
         const menuItems = Array.from(menuElement.querySelectorAll("li"));
-        expect(menu.dom.menuItems).toIncludeAllMembers(menuItems);
+        expect(menu.dom.menuItems).toMatchObject(menuItems);
       });
       test("submenuItems", () => {
-        expect(menu.dom.submenuItems).toBeArrayOfSize(0);
+        expectTypeOf(menu.dom.submenuItems).toBeArray();
+        expect(menu.dom.submenuItems).toHaveLength(0);
       });
       test("submenuToggles", () => {
-        expect(menu.dom.submenuToggles).toBeArrayOfSize(0);
+        expectTypeOf(menu.dom.submenuToggles).toBeArray();
+        expect(menu.dom.submenuToggles).toHaveLength(0);
       });
       test("submenus", () => {
-        expect(menu.dom.submenus).toBeArrayOfSize(0);
+        expectTypeOf(menu.dom.submenus).toBeArray();
+        expect(menu.dom.submenus).toHaveLength(0);
       });
       test("controller", () => {
-        expect(menu.dom.controller).toBe(null);
+        expect(menu.dom.controller).toBeNull();
       });
       test("container", () => {
-        expect(menu.dom.container).toBe(null);
+        expect(menu.dom.container).toBeNull();
       });
     });
 
     describe("has correct menu elements", () => {
       test("controller", () => {
-        expect(menu.elements.controller).toBe(null);
+        expect(menu.elements.controller).toBeNull();
       });
       test("menuItems", () => {
-        const isCorrectMenuItemClass = (element) =>
-          element.constructor.name === `${menuType}Item`;
-        expect(menu.elements.menuItems).toBeArrayOfSize(5);
-        expect(menu.elements.menuItems).toSatisfyAll(isCorrectMenuItemClass);
+        const isCorrectMenuItemClass = (elements) => {
+          return elements.every(
+            (element) => element.constructor.name === `${menuType}Item`
+          );
+        };
+        expectTypeOf(menu.elements.menuItems).toBeArray();
+        expect(menu.elements.menuItems).toHaveLength(5);
+        expect(menu.elements.menuItems).toSatisfy(isCorrectMenuItemClass);
       });
       test("parentMenu", () => {
-        expect(menu.elements.parentMenu).toBe(null);
+        expect(menu.elements.parentMenu).toBeNull();
       });
       test("rootMenu", () => {
         expect(menu.elements.rootMenu).toBe(menu);
       });
       test("submenuToggles", () => {
-        expect(menu.elements.submenuToggles).toBeArrayOfSize(0);
+        expectTypeOf(menu.elements.submenuToggles).toBeArray();
+        expect(menu.elements.submenuToggles).toHaveLength(0);
       });
     });
 
@@ -93,7 +102,7 @@ export function singleLevelSanity(MenuClass) {
     });
 
     test("is top level", () => {
-      expect(menu.isTopLevel).toBeTrue();
+      expect(menu.isTopLevel).toBeTruthy();
     });
 
     test("has correct current child", () => {
@@ -114,7 +123,7 @@ export function singleLevelSanity(MenuClass) {
 
     test("current menu item is correct", () => {
       if (menuType === "Bootstrap5DisclosureMenu") {
-        expect(menu.currentMenuItem).toBeNil();
+        expect(menu.currentMenuItem).toBeUndefined();
       } else {
         expect(menu.currentMenuItem).toBe(menu.elements.menuItems[0]);
       }
@@ -129,7 +138,7 @@ export function singleLevelSanity(MenuClass) {
     });
 
     test("should not focus", () => {
-      expect(menu.shouldFocus).toBeFalse();
+      expect(menu.shouldFocus).toBeFalsy();
     });
   });
 }
@@ -190,21 +199,21 @@ export function twoLevelSanity(MenuClass) {
           "item-4-0-0",
           "item-5-0-0",
         ];
-        expect(menu.dom.menuItems).toIncludeAllMembers(
+        expect(menu.dom.menuItems).toMatchObject(
           menuItems.filter((item) => expectedIDs.includes(item.id))
         );
       });
       test("submenuItems", () => {
-        expect(menu.dom.submenuItems).toIncludeAllMembers(submenuItems);
+        expect(menu.dom.submenuItems).toMatchObject(submenuItems);
       });
       test("submenuToggles", () => {
         const expectedIDs = ["link-2-0-0", "link-3-0-0", "link-5-0-0"];
-        expect(menu.dom.submenuToggles).toIncludeAllMembers(
+        expect(menu.dom.submenuToggles).toMatchObject(
           menuLinks.filter((item) => expectedIDs.includes(item.id))
         );
       });
       test("submenus", () => {
-        expect(menu.dom.submenus).toIncludeAllMembers(submenuElements);
+        expect(menu.dom.submenus).toMatchObject(submenuElements);
       });
       test("controller", () => {
         expect(menu.dom.controller).toBe(controllerElement);
@@ -221,22 +230,30 @@ export function twoLevelSanity(MenuClass) {
         );
       });
       test("menuItems", () => {
-        const isCorrectMenuItemClass = (element) =>
-          element.constructor.name === `${menuType}Item`;
-        expect(menu.elements.menuItems).toBeArrayOfSize(5);
-        expect(menu.elements.menuItems).toSatisfyAll(isCorrectMenuItemClass);
+        const isCorrectMenuItemClass = (elements) => {
+          return elements.every(
+            (element) => element.constructor.name === `${menuType}Item`
+          );
+        };
+        expectTypeOf(menu.elements.menuItems).toBeArray();
+        expect(menu.elements.menuItems).toHaveLength(5);
+        expect(menu.elements.menuItems).toSatisfy(isCorrectMenuItemClass);
       });
       test("parentMenu", () => {
-        expect(menu.elements.parentMenu).toBe(null);
+        expect(menu.elements.parentMenu).toBeNull();
       });
       test("rootMenu", () => {
         expect(menu.elements.rootMenu).toBe(menu);
       });
       test("submenuToggles", () => {
-        const isCorrectMenuToggleClass = (element) =>
-          element.constructor.name === `${menuType}Toggle`;
-        expect(menu.elements.submenuToggles).toBeArrayOfSize(3);
-        expect(menu.elements.submenuToggles).toSatisfyAll(
+        const isCorrectMenuToggleClass = (elements) => {
+          return elements.every(
+            (element) => element.constructor.name === `${menuType}Toggle`
+          );
+        };
+        expectTypeOf(menu.elements.submenuToggles).toBeArray();
+        expect(menu.elements.submenuToggles).toHaveLength(3);
+        expect(menu.elements.submenuToggles).toSatisfy(
           isCorrectMenuToggleClass
         );
       });
@@ -251,7 +268,7 @@ export function twoLevelSanity(MenuClass) {
     });
 
     test("is top level", () => {
-      expect(menu.isTopLevel).toBeTrue();
+      expect(menu.isTopLevel).toBeTruthy();
     });
 
     test("has correct current child", () => {
@@ -272,7 +289,7 @@ export function twoLevelSanity(MenuClass) {
 
     test("current menu item is correct", () => {
       if (menuType === "Bootstrap5DisclosureMenu") {
-        expect(menu.currentMenuItem).toBeNil();
+        expect(menu.currentMenuItem).toBeUndefined();
       } else {
         expect(menu.currentMenuItem).toBe(menu.elements.menuItems[0]);
       }
@@ -287,7 +304,7 @@ export function twoLevelSanity(MenuClass) {
     });
 
     test("should not focus", () => {
-      expect(menu.shouldFocus).toBeFalse();
+      expect(menu.shouldFocus).toBeFalsy();
     });
 
     menu.elements.submenuToggles.forEach((toggle, index) => {
@@ -318,36 +335,41 @@ export function twoLevelSanity(MenuClass) {
           const submenuItems = Array.from(
             submenuElement.querySelectorAll("li")
           );
-          expect(submenu.dom.menuItems).toIncludeAllMembers(submenuItems);
+          expect(submenu.dom.menuItems).toMatchObject(submenuItems);
         });
         test("submenuItems", () => {
-          expect(submenu.dom.submenuItems).toBeArrayOfSize(0);
+          expectTypeOf(submenu.dom.submenuItems).toBeArray();
+          expect(submenu.dom.submenuItems).toHaveLength(0);
         });
         test("submenuToggles", () => {
-          expect(submenu.dom.submenuToggles).toBeArrayOfSize(0);
+          expectTypeOf(submenu.dom.submenuToggles).toBeArray();
+          expect(submenu.dom.submenuToggles).toHaveLength(0);
         });
         test("submenus", () => {
-          expect(submenu.dom.submenus).toBeArrayOfSize(0);
+          expectTypeOf(submenu.dom.submenus).toBeArray();
+          expect(submenu.dom.submenus).toHaveLength(0);
         });
         test("controller", () => {
-          expect(submenu.dom.controller).toBe(null);
+          expect(submenu.dom.controller).toBeNull();
         });
         test("container", () => {
-          expect(submenu.dom.container).toBe(null);
+          expect(submenu.dom.container).toBeNull();
         });
       });
 
       describe("has correct menu elements", () => {
         test("controller", () => {
-          expect(submenu.elements.controller).toBe(null);
+          expect(submenu.elements.controller).toBeNull();
         });
         test("menuItems", () => {
-          const isCorrectMenuItemClass = (element) =>
-            element.constructor.name === `${menuType}Item`;
-          expect(submenu.elements.menuItems).toBeArrayOfSize(3);
-          expect(submenu.elements.menuItems).toSatisfyAll(
-            isCorrectMenuItemClass
-          );
+          const isCorrectMenuItemClass = (elements) => {
+            return elements.every(
+              (element) => element.constructor.name === `${menuType}Item`
+            );
+          };
+          expectTypeOf(submenu.elements.menuItems).toBeArray();
+          expect(submenu.elements.menuItems).toHaveLength(3);
+          expect(submenu.elements.menuItems).toSatisfy(isCorrectMenuItemClass);
         });
         test("parentMenu", () => {
           expect(submenu.elements.parentMenu).toBe(menu);
@@ -356,7 +378,8 @@ export function twoLevelSanity(MenuClass) {
           expect(submenu.elements.rootMenu).toBe(menu);
         });
         test("submenuToggles", () => {
-          expect(submenu.elements.submenuToggles).toBeArrayOfSize(0);
+          expectTypeOf(submenu.elements.submenuToggles).toBeArray();
+          expect(submenu.elements.submenuToggles).toHaveLength(0);
         });
       });
 
@@ -369,7 +392,7 @@ export function twoLevelSanity(MenuClass) {
       });
 
       test("is _not_ top level", () => {
-        expect(submenu.isTopLevel).toBeFalse();
+        expect(submenu.isTopLevel).toBeFalsy();
       });
 
       test("has correct current child", () => {
@@ -390,7 +413,7 @@ export function twoLevelSanity(MenuClass) {
 
       test("current menu item is correct", () => {
         if (menuType === "Bootstrap5DisclosureMenu") {
-          expect(submenu.currentMenuItem).toBeNil();
+          expect(submenu.currentMenuItem).toBeUndefined();
         } else {
           expect(submenu.currentMenuItem).toBe(submenu.elements.menuItems[0]);
         }
@@ -405,7 +428,7 @@ export function twoLevelSanity(MenuClass) {
       });
 
       test("should not focus", () => {
-        expect(submenu.shouldFocus).toBeFalse();
+        expect(submenu.shouldFocus).toBeFalsy();
       });
     });
   });

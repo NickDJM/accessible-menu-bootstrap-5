@@ -5,6 +5,7 @@
  */
 /* eslint-disable no-new */
 
+import { describe, test, expect } from "vitest";
 import { twoLevelMenu } from "./test-menus";
 
 /**

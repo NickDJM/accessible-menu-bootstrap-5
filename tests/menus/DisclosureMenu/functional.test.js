@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, test, expect } from "vitest";
 import { Bootstrap5DisclosureMenu } from "../../../index";
 import {
   openClose,
