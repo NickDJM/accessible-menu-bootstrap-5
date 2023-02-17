@@ -45,7 +45,7 @@ For learning/prototyping purposes you can use the latest version with:
 For production environments, it is recommend to use a specific version to avoid unforseen breaking changes:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.0/dist/accessible-menu-bs5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.1/dist/accessible-menu-bs5.min.js"></script>
 ```
 
 ## Usage
@@ -75,7 +75,7 @@ import AccessibleMenu from "accessible-menu-bootstrap-5";
 or
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.0/dist/accessible-menu-bs5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.1/dist/accessible-menu-bs5.min.js"></script>
 ```
 
 Once you have **accessible-menu-bootstrap-5** loaded, declare a new menu object.
@@ -103,7 +103,7 @@ import { Bootstrap5DisclosureMenu } from "accessible-menu-bootstrap-5";
 or
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.0/dist/disclosure-menu-bs5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.1/dist/disclosure-menu-bs5.min.js"></script>
 ```
 
 then
@@ -123,7 +123,7 @@ import { Bootstrap5Menubar } from "accessible-menu-bootstrap-5";
 or
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.0/dist/menubar-bs5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.1/dist/menubar-bs5.min.js"></script>
 ```
 
 then
@@ -143,7 +143,7 @@ import { Bootstrap5Treeview } from "accessible-menu-bootstrap-5";
 or
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.0/dist/treeview-bs5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu-bootstrap-5@1.0.1/dist/treeview-bs5.min.js"></script>
 ```
 
 then

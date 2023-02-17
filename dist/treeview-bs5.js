@@ -1,17 +1,16 @@
 var Bootstrap5Treeview = (function () {
   'use strict';
 
-  function _typeof$6(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$6 = function _typeof(obj) { return typeof obj; }; } else { _typeof$6 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$6(obj); }
   function isValidInstance(contructor, elements) {
     try {
-      if (_typeof$6(elements) !== "object") {
-        var elementsType = _typeof$6(elements);
-        throw new TypeError("AccessibleMenu: Elements given to isValidInstance() must be inside of an object. ".concat(elementsType, " given."));
+      if (typeof elements !== "object") {
+        const elementsType = typeof elements;
+        throw new TypeError(`AccessibleMenu: Elements given to isValidInstance() must be inside of an object. ${elementsType} given.`);
       }
-      for (var key in elements) {
+      for (const key in elements) {
         if (!(elements[key] instanceof contructor)) {
-          var elementType = _typeof$6(elements[key]);
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be an instance of ").concat(contructor.name, ". ").concat(elementType, " given."));
+          const elementType = typeof elements[key];
+          throw new TypeError(`AccessibleMenu: ${key} must be an instance of ${contructor.name}. ${elementType} given.`);
         }
       }
       return true;
@@ -22,14 +21,14 @@ var Bootstrap5Treeview = (function () {
   }
   function isValidType(type, values) {
     try {
-      if (_typeof$6(values) !== "object") {
-        var valuesType = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isValidType() must be inside of an object. ".concat(valuesType, " given."));
+      if (typeof values !== "object") {
+        const valuesType = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isValidType() must be inside of an object. ${valuesType} given.`);
       }
-      for (var key in values) {
-        var valueType = _typeof$6(values[key]);
+      for (const key in values) {
+        const valueType = typeof values[key];
         if (valueType !== type) {
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be a ").concat(type, ". ").concat(valueType, " given."));
+          throw new TypeError(`AccessibleMenu: ${key} must be a ${type}. ${valueType} given.`);
         }
       }
       return true;
@@ -40,18 +39,18 @@ var Bootstrap5Treeview = (function () {
   }
   function isCSSSelector(values) {
     try {
-      if (_typeof$6(values) !== "object") {
-        var type = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isCSSSelector() must be inside of an object. ".concat(type, " given."));
+      if (typeof values !== "object") {
+        const type = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isCSSSelector() must be inside of an object. ${type} given.`);
       }
-      for (var key in values) {
+      for (const key in values) {
         try {
           if (values[key] === null) {
             throw new Error();
           }
           document.querySelector(values[key]);
         } catch (error) {
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be a valid CSS selector. \"").concat(values[key], "\" given."));
+          throw new TypeError(`AccessibleMenu: ${key} must be a valid CSS selector. "${values[key]}" given.`);
         }
       }
       return true;
@@ -62,30 +61,27 @@ var Bootstrap5Treeview = (function () {
   }
   function isValidClassList(values) {
     try {
-      if (_typeof$6(values) !== "object" || Array.isArray(values)) {
-        var type = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isValidClassList() must be inside of an object. ".concat(type, " given."));
+      if (typeof values !== "object" || Array.isArray(values)) {
+        const type = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isValidClassList() must be inside of an object. ${type} given.`);
       }
-      var _loop = function _loop(key) {
-        var type = _typeof$6(values[key]);
+      for (const key in values) {
+        const type = typeof values[key];
         if (type !== "string") {
           if (Array.isArray(values[key])) {
-            values[key].forEach(function (value) {
+            values[key].forEach(value => {
               if (typeof value !== "string") {
-                throw new TypeError("AccessibleMenu: ".concat(key, " must be a string or an array of strings. An array containing non-strings given."));
+                throw new TypeError(`AccessibleMenu: ${key} must be a string or an array of strings. An array containing non-strings given.`);
               }
             });
           } else {
-            throw new TypeError("AccessibleMenu: ".concat(key, " must be a string or an array of strings. ").concat(type, " given."));
+            throw new TypeError(`AccessibleMenu: ${key} must be a string or an array of strings. ${type} given.`);
           }
         } else {
-          var obj = {};
+          const obj = {};
           obj[key] = values[key];
           isCSSSelector(obj);
         }
-      };
-      for (var key in values) {
-        _loop(key);
       }
       return true;
     } catch (error) {
@@ -95,14 +91,14 @@ var Bootstrap5Treeview = (function () {
   }
   function isValidState(values) {
     try {
-      if (_typeof$6(values) !== "object") {
-        var type = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isValidState() must be inside of an object. ".concat(type, " given."));
+      if (typeof values !== "object") {
+        const type = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isValidState() must be inside of an object. ${type} given.`);
       }
-      var validStates = ["none", "self", "child"];
-      for (var key in values) {
+      const validStates = ["none", "self", "child"];
+      for (const key in values) {
         if (!validStates.includes(values[key])) {
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be one of the following values: ").concat(validStates.join(", "), ". \"").concat(values[key], "\" given."));
+          throw new TypeError(`AccessibleMenu: ${key} must be one of the following values: ${validStates.join(", ")}. "${values[key]}" given.`);
         }
       }
       return true;
@@ -113,14 +109,14 @@ var Bootstrap5Treeview = (function () {
   }
   function isValidEvent(values) {
     try {
-      if (_typeof$6(values) !== "object") {
-        var type = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isValidEvent() must be inside of an object. ".concat(type, " given."));
+      if (typeof values !== "object") {
+        const type = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isValidEvent() must be inside of an object. ${type} given.`);
       }
-      var validEvents = ["none", "mouse", "keyboard", "character"];
-      for (var key in values) {
+      const validEvents = ["none", "mouse", "keyboard", "character"];
+      for (const key in values) {
         if (!validEvents.includes(values[key])) {
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be one of the following values: ").concat(validEvents.join(", "), ". \"").concat(values[key], "\" given."));
+          throw new TypeError(`AccessibleMenu: ${key} must be one of the following values: ${validEvents.join(", ")}. "${values[key]}" given.`);
         }
       }
       return true;
@@ -131,14 +127,14 @@ var Bootstrap5Treeview = (function () {
   }
   function isValidHoverType(values) {
     try {
-      if (_typeof$6(values) !== "object") {
-        var type = _typeof$6(values);
-        throw new TypeError("AccessibleMenu: Values given to isValidHoverType() must be inside of an object. ".concat(type, " given."));
+      if (typeof values !== "object") {
+        const type = typeof values;
+        throw new TypeError(`AccessibleMenu: Values given to isValidHoverType() must be inside of an object. ${type} given.`);
       }
-      var validTypes = ["off", "on", "dynamic"];
-      for (var key in values) {
+      const validTypes = ["off", "on", "dynamic"];
+      for (const key in values) {
         if (!validTypes.includes(values[key])) {
-          throw new TypeError("AccessibleMenu: ".concat(key, " must be one of the following values: ").concat(validTypes.join(", "), ". \"").concat(values[key], "\" given."));
+          throw new TypeError(`AccessibleMenu: ${key} must be one of the following values: ${validTypes.join(", ")}. "${values[key]}" given.`);
         }
       }
       return true;
@@ -149,11 +145,11 @@ var Bootstrap5Treeview = (function () {
   }
   function isTag(tagName, elements) {
     if (isValidType("string", {
-      tagName: tagName
+      tagName
     }) && isValidInstance(HTMLElement, elements)) {
-      var tag = tagName.toLowerCase();
-      var check = true;
-      for (var key in elements) {
+      const tag = tagName.toLowerCase();
+      let check = true;
+      for (const key in elements) {
         if (elements[key].tagName.toLowerCase() !== tag) check = false;
       }
       return check;
@@ -162,24 +158,17 @@ var Bootstrap5Treeview = (function () {
     }
   }
 
-  function _toConsumableArray$3(arr) { return _arrayWithoutHoles$3(arr) || _iterableToArray$3(arr) || _unsupportedIterableToArray$3(arr) || _nonIterableSpread$3(); }
-  function _nonIterableSpread$3() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-  function _unsupportedIterableToArray$3(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray$3(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$3(o, minLen); }
-  function _iterableToArray$3(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-  function _arrayWithoutHoles$3(arr) { if (Array.isArray(arr)) return _arrayLikeToArray$3(arr); }
-  function _arrayLikeToArray$3(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-  function _classCallCheck$8(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties$5(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass$5(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$5(Constructor.prototype, protoProps); if (staticProps) _defineProperties$5(Constructor, staticProps); return Constructor; }
-  function _defineProperty$5(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var BaseMenuToggle = function () {
-    function BaseMenuToggle(_ref) {
-      var menuToggleElement = _ref.menuToggleElement,
-          parentElement = _ref.parentElement,
-          controlledMenu = _ref.controlledMenu,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu;
-      _classCallCheck$8(this, BaseMenuToggle);
+  function _defineProperty$5(obj, key, value) { key = _toPropertyKey$5(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey$5(arg) { var key = _toPrimitive$5(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive$5(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class BaseMenuToggle {
+    constructor(_ref) {
+      let {
+        menuToggleElement,
+        parentElement,
+        controlledMenu,
+        parentMenu = null
+      } = _ref;
       _defineProperty$5(this, "_dom", {
         toggle: null,
         parent: null
@@ -206,192 +195,158 @@ var Bootstrap5Treeview = (function () {
       this._elements.controlledMenu = controlledMenu;
       this._elements.parentMenu = parentMenu;
     }
-    _createClass$5(BaseMenuToggle, [{
-      key: "initialize",
-      value: function initialize() {
-        this.dom.toggle.setAttribute("aria-haspopup", "true");
-        this.dom.toggle.setAttribute("aria-expanded", "false");
-        if (!isTag("button", {
-          toggle: this.dom.toggle
-        })) {
-          this.dom.toggle.setAttribute("role", "button");
+    initialize() {
+      this.dom.toggle.setAttribute("aria-haspopup", "true");
+      this.dom.toggle.setAttribute("aria-expanded", "false");
+      if (!isTag("button", {
+        toggle: this.dom.toggle
+      })) {
+        this.dom.toggle.setAttribute("role", "button");
+      }
+      if (this.dom.toggle.id === "" || this.elements.controlledMenu.dom.menu.id === "") {
+        const randomString = Math.random().toString(36).replace(/[^a-z]+/g, "").substr(0, 10);
+        let id = this.dom.toggle.innerText.replace(/[^a-zA-Z0-9\s]/g, "");
+        let finalID = randomString;
+        if (!id.replace(/\s/g, "").length && this.dom.toggle.getAttribute("aria-label")) {
+          id = this.dom.toggle.getAttribute("aria-label").replace(/[^a-zA-Z0-9\s]/g, "");
         }
-        if (this.dom.toggle.id === "" || this.elements.controlledMenu.dom.menu.id === "") {
-          var randomString = Math.random().toString(36).replace(/[^a-z]+/g, "").substr(0, 10);
-          var id = this.dom.toggle.innerText.replace(/[^a-zA-Z0-9\s]/g, "");
-          var finalID = randomString;
-          if (!id.replace(/\s/g, "").length && this.dom.toggle.getAttribute("aria-label")) {
-            id = this.dom.toggle.getAttribute("aria-label").replace(/[^a-zA-Z0-9\s]/g, "");
+        if (id.replace(/\s/g, "").length > 0) {
+          id = id.toLowerCase().replace(/\s+/g, "-");
+          if (id.startsWith("-")) {
+            id = id.substring(1);
           }
-          if (id.replace(/\s/g, "").length > 0) {
-            id = id.toLowerCase().replace(/\s+/g, "-");
-            if (id.startsWith("-")) {
-              id = id.substring(1);
-            }
-            if (id.endsWith("-")) {
-              id = id.slice(0, -1);
-            }
-            finalID = "".concat(id, "-").concat(finalID);
+          if (id.endsWith("-")) {
+            id = id.slice(0, -1);
           }
-          this.dom.toggle.id = this.dom.toggle.id || "".concat(finalID, "-menu-button");
-          this.elements.controlledMenu.dom.menu.id = this.elements.controlledMenu.dom.menu.id || "".concat(finalID, "-menu");
+          finalID = `${id}-${finalID}`;
         }
-        this.elements.controlledMenu.dom.menu.setAttribute("aria-labelledby", this.dom.toggle.id);
-        this.dom.toggle.setAttribute("aria-controls", this.elements.controlledMenu.dom.menu.id);
-        this._collapse(false);
+        this.dom.toggle.id = this.dom.toggle.id || `${finalID}-menu-button`;
+        this.elements.controlledMenu.dom.menu.id = this.elements.controlledMenu.dom.menu.id || `${finalID}-menu`;
       }
-    }, {
-      key: "dom",
-      get: function get() {
-        return this._dom;
-      }
-    }, {
-      key: "elements",
-      get: function get() {
-        return this._elements;
-      }
-    }, {
-      key: "isOpen",
-      get: function get() {
-        return this._open;
-      },
-      set: function set(value) {
-        isValidType("boolean", {
-          value: value
-        });
-        this._open = value;
-      }
-    }, {
-      key: "_expand",
-      value: function _expand() {
-        var emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-        var _this$elements$contro = this.elements.controlledMenu,
-            closeClass = _this$elements$contro.closeClass,
-            openClass = _this$elements$contro.openClass;
-        this.dom.toggle.setAttribute("aria-expanded", "true");
-        if (openClass !== "") {
-          if (typeof openClass === "string") {
-            this.elements.controlledMenu.dom.menu.classList.add(openClass);
-          } else {
-            var _this$elements$contro2;
-            (_this$elements$contro2 = this.elements.controlledMenu.dom.menu.classList).add.apply(_this$elements$contro2, _toConsumableArray$3(openClass));
-          }
-        }
-        if (closeClass !== "") {
-          if (typeof closeClass === "string") {
-            this.elements.controlledMenu.dom.menu.classList.remove(closeClass);
-          } else {
-            var _this$elements$contro3;
-            (_this$elements$contro3 = this.elements.controlledMenu.dom.menu.classList).remove.apply(_this$elements$contro3, _toConsumableArray$3(closeClass));
-          }
-        }
-        if (emit) {
-          this.dom.toggle.dispatchEvent(this._expandEvent);
+      this.elements.controlledMenu.dom.menu.setAttribute("aria-labelledby", this.dom.toggle.id);
+      this.dom.toggle.setAttribute("aria-controls", this.elements.controlledMenu.dom.menu.id);
+      this._collapse(false);
+    }
+    get dom() {
+      return this._dom;
+    }
+    get elements() {
+      return this._elements;
+    }
+    get isOpen() {
+      return this._open;
+    }
+    set isOpen(value) {
+      isValidType("boolean", {
+        value
+      });
+      this._open = value;
+    }
+    _expand() {
+      let emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      const {
+        closeClass,
+        openClass
+      } = this.elements.controlledMenu;
+      this.dom.toggle.setAttribute("aria-expanded", "true");
+      if (openClass !== "") {
+        if (typeof openClass === "string") {
+          this.elements.controlledMenu.dom.menu.classList.add(openClass);
+        } else {
+          this.elements.controlledMenu.dom.menu.classList.add(...openClass);
         }
       }
-    }, {
-      key: "_collapse",
-      value: function _collapse() {
-        var emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-        var _this$elements$contro4 = this.elements.controlledMenu,
-            closeClass = _this$elements$contro4.closeClass,
-            openClass = _this$elements$contro4.openClass;
-        this.dom.toggle.setAttribute("aria-expanded", "false");
-        if (closeClass !== "") {
-          if (typeof closeClass === "string") {
-            this.elements.controlledMenu.dom.menu.classList.add(closeClass);
-          } else {
-            var _this$elements$contro5;
-            (_this$elements$contro5 = this.elements.controlledMenu.dom.menu.classList).add.apply(_this$elements$contro5, _toConsumableArray$3(closeClass));
-          }
-        }
-        if (openClass !== "") {
-          if (typeof openClass === "string") {
-            this.elements.controlledMenu.dom.menu.classList.remove(openClass);
-          } else {
-            var _this$elements$contro6;
-            (_this$elements$contro6 = this.elements.controlledMenu.dom.menu.classList).remove.apply(_this$elements$contro6, _toConsumableArray$3(openClass));
-          }
-        }
-        if (emit) {
-          this.dom.toggle.dispatchEvent(this._collapseEvent);
+      if (closeClass !== "") {
+        if (typeof closeClass === "string") {
+          this.elements.controlledMenu.dom.menu.classList.remove(closeClass);
+        } else {
+          this.elements.controlledMenu.dom.menu.classList.remove(...closeClass);
         }
       }
-    }, {
-      key: "open",
-      value: function open() {
-        this.elements.controlledMenu.focusState = "self";
-        this._expand();
-        this.isOpen = true;
+      if (emit) {
+        this.dom.toggle.dispatchEvent(this._expandEvent);
       }
-    }, {
-      key: "preview",
-      value: function preview() {
+    }
+    _collapse() {
+      let emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      const {
+        closeClass,
+        openClass
+      } = this.elements.controlledMenu;
+      this.dom.toggle.setAttribute("aria-expanded", "false");
+      if (closeClass !== "") {
+        if (typeof closeClass === "string") {
+          this.elements.controlledMenu.dom.menu.classList.add(closeClass);
+        } else {
+          this.elements.controlledMenu.dom.menu.classList.add(...closeClass);
+        }
+      }
+      if (openClass !== "") {
+        if (typeof openClass === "string") {
+          this.elements.controlledMenu.dom.menu.classList.remove(openClass);
+        } else {
+          this.elements.controlledMenu.dom.menu.classList.remove(...openClass);
+        }
+      }
+      if (emit) {
+        this.dom.toggle.dispatchEvent(this._collapseEvent);
+      }
+    }
+    open() {
+      this.elements.controlledMenu.focusState = "self";
+      this._expand();
+      this.isOpen = true;
+    }
+    preview() {
+      if (this.elements.parentMenu) {
+        this.elements.parentMenu.focusState = "self";
+      }
+      this._expand();
+      this.isOpen = true;
+    }
+    close() {
+      if (this.isOpen) {
+        this.elements.controlledMenu.currentChild = 0;
+        this.elements.controlledMenu.blur();
         if (this.elements.parentMenu) {
           this.elements.parentMenu.focusState = "self";
         }
-        this._expand();
-        this.isOpen = true;
+        this._collapse();
+        this.isOpen = false;
       }
-    }, {
-      key: "close",
-      value: function close() {
-        if (this.isOpen) {
-          this.elements.controlledMenu.currentChild = 0;
-          this.elements.controlledMenu.blur();
-          if (this.elements.parentMenu) {
-            this.elements.parentMenu.focusState = "self";
-          }
-          this._collapse();
-          this.isOpen = false;
-        }
+    }
+    toggle() {
+      if (this.isOpen) {
+        this.close();
+      } else {
+        this.open();
       }
-    }, {
-      key: "toggle",
-      value: function toggle() {
-        if (this.isOpen) {
-          this.close();
-        } else {
-          this.open();
-        }
-      }
-    }, {
-      key: "closeSiblings",
-      value: function closeSiblings() {
-        var _this = this;
-        if (this.elements.parentMenu) {
-          this.elements.parentMenu.elements.submenuToggles.forEach(function (toggle) {
-            if (toggle !== _this) toggle.close();
-          });
-        }
-      }
-    }, {
-      key: "closeChildren",
-      value: function closeChildren() {
-        this.elements.controlledMenu.elements.submenuToggles.forEach(function (toggle) {
-          return toggle.close();
+    }
+    closeSiblings() {
+      if (this.elements.parentMenu) {
+        this.elements.parentMenu.elements.submenuToggles.forEach(toggle => {
+          if (toggle !== this) toggle.close();
         });
       }
-    }]);
-    return BaseMenuToggle;
-  }();
+    }
+    closeChildren() {
+      this.elements.controlledMenu.elements.submenuToggles.forEach(toggle => toggle.close());
+    }
+  }
 
-  function _classCallCheck$7(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties$4(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass$4(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$4(Constructor.prototype, protoProps); if (staticProps) _defineProperties$4(Constructor, staticProps); return Constructor; }
-  function _defineProperty$4(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var BaseMenuItem = function () {
-    function BaseMenuItem(_ref) {
-      var menuItemElement = _ref.menuItemElement,
-          menuLinkElement = _ref.menuLinkElement,
-          parentMenu = _ref.parentMenu,
-          _ref$isSubmenuItem = _ref.isSubmenuItem,
-          isSubmenuItem = _ref$isSubmenuItem === void 0 ? false : _ref$isSubmenuItem,
-          _ref$childMenu = _ref.childMenu,
-          childMenu = _ref$childMenu === void 0 ? null : _ref$childMenu,
-          _ref$toggle = _ref.toggle,
-          toggle = _ref$toggle === void 0 ? null : _ref$toggle;
-      _classCallCheck$7(this, BaseMenuItem);
+  function _defineProperty$4(obj, key, value) { key = _toPropertyKey$4(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey$4(arg) { var key = _toPrimitive$4(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive$4(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class BaseMenuItem {
+    constructor(_ref) {
+      let {
+        menuItemElement,
+        menuLinkElement,
+        parentMenu,
+        isSubmenuItem = false,
+        childMenu = null,
+        toggle = null
+      } = _ref;
       _defineProperty$4(this, "_dom", {
         item: null,
         link: null
@@ -409,46 +364,32 @@ var Bootstrap5Treeview = (function () {
       this._elements.toggle = toggle;
       this._submenu = isSubmenuItem;
     }
-    _createClass$4(BaseMenuItem, [{
-      key: "initialize",
-      value: function initialize() {}
-    }, {
-      key: "dom",
-      get: function get() {
-        return this._dom;
+    initialize() {}
+    get dom() {
+      return this._dom;
+    }
+    get elements() {
+      return this._elements;
+    }
+    get isSubmenuItem() {
+      return this._submenu;
+    }
+    focus() {
+      if (this.elements.parentMenu.shouldFocus) {
+        this.dom.link.focus();
       }
-    }, {
-      key: "elements",
-      get: function get() {
-        return this._elements;
+    }
+    blur() {
+      if (this.elements.parentMenu.shouldFocus) {
+        this.dom.link.blur();
       }
-    }, {
-      key: "isSubmenuItem",
-      get: function get() {
-        return this._submenu;
-      }
-    }, {
-      key: "focus",
-      value: function focus() {
-        if (this.elements.parentMenu.shouldFocus) {
-          this.dom.link.focus();
-        }
-      }
-    }, {
-      key: "blur",
-      value: function blur() {
-        if (this.elements.parentMenu.shouldFocus) {
-          this.dom.link.blur();
-        }
-      }
-    }]);
-    return BaseMenuItem;
-  }();
+    }
+  }
 
   function keyPress(event) {
     try {
-      var key = event.key || event.keyCode;
-      var keys = {
+      const key = event.key || event.keyCode;
+      const keys = {
         Enter: key === "Enter" || key === 13,
         Space: key === " " || key === "Spacebar" || key === 32,
         Escape: key === "Escape" || key === "Esc" || key === 27,
@@ -462,9 +403,7 @@ var Bootstrap5Treeview = (function () {
         Tab: key === "Tab" || key === 9,
         Asterisk: key === "*" || key === 56
       };
-      return Object.keys(keys).find(function (key) {
-        return keys[key] === true;
-      }) || "";
+      return Object.keys(keys).find(key => keys[key] === true) || "";
     } catch (error) {
       return "";
     }
@@ -474,46 +413,27 @@ var Bootstrap5Treeview = (function () {
     event.stopPropagation();
   }
 
-  function _toConsumableArray$2(arr) { return _arrayWithoutHoles$2(arr) || _iterableToArray$2(arr) || _unsupportedIterableToArray$2(arr) || _nonIterableSpread$2(); }
-  function _nonIterableSpread$2() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-  function _unsupportedIterableToArray$2(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray$2(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$2(o, minLen); }
-  function _iterableToArray$2(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-  function _arrayWithoutHoles$2(arr) { if (Array.isArray(arr)) return _arrayLikeToArray$2(arr); }
-  function _arrayLikeToArray$2(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-  function _classCallCheck$6(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties$3(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$3(Constructor.prototype, protoProps); if (staticProps) _defineProperties$3(Constructor, staticProps); return Constructor; }
-  function _defineProperty$3(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var BaseMenu = function () {
-    function BaseMenu(_ref) {
-      var menuElement = _ref.menuElement,
-          _ref$menuItemSelector = _ref.menuItemSelector,
-          menuItemSelector = _ref$menuItemSelector === void 0 ? "li" : _ref$menuItemSelector,
-          _ref$menuLinkSelector = _ref.menuLinkSelector,
-          menuLinkSelector = _ref$menuLinkSelector === void 0 ? "a" : _ref$menuLinkSelector,
-          _ref$submenuItemSelec = _ref.submenuItemSelector,
-          submenuItemSelector = _ref$submenuItemSelec === void 0 ? "" : _ref$submenuItemSelec,
-          _ref$submenuToggleSel = _ref.submenuToggleSelector,
-          submenuToggleSelector = _ref$submenuToggleSel === void 0 ? "a" : _ref$submenuToggleSel,
-          _ref$submenuSelector = _ref.submenuSelector,
-          submenuSelector = _ref$submenuSelector === void 0 ? "ul" : _ref$submenuSelector,
-          _ref$controllerElemen = _ref.controllerElement,
-          controllerElement = _ref$controllerElemen === void 0 ? null : _ref$controllerElemen,
-          _ref$containerElement = _ref.containerElement,
-          containerElement = _ref$containerElement === void 0 ? null : _ref$containerElement,
-          _ref$openClass = _ref.openClass,
-          openClass = _ref$openClass === void 0 ? "show" : _ref$openClass,
-          _ref$closeClass = _ref.closeClass,
-          closeClass = _ref$closeClass === void 0 ? "hide" : _ref$closeClass,
-          _ref$isTopLevel = _ref.isTopLevel,
-          isTopLevel = _ref$isTopLevel === void 0 ? true : _ref$isTopLevel,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu,
-          _ref$hoverType = _ref.hoverType,
-          hoverType = _ref$hoverType === void 0 ? "off" : _ref$hoverType,
-          _ref$hoverDelay = _ref.hoverDelay,
-          hoverDelay = _ref$hoverDelay === void 0 ? 250 : _ref$hoverDelay;
-      _classCallCheck$6(this, BaseMenu);
+  function _defineProperty$3(obj, key, value) { key = _toPropertyKey$3(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey$3(arg) { var key = _toPrimitive$3(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive$3(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class BaseMenu {
+    constructor(_ref) {
+      let {
+        menuElement,
+        menuItemSelector = "li",
+        menuLinkSelector = "a",
+        submenuItemSelector = "",
+        submenuToggleSelector = "a",
+        submenuSelector = "ul",
+        controllerElement = null,
+        containerElement = null,
+        openClass = "show",
+        closeClass = "hide",
+        isTopLevel = true,
+        parentMenu = null,
+        hoverType = "off",
+        hoverDelay = 250
+      } = _ref;
       _defineProperty$3(this, "_MenuType", BaseMenu);
       _defineProperty$3(this, "_MenuItemType", BaseMenuItem);
       _defineProperty$3(this, "_MenuToggleType", BaseMenuToggle);
@@ -567,1260 +487,993 @@ var Bootstrap5Treeview = (function () {
       this._hoverType = hoverType;
       this._hoverDelay = hoverDelay;
     }
-    _createClass$3(BaseMenu, [{
-      key: "initialize",
-      value: function initialize() {
-        if (!this._validate()) {
-          throw new Error("AccesibleMenu: cannot initialize menu. See other error messages for more information.");
+    initialize() {
+      if (!this._validate()) {
+        throw new Error("AccesibleMenu: cannot initialize menu. See other error messages for more information.");
+      }
+      if (this.elements.rootMenu === null) this._findRootMenu(this);
+      this._setDOMElements();
+      if (this.isTopLevel) {
+        if (this.dom.controller && this.dom.container) {
+          const toggle = new this._MenuToggleType({
+            menuToggleElement: this.dom.controller,
+            parentElement: this.dom.container,
+            controlledMenu: this
+          });
+          this._elements.controller = toggle;
         }
-        if (this.elements.rootMenu === null) this._findRootMenu(this);
-        this._setDOMElements();
-        if (this.isTopLevel) {
-          if (this.dom.controller && this.dom.container) {
-            var toggle = new this._MenuToggleType({
-              menuToggleElement: this.dom.controller,
-              parentElement: this.dom.container,
-              controlledMenu: this
-            });
-            this._elements.controller = toggle;
+      }
+      this._createChildElements();
+    }
+    get dom() {
+      return this._dom;
+    }
+    get selectors() {
+      return this._selectors;
+    }
+    get elements() {
+      return this._elements;
+    }
+    get isTopLevel() {
+      return this._root;
+    }
+    get openClass() {
+      return this.isTopLevel ? this._openClass : this.elements.rootMenu.openClass;
+    }
+    get closeClass() {
+      return this.isTopLevel ? this._closeClass : this.elements.rootMenu.closeClass;
+    }
+    get currentChild() {
+      return this._currentChild;
+    }
+    get focusState() {
+      return this._focusState;
+    }
+    get currentEvent() {
+      return this._currentEvent;
+    }
+    get currentMenuItem() {
+      return this.elements.menuItems[this.currentChild];
+    }
+    get hoverType() {
+      return this._root ? this._hoverType : this.elements.rootMenu.hoverType;
+    }
+    get hoverDelay() {
+      return this._root ? this._hoverDelay : this.elements.rootMenu.hoverDelay;
+    }
+    get shouldFocus() {
+      let check = false;
+      if (this.currentEvent === "keyboard" || this.currentEvent === "character") {
+        check = true;
+      }
+      if (this.currentEvent === "mouse" && this.hoverType === "dynamic") {
+        check = true;
+      }
+      return check;
+    }
+    set openClass(value) {
+      isValidClassList({
+        openClass: value
+      });
+      if (this._openClass !== value) {
+        this._openClass = value;
+      }
+    }
+    set closeClass(value) {
+      isValidClassList({
+        closeClass: value
+      });
+      if (this._closeClass !== value) {
+        this._closeClass = value;
+      }
+    }
+    set currentChild(value) {
+      isValidType("number", {
+        value
+      });
+      function setParentChild(menu) {
+        const updateEvents = ["mouse", "character"];
+        if (updateEvents.includes(menu.currentEvent) && menu.elements.parentMenu) {
+          let index = 0;
+          let found = false;
+          while (!found && index < menu.elements.parentMenu.elements.menuItems.length) {
+            const menuItem = menu.elements.parentMenu.elements.menuItems[index];
+            if (menuItem.isSubmenuItem && menuItem.elements.toggle.elements.controlledMenu === menu) {
+              found = true;
+              menu.elements.parentMenu.currentEvent = menu.currentEvent;
+              menu.elements.parentMenu.currentChild = index;
+            }
+            index++;
           }
         }
-        this._createChildElements();
       }
-    }, {
-      key: "dom",
-      get: function get() {
-        return this._dom;
+      if (value < -1) {
+        this._currentChild = -1;
+        setParentChild(this);
+      } else if (value >= this.elements.menuItems.length) {
+        this._currentChild = this.elements.menuItems.length - 1;
+        setParentChild(this);
+      } else if (this.focusChild !== value) {
+        this._currentChild = value;
+        setParentChild(this);
       }
-    }, {
-      key: "selectors",
-      get: function get() {
-        return this._selectors;
+    }
+    set focusState(value) {
+      isValidState({
+        value
+      });
+      if (this._focusState !== value) {
+        this._focusState = value;
       }
-    }, {
-      key: "elements",
-      get: function get() {
-        return this._elements;
-      }
-    }, {
-      key: "isTopLevel",
-      get: function get() {
-        return this._root;
-      }
-    }, {
-      key: "openClass",
-      get: function get() {
-        return this.isTopLevel ? this._openClass : this.elements.rootMenu.openClass;
-      }
-      ,
-      set: function set(value) {
-        isValidClassList({
-          openClass: value
+      if (this.elements.submenuToggles.length > 0 && (value === "self" || value === "none")) {
+        this.elements.submenuToggles.forEach(toggle => {
+          toggle.elements.controlledMenu.focusState = "none";
         });
-        if (this._openClass !== value) {
-          this._openClass = value;
+      }
+      if (this.elements.parentMenu && (value === "self" || value === "child")) {
+        this.elements.parentMenu.focusState = "child";
+      }
+    }
+    set currentEvent(value) {
+      isValidEvent({
+        value
+      });
+      if (this._currentEvent !== value) {
+        this._currentEvent = value;
+        if (this.elements.submenuToggles.length > 0) {
+          this.elements.submenuToggles.forEach(submenuToggle => {
+            submenuToggle.elements.controlledMenu.currentEvent = value;
+          });
         }
       }
-    }, {
-      key: "closeClass",
-      get: function get() {
-        return this.isTopLevel ? this._closeClass : this.elements.rootMenu.closeClass;
+    }
+    set hoverType(value) {
+      isValidHoverType({
+        value
+      });
+      if (this._hoverType !== value) {
+        this._hoverType = value;
       }
-      ,
-      set: function set(value) {
-        isValidClassList({
-          closeClass: value
+    }
+    set hoverDelay(value) {
+      isValidType("number", {
+        value
+      });
+      if (this._hoverDelay !== value) {
+        this._hoverDelay = value;
+      }
+    }
+    _validate() {
+      let check = true;
+      if (this._dom.container !== null || this._dom.controller !== null) {
+        if (!isValidInstance(HTMLElement, {
+          menuElement: this._dom.menu,
+          controllerElement: this._dom.controller,
+          containerElement: this._dom.container
+        })) {
+          check = false;
+        }
+      } else if (!isValidInstance(HTMLElement, {
+        menuElement: this._dom.menu
+      })) {
+        check = false;
+      }
+      if (this._selectors.submenuItems !== "") {
+        if (!isCSSSelector({
+          menuItemSelector: this._selectors.menuItems,
+          menuLinkSelector: this._selectors.menuLinks,
+          submenuItemSelector: this._selectors.submenuItems,
+          submenuToggleSelector: this._selectors.submenuToggles,
+          submenuSelector: this._selectors.submenus
+        })) {
+          check = false;
+        }
+      } else if (!isCSSSelector({
+        menuItemSelector: this._selectors.menuItems,
+        menuLinkSelector: this._selectors.menuLinks
+      })) {
+        check = false;
+      }
+      if (this._openClass !== "" && !isValidClassList({
+        openClass: this._openClass
+      })) {
+        check = false;
+      }
+      if (this._closeClass !== "" && !isValidClassList({
+        closeClass: this._closeClass
+      })) {
+        check = false;
+      }
+      if (!isValidType("boolean", {
+        isTopLevel: this._root
+      })) {
+        check = false;
+      }
+      if (this._elements.parentMenu !== null && !isValidInstance(BaseMenu, {
+        parentMenu: this._elements.parentMenu
+      })) {
+        check = false;
+      }
+      if (!isValidHoverType({
+        hoverType: this._hoverType
+      })) {
+        check = false;
+      }
+      if (!isValidType("number", {
+        hoverDelay: this._hoverDelay
+      })) {
+        check = false;
+      }
+      return check;
+    }
+    _setDOMElementType(elementType) {
+      let base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.dom.menu;
+      let overwrite = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      if (typeof this.selectors[elementType] === "string") {
+        if (!Array.isArray(this.dom[elementType])) {
+          throw new Error(`AccessibleMenu: The "${elementType}" element cannot be set through _setDOMElementType.`);
+        }
+        if (base !== this.dom.menu) isValidInstance(HTMLElement, {
+          base
         });
-        if (this._closeClass !== value) {
-          this._closeClass = value;
+        const domElements = Array.from(base.querySelectorAll(this.selectors[elementType]));
+        const filteredElements = domElements.filter(item => item.parentElement === base);
+        if (overwrite) {
+          this._dom[elementType] = filteredElements;
+        } else {
+          this._dom[elementType] = [...this._dom[elementType], ...filteredElements];
+        }
+      } else {
+        throw new Error(`AccessibleMenu: "${elementType}" is not a valid element type within the menu.`);
+      }
+    }
+    _resetDOMElementType(elementType) {
+      if (typeof this.dom[elementType] !== "undefined") {
+        if (!Array.isArray(this.dom[elementType])) {
+          throw new Error(`AccessibleMenu: The "${elementType}" element cannot be reset through _resetDOMElementType.`);
+        }
+        this._dom[elementType] = [];
+      } else {
+        throw new Error(`AccessibleMenu: "${elementType}" is not a valid element type within the menu.`);
+      }
+    }
+    _setDOMElements() {
+      this._setDOMElementType("menuItems");
+      if (this.selectors.submenuItems !== "") {
+        this._setDOMElementType("submenuItems");
+        this._resetDOMElementType("submenuToggles");
+        this._resetDOMElementType("submenus");
+        this.dom.submenuItems.forEach(item => {
+          this._setDOMElementType("submenuToggles", item, false);
+          this._setDOMElementType("submenus", item, false);
+        });
+      }
+    }
+    _findRootMenu(menu) {
+      if (menu.isTopLevel) {
+        this._elements.rootMenu = menu;
+      } else if (menu.elements.parentMenu !== null) {
+        this._findRootMenu(menu.elements.parentMenu);
+      } else {
+        throw new Error("Cannot find root menu.");
+      }
+    }
+    _createChildElements() {
+      this.dom.menuItems.forEach(element => {
+        let menuItem;
+        if (this.dom.submenuItems.includes(element)) {
+          const toggler = element.querySelector(this.selectors.submenuToggles);
+          const submenu = element.querySelector(this.selectors.submenus);
+          const menu = new this._MenuType({
+            menuElement: submenu,
+            menuItemSelector: this.selectors.menuItems,
+            menuLinkSelector: this.selectors.menuLinks,
+            submenuItemSelector: this.selectors.submenuItems,
+            submenuToggleSelector: this.selectors.submenuToggles,
+            submenuSelector: this.selectors.submenus,
+            openClass: this.openClass,
+            closeClass: this.closeClass,
+            isTopLevel: false,
+            parentMenu: this,
+            hoverType: this.hoverType,
+            hoverDelay: this.hoverDelay
+          });
+          const toggle = new this._MenuToggleType({
+            menuToggleElement: toggler,
+            parentElement: element,
+            controlledMenu: menu,
+            parentMenu: this
+          });
+          this._elements.submenuToggles.push(toggle);
+          menuItem = new this._MenuItemType({
+            menuItemElement: element,
+            menuLinkElement: toggler,
+            parentMenu: this,
+            isSubmenuItem: true,
+            childMenu: menu,
+            toggle
+          });
+        } else {
+          const link = element.querySelector(this.selectors.menuLinks);
+          menuItem = new this._MenuItemType({
+            menuItemElement: element,
+            menuLinkElement: link,
+            parentMenu: this
+          });
+        }
+        this._elements.menuItems.push(menuItem);
+      });
+    }
+    _handleFocus() {
+      this.elements.menuItems.forEach((menuItem, index) => {
+        menuItem.dom.link.addEventListener("focus", () => {
+          this.focusState = "self";
+          this.currentChild = index;
+        });
+      });
+    }
+    _handleClick() {
+      function toggleToggle(menu, toggle, event) {
+        preventEvent(event);
+        toggle.toggle();
+        if (toggle.isOpen) {
+          menu.focusState = "self";
+          toggle.elements.controlledMenu.focusState = "none";
         }
       }
-    }, {
-      key: "currentChild",
-      get: function get() {
-        return this._currentChild;
-      }
-      ,
-      set: function set(value) {
-        isValidType("number", {
-          value: value
+      this.elements.menuItems.forEach((item, index) => {
+        item.dom.link.addEventListener("pointerdown", () => {
+          this.currentEvent = "mouse";
+          this.elements.rootMenu.blurChildren();
+          this.focusChild(index);
+        }, {
+          passive: true
         });
-        function setParentChild(menu) {
-          var updateEvents = ["mouse", "character"];
-          if (updateEvents.includes(menu.currentEvent) && menu.elements.parentMenu) {
-            var index = 0;
-            var found = false;
-            while (!found && index < menu.elements.parentMenu.elements.menuItems.length) {
-              var menuItem = menu.elements.parentMenu.elements.menuItems[index];
-              if (menuItem.isSubmenuItem && menuItem.elements.toggle.elements.controlledMenu === menu) {
-                found = true;
-                menu.elements.parentMenu.currentEvent = menu.currentEvent;
-                menu.elements.parentMenu.currentChild = index;
-              }
-              index++;
+        if (item.isSubmenuItem) {
+          item.elements.toggle.dom.toggle.addEventListener("pointerup", event => {
+            this.currentEvent = "mouse";
+            toggleToggle(this, item.elements.toggle, event);
+          });
+        }
+      });
+      if (this.isTopLevel && this.elements.controller) {
+        this.elements.controller.dom.toggle.addEventListener("pointerup", event => {
+          this.currentEvent = "mouse";
+          toggleToggle(this, this.elements.controller, event);
+        });
+      }
+    }
+    _handleHover() {
+      this.elements.menuItems.forEach((menuItem, index) => {
+        menuItem.dom.link.addEventListener("pointerenter", event => {
+          if (event.pointerType === "pen" || event.pointerType === "touch") {
+            return;
+          }
+          if (this.hoverType === "on") {
+            this.currentEvent = "mouse";
+            this.currentChild = index;
+            if (menuItem.isSubmenuItem) {
+              menuItem.elements.toggle.preview();
+            }
+          } else if (this.hoverType === "dynamic") {
+            const isOpen = this.elements.submenuToggles.some(toggle => toggle.isOpen);
+            this.currentChild = index;
+            if (!this.isTopLevel || this.focusState !== "none") {
+              this.currentEvent = "mouse";
+              this.focusCurrentChild();
+            }
+            if (menuItem.isSubmenuItem && (!this.isTopLevel || isOpen)) {
+              this.currentEvent = "mouse";
+              menuItem.elements.toggle.preview();
             }
           }
-        }
-        if (value < -1) {
-          this._currentChild = -1;
-          setParentChild(this);
-        } else if (value >= this.elements.menuItems.length) {
-          this._currentChild = this.elements.menuItems.length - 1;
-          setParentChild(this);
-        } else if (this.focusChild !== value) {
-          this._currentChild = value;
-          setParentChild(this);
-        }
-      }
-    }, {
-      key: "focusState",
-      get: function get() {
-        return this._focusState;
-      }
-      ,
-      set: function set(value) {
-        isValidState({
-          value: value
         });
-        if (this._focusState !== value) {
-          this._focusState = value;
-        }
-        if (this.elements.submenuToggles.length > 0 && (value === "self" || value === "none")) {
-          this.elements.submenuToggles.forEach(function (toggle) {
-            toggle.elements.controlledMenu.focusState = "none";
-          });
-        }
-        if (this.elements.parentMenu && (value === "self" || value === "child")) {
-          this.elements.parentMenu.focusState = "child";
-        }
-      }
-    }, {
-      key: "currentEvent",
-      get: function get() {
-        return this._currentEvent;
-      }
-      ,
-      set: function set(value) {
-        isValidEvent({
-          value: value
-        });
-        if (this._currentEvent !== value) {
-          this._currentEvent = value;
-          if (this.elements.submenuToggles.length > 0) {
-            this.elements.submenuToggles.forEach(function (submenuToggle) {
-              submenuToggle.elements.controlledMenu.currentEvent = value;
-            });
-          }
-        }
-      }
-    }, {
-      key: "currentMenuItem",
-      get: function get() {
-        return this.elements.menuItems[this.currentChild];
-      }
-    }, {
-      key: "hoverType",
-      get: function get() {
-        return this._root ? this._hoverType : this.elements.rootMenu.hoverType;
-      }
-      ,
-      set: function set(value) {
-        isValidHoverType({
-          value: value
-        });
-        if (this._hoverType !== value) {
-          this._hoverType = value;
-        }
-      }
-    }, {
-      key: "hoverDelay",
-      get: function get() {
-        return this._root ? this._hoverDelay : this.elements.rootMenu.hoverDelay;
-      }
-      ,
-      set: function set(value) {
-        isValidType("number", {
-          value: value
-        });
-        if (this._hoverDelay !== value) {
-          this._hoverDelay = value;
-        }
-      }
-    }, {
-      key: "shouldFocus",
-      get: function get() {
-        var check = false;
-        if (this.currentEvent === "keyboard" || this.currentEvent === "character") {
-          check = true;
-        }
-        if (this.currentEvent === "mouse" && this.hoverType === "dynamic") {
-          check = true;
-        }
-        return check;
-      }
-    }, {
-      key: "_validate",
-      value: function _validate() {
-        var check = true;
-        if (this._dom.container !== null || this._dom.controller !== null) {
-          if (!isValidInstance(HTMLElement, {
-            menuElement: this._dom.menu,
-            controllerElement: this._dom.controller,
-            containerElement: this._dom.container
-          })) {
-            check = false;
-          }
-        } else if (!isValidInstance(HTMLElement, {
-          menuElement: this._dom.menu
-        })) {
-          check = false;
-        }
-        if (this._selectors.submenuItems !== "") {
-          if (!isCSSSelector({
-            menuItemSelector: this._selectors.menuItems,
-            menuLinkSelector: this._selectors.menuLinks,
-            submenuItemSelector: this._selectors.submenuItems,
-            submenuToggleSelector: this._selectors.submenuToggles,
-            submenuSelector: this._selectors.submenus
-          })) {
-            check = false;
-          }
-        } else if (!isCSSSelector({
-          menuItemSelector: this._selectors.menuItems,
-          menuLinkSelector: this._selectors.menuLinks
-        })) {
-          check = false;
-        }
-        if (this._openClass !== "" && !isValidClassList({
-          openClass: this._openClass
-        })) {
-          check = false;
-        }
-        if (this._closeClass !== "" && !isValidClassList({
-          closeClass: this._closeClass
-        })) {
-          check = false;
-        }
-        if (!isValidType("boolean", {
-          isTopLevel: this._root
-        })) {
-          check = false;
-        }
-        if (this._elements.parentMenu !== null && !isValidInstance(BaseMenu, {
-          parentMenu: this._elements.parentMenu
-        })) {
-          check = false;
-        }
-        if (!isValidHoverType({
-          hoverType: this._hoverType
-        })) {
-          check = false;
-        }
-        if (!isValidType("number", {
-          hoverDelay: this._hoverDelay
-        })) {
-          check = false;
-        }
-        return check;
-      }
-    }, {
-      key: "_setDOMElementType",
-      value: function _setDOMElementType(elementType) {
-        var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.dom.menu;
-        var overwrite = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-        if (typeof this.selectors[elementType] === "string") {
-          if (!Array.isArray(this.dom[elementType])) {
-            throw new Error("AccessibleMenu: The \"".concat(elementType, "\" element cannot be set through _setDOMElementType."));
-          }
-          if (base !== this.dom.menu) isValidInstance(HTMLElement, {
-            base: base
-          });
-          var domElements = Array.from(base.querySelectorAll(this.selectors[elementType]));
-          var filteredElements = domElements.filter(function (item) {
-            return item.parentElement === base;
-          });
-          if (overwrite) {
-            this._dom[elementType] = filteredElements;
-          } else {
-            this._dom[elementType] = [].concat(_toConsumableArray$2(this._dom[elementType]), _toConsumableArray$2(filteredElements));
-          }
-        } else {
-          throw new Error("AccessibleMenu: \"".concat(elementType, "\" is not a valid element type within the menu."));
-        }
-      }
-    }, {
-      key: "_resetDOMElementType",
-      value: function _resetDOMElementType(elementType) {
-        if (typeof this.dom[elementType] !== "undefined") {
-          if (!Array.isArray(this.dom[elementType])) {
-            throw new Error("AccessibleMenu: The \"".concat(elementType, "\" element cannot be reset through _resetDOMElementType."));
-          }
-          this._dom[elementType] = [];
-        } else {
-          throw new Error("AccessibleMenu: \"".concat(elementType, "\" is not a valid element type within the menu."));
-        }
-      }
-    }, {
-      key: "_setDOMElements",
-      value: function _setDOMElements() {
-        var _this = this;
-        this._setDOMElementType("menuItems");
-        if (this.selectors.submenuItems !== "") {
-          this._setDOMElementType("submenuItems");
-          this._resetDOMElementType("submenuToggles");
-          this._resetDOMElementType("submenus");
-          this.dom.submenuItems.forEach(function (item) {
-            _this._setDOMElementType("submenuToggles", item, false);
-            _this._setDOMElementType("submenus", item, false);
-          });
-        }
-      }
-    }, {
-      key: "_findRootMenu",
-      value: function _findRootMenu(menu) {
-        if (menu.isTopLevel) {
-          this._elements.rootMenu = menu;
-        } else if (menu.elements.parentMenu !== null) {
-          this._findRootMenu(menu.elements.parentMenu);
-        } else {
-          throw new Error("Cannot find root menu.");
-        }
-      }
-    }, {
-      key: "_createChildElements",
-      value: function _createChildElements() {
-        var _this2 = this;
-        this.dom.menuItems.forEach(function (element) {
-          var menuItem;
-          if (_this2.dom.submenuItems.includes(element)) {
-            var toggler = element.querySelector(_this2.selectors.submenuToggles);
-            var submenu = element.querySelector(_this2.selectors.submenus);
-            var menu = new _this2._MenuType({
-              menuElement: submenu,
-              menuItemSelector: _this2.selectors.menuItems,
-              menuLinkSelector: _this2.selectors.menuLinks,
-              submenuItemSelector: _this2.selectors.submenuItems,
-              submenuToggleSelector: _this2.selectors.submenuToggles,
-              submenuSelector: _this2.selectors.submenus,
-              openClass: _this2.openClass,
-              closeClass: _this2.closeClass,
-              isTopLevel: false,
-              parentMenu: _this2,
-              hoverType: _this2.hoverType,
-              hoverDelay: _this2.hoverDelay
-            });
-            var toggle = new _this2._MenuToggleType({
-              menuToggleElement: toggler,
-              parentElement: element,
-              controlledMenu: menu,
-              parentMenu: _this2
-            });
-            _this2._elements.submenuToggles.push(toggle);
-            menuItem = new _this2._MenuItemType({
-              menuItemElement: element,
-              menuLinkElement: toggler,
-              parentMenu: _this2,
-              isSubmenuItem: true,
-              childMenu: menu,
-              toggle: toggle
-            });
-          } else {
-            var link = element.querySelector(_this2.selectors.menuLinks);
-            menuItem = new _this2._MenuItemType({
-              menuItemElement: element,
-              menuLinkElement: link,
-              parentMenu: _this2
-            });
-          }
-          _this2._elements.menuItems.push(menuItem);
-        });
-      }
-    }, {
-      key: "_handleFocus",
-      value: function _handleFocus() {
-        var _this3 = this;
-        this.elements.menuItems.forEach(function (menuItem, index) {
-          menuItem.dom.link.addEventListener("focus", function () {
-            _this3.focusState = "self";
-            _this3.currentChild = index;
-          });
-        });
-      }
-    }, {
-      key: "_handleClick",
-      value: function _handleClick() {
-        var _this4 = this;
-        function toggleToggle(menu, toggle, event) {
-          preventEvent(event);
-          toggle.toggle();
-          if (toggle.isOpen) {
-            menu.focusState = "self";
-            toggle.elements.controlledMenu.focusState = "none";
-          }
-        }
-        this.elements.menuItems.forEach(function (item, index) {
-          item.dom.link.addEventListener("pointerdown", function () {
-            _this4.currentEvent = "mouse";
-            _this4.elements.rootMenu.blurChildren();
-            _this4.focusChild(index);
-          }, {
-            passive: true
-          });
-          if (item.isSubmenuItem) {
-            item.elements.toggle.dom.toggle.addEventListener("pointerup", function (event) {
-              _this4.currentEvent = "mouse";
-              toggleToggle(_this4, item.elements.toggle, event);
-            });
-          }
-        });
-        if (this.isTopLevel && this.elements.controller) {
-          this.elements.controller.dom.toggle.addEventListener("pointerup", function (event) {
-            _this4.currentEvent = "mouse";
-            toggleToggle(_this4, _this4.elements.controller, event);
-          });
-        }
-      }
-    }, {
-      key: "_handleHover",
-      value: function _handleHover() {
-        var _this5 = this;
-        this.elements.menuItems.forEach(function (menuItem, index) {
-          menuItem.dom.link.addEventListener("pointerenter", function (event) {
+        if (menuItem.isSubmenuItem) {
+          menuItem.dom.item.addEventListener("pointerleave", event => {
             if (event.pointerType === "pen" || event.pointerType === "touch") {
               return;
             }
-            if (_this5.hoverType === "on") {
-              _this5.currentEvent = "mouse";
-              _this5.currentChild = index;
-              if (menuItem.isSubmenuItem) {
-                menuItem.elements.toggle.preview();
+            if (this.hoverType === "on") {
+              if (this.hoverDelay > 0) {
+                setTimeout(() => {
+                  this.currentEvent = "mouse";
+                  menuItem.elements.toggle.close();
+                }, this.hoverDelay);
+              } else {
+                this.currentEvent = "mouse";
+                menuItem.elements.toggle.close();
               }
-            } else if (_this5.hoverType === "dynamic") {
-              var isOpen = _this5.elements.submenuToggles.some(function (toggle) {
-                return toggle.isOpen;
-              });
-              _this5.currentChild = index;
-              if (!_this5.isTopLevel || _this5.focusState !== "none") {
-                _this5.currentEvent = "mouse";
-                _this5.focusCurrentChild();
-              }
-              if (menuItem.isSubmenuItem && (!_this5.isTopLevel || isOpen)) {
-                _this5.currentEvent = "mouse";
-                menuItem.elements.toggle.preview();
+            } else if (this.hoverType === "dynamic") {
+              if (!this.isTopLevel) {
+                if (this.hoverDelay > 0) {
+                  setTimeout(() => {
+                    this.currentEvent = "mouse";
+                    menuItem.elements.toggle.close();
+                    this.focusCurrentChild();
+                  }, this.hoverDelay);
+                } else {
+                  this.currentEvent = "mouse";
+                  menuItem.elements.toggle.close();
+                  this.focusCurrentChild();
+                }
               }
             }
           });
-          if (menuItem.isSubmenuItem) {
-            menuItem.dom.item.addEventListener("pointerleave", function (event) {
-              if (event.pointerType === "pen" || event.pointerType === "touch") {
-                return;
-              }
-              if (_this5.hoverType === "on") {
-                if (_this5.hoverDelay > 0) {
-                  setTimeout(function () {
-                    _this5.currentEvent = "mouse";
-                    menuItem.elements.toggle.close();
-                  }, _this5.hoverDelay);
-                } else {
-                  _this5.currentEvent = "mouse";
-                  menuItem.elements.toggle.close();
-                }
-              } else if (_this5.hoverType === "dynamic") {
-                if (!_this5.isTopLevel) {
-                  if (_this5.hoverDelay > 0) {
-                    setTimeout(function () {
-                      _this5.currentEvent = "mouse";
-                      menuItem.elements.toggle.close();
-                      _this5.focusCurrentChild();
-                    }, _this5.hoverDelay);
-                  } else {
-                    _this5.currentEvent = "mouse";
-                    menuItem.elements.toggle.close();
-                    _this5.focusCurrentChild();
-                  }
-                }
-              }
-            });
+        }
+      });
+    }
+    _handleKeydown() {
+      if (this.isTopLevel && this.elements.controller) {
+        this.elements.controller.dom.toggle.addEventListener("keydown", event => {
+          this.currentEvent = "keyboard";
+          const key = keyPress(event);
+          if (key === "Space" || key === "Enter") {
+            preventEvent(event);
           }
         });
       }
-    }, {
-      key: "_handleKeydown",
-      value: function _handleKeydown() {
-        var _this6 = this;
-        if (this.isTopLevel && this.elements.controller) {
-          this.elements.controller.dom.toggle.addEventListener("keydown", function (event) {
-            _this6.currentEvent = "keyboard";
-            var key = keyPress(event);
-            if (key === "Space" || key === "Enter") {
-              preventEvent(event);
-            }
-          });
-        }
+    }
+    _handleKeyup() {
+      if (this.isTopLevel && this.elements.controller) {
+        this.elements.controller.dom.toggle.addEventListener("keyup", event => {
+          this.currentEvent = "keyboard";
+          const key = keyPress(event);
+          if (key === "Space" || key === "Enter") {
+            preventEvent(event);
+            this.elements.controller.open();
+            this.focusFirstChild();
+          }
+        });
       }
-    }, {
-      key: "_handleKeyup",
-      value: function _handleKeyup() {
-        var _this7 = this;
-        if (this.isTopLevel && this.elements.controller) {
-          this.elements.controller.dom.toggle.addEventListener("keyup", function (event) {
-            _this7.currentEvent = "keyboard";
-            var key = keyPress(event);
-            if (key === "Space" || key === "Enter") {
-              preventEvent(event);
-              _this7.elements.controller.open();
-              _this7.focusFirstChild();
-            }
-          });
-        }
+    }
+    focus() {
+      this.focusState = "self";
+      if (this.shouldFocus) {
+        this.dom.menu.focus();
       }
-    }, {
-      key: "focus",
-      value: function focus() {
-        this.focusState = "self";
-        if (this.shouldFocus) {
-          this.dom.menu.focus();
-        }
+    }
+    blur() {
+      this.focusState = "none";
+      if (this.shouldFocus) {
+        this.dom.menu.blur();
       }
-    }, {
-      key: "blur",
-      value: function blur() {
-        this.focusState = "none";
-        if (this.shouldFocus) {
-          this.dom.menu.blur();
-        }
+    }
+    focusCurrentChild() {
+      this.focusState = "self";
+      if (this.currentChild !== -1) {
+        this.currentMenuItem.focus();
       }
-    }, {
-      key: "focusCurrentChild",
-      value: function focusCurrentChild() {
-        this.focusState = "self";
-        if (this.currentChild !== -1) {
-          this.currentMenuItem.focus();
-        }
-      }
-    }, {
-      key: "focusChild",
-      value: function focusChild(index) {
-        this.blurCurrentChild();
-        this.currentChild = index;
+    }
+    focusChild(index) {
+      this.blurCurrentChild();
+      this.currentChild = index;
+      this.focusCurrentChild();
+    }
+    focusFirstChild() {
+      this.focusChild(0);
+    }
+    focusLastChild() {
+      this.focusChild(this.elements.menuItems.length - 1);
+    }
+    focusNextChild() {
+      if (this.currentChild < this.elements.menuItems.length - 1) {
+        this.focusChild(this.currentChild + 1);
+      } else {
         this.focusCurrentChild();
       }
-    }, {
-      key: "focusFirstChild",
-      value: function focusFirstChild() {
-        this.focusChild(0);
+    }
+    focusPreviousChild() {
+      if (this.currentChild > 0) {
+        this.focusChild(this.currentChild - 1);
+      } else {
+        this.focusCurrentChild();
       }
-    }, {
-      key: "focusLastChild",
-      value: function focusLastChild() {
-        this.focusChild(this.elements.menuItems.length - 1);
+    }
+    blurCurrentChild() {
+      this.focusState = "none";
+      if (this.currentChild !== -1) {
+        this.currentMenuItem.blur();
       }
-    }, {
-      key: "focusNextChild",
-      value: function focusNextChild() {
-        if (this.currentChild < this.elements.menuItems.length - 1) {
-          this.focusChild(this.currentChild + 1);
-        } else {
-          this.focusCurrentChild();
+    }
+    focusController() {
+      if (this.dom.controller) {
+        if (this.shouldFocus) {
+          this.dom.controller.focus();
         }
-      }
-    }, {
-      key: "focusPreviousChild",
-      value: function focusPreviousChild() {
-        if (this.currentChild > 0) {
-          this.focusChild(this.currentChild - 1);
-        } else {
-          this.focusCurrentChild();
-        }
-      }
-    }, {
-      key: "blurCurrentChild",
-      value: function blurCurrentChild() {
         this.focusState = "none";
-        if (this.currentChild !== -1) {
-          this.currentMenuItem.blur();
+      }
+    }
+    focusContainer() {
+      if (this.dom.container) {
+        if (this.shouldFocus) {
+          this.dom.container.focus();
         }
+        this.focusState = "none";
       }
-    }, {
-      key: "focusController",
-      value: function focusController() {
-        if (this.dom.controller) {
-          if (this.shouldFocus) {
-            this.dom.controller.focus();
-          }
-          this.focusState = "none";
+    }
+    closeChildren() {
+      this.elements.submenuToggles.forEach(toggle => toggle.close());
+    }
+    blurChildren() {
+      this.elements.menuItems.forEach(menuItem => {
+        menuItem.blur();
+        if (menuItem.isSubmenuItem) {
+          menuItem.elements.childMenu.blurChildren();
         }
-      }
-    }, {
-      key: "focusContainer",
-      value: function focusContainer() {
-        if (this.dom.container) {
-          if (this.shouldFocus) {
-            this.dom.container.focus();
-          }
-          this.focusState = "none";
-        }
-      }
-    }, {
-      key: "closeChildren",
-      value: function closeChildren() {
-        this.elements.submenuToggles.forEach(function (toggle) {
-          return toggle.close();
-        });
-      }
-    }, {
-      key: "blurChildren",
-      value: function blurChildren() {
-        this.elements.menuItems.forEach(function (menuItem) {
-          menuItem.blur();
-          if (menuItem.isSubmenuItem) {
-            menuItem.elements.childMenu.blurChildren();
-          }
-        });
-      }
-    }]);
-    return BaseMenu;
-  }();
+      });
+    }
+  }
 
-  function _typeof$5(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$5 = function _typeof(obj) { return typeof obj; }; } else { _typeof$5 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$5(obj); }
-  function _classCallCheck$5(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties$2(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass$2(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
-  function _get$2() { if (typeof Reflect !== "undefined" && Reflect.get) { _get$2 = Reflect.get; } else { _get$2 = function _get(target, property, receiver) { var base = _superPropBase$2(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get$2.apply(this, arguments); }
-  function _superPropBase$2(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf$5(object); if (object === null) break; } return object; }
-  function _inherits$5(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$5(subClass, superClass); }
-  function _setPrototypeOf$5(o, p) { _setPrototypeOf$5 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$5(o, p); }
-  function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = _getPrototypeOf$5(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$5(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$5(this, result); }; }
-  function _possibleConstructorReturn$5(self, call) { if (call && (_typeof$5(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized$5(self); }
-  function _assertThisInitialized$5(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf$5(o) { _getPrototypeOf$5 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$5(o); }
-  var TreeviewItem = function (_BaseMenuItem) {
-    _inherits$5(TreeviewItem, _BaseMenuItem);
-    var _super = _createSuper$5(TreeviewItem);
-    function TreeviewItem(_ref) {
-      var _this;
-      var menuItemElement = _ref.menuItemElement,
-          menuLinkElement = _ref.menuLinkElement,
-          parentMenu = _ref.parentMenu,
-          _ref$isSubmenuItem = _ref.isSubmenuItem,
-          isSubmenuItem = _ref$isSubmenuItem === void 0 ? false : _ref$isSubmenuItem,
-          _ref$childMenu = _ref.childMenu,
-          childMenu = _ref$childMenu === void 0 ? null : _ref$childMenu,
-          _ref$toggle = _ref.toggle,
-          toggle = _ref$toggle === void 0 ? null : _ref$toggle,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck$5(this, TreeviewItem);
-      _this = _super.call(this, {
-        menuItemElement: menuItemElement,
-        menuLinkElement: menuLinkElement,
-        parentMenu: parentMenu,
-        isSubmenuItem: isSubmenuItem,
-        childMenu: childMenu,
-        toggle: toggle
+  class TreeviewItem extends BaseMenuItem {
+    constructor(_ref) {
+      let {
+        menuItemElement,
+        menuLinkElement,
+        parentMenu,
+        isSubmenuItem = false,
+        childMenu = null,
+        toggle = null,
+        initialize = true
+      } = _ref;
+      super({
+        menuItemElement,
+        menuLinkElement,
+        parentMenu,
+        isSubmenuItem,
+        childMenu,
+        toggle
       });
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    _createClass$2(TreeviewItem, [{
-      key: "initialize",
-      value: function initialize() {
-        _get$2(_getPrototypeOf$5(TreeviewItem.prototype), "initialize", this).call(this);
-        this.dom.item.setAttribute("role", "none");
-        this.dom.link.setAttribute("role", "treeitem");
-        this.dom.link.tabIndex = -1;
-      }
-    }, {
-      key: "focus",
-      value: function focus() {
-        _get$2(_getPrototypeOf$5(TreeviewItem.prototype), "focus", this).call(this);
-        this.dom.link.tabIndex = 0;
-      }
-    }, {
-      key: "blur",
-      value: function blur() {
-        _get$2(_getPrototypeOf$5(TreeviewItem.prototype), "blur", this).call(this);
-        this.dom.link.tabIndex = -1;
-      }
-    }]);
-    return TreeviewItem;
-  }(BaseMenuItem);
+    initialize() {
+      super.initialize();
+      this.dom.item.setAttribute("role", "none");
+      this.dom.link.setAttribute("role", "treeitem");
+      this.dom.link.tabIndex = -1;
+    }
+    focus() {
+      super.focus();
+      this.dom.link.tabIndex = 0;
+    }
+    blur() {
+      super.blur();
+      this.dom.link.tabIndex = -1;
+    }
+  }
 
-  function _typeof$4(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$4 = function _typeof(obj) { return typeof obj; }; } else { _typeof$4 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$4(obj); }
-  function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _inherits$4(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$4(subClass, superClass); }
-  function _setPrototypeOf$4(o, p) { _setPrototypeOf$4 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$4(o, p); }
-  function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = _getPrototypeOf$4(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$4(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$4(this, result); }; }
-  function _possibleConstructorReturn$4(self, call) { if (call && (_typeof$4(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized$4(self); }
-  function _assertThisInitialized$4(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf$4(o) { _getPrototypeOf$4 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$4(o); }
-  var TreeviewToggle = function (_BaseMenuToggle) {
-    _inherits$4(TreeviewToggle, _BaseMenuToggle);
-    var _super = _createSuper$4(TreeviewToggle);
-    function TreeviewToggle(_ref) {
-      var _this;
-      var menuToggleElement = _ref.menuToggleElement,
-          parentElement = _ref.parentElement,
-          controlledMenu = _ref.controlledMenu,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck$4(this, TreeviewToggle);
-      _this = _super.call(this, {
-        menuToggleElement: menuToggleElement,
-        parentElement: parentElement,
-        controlledMenu: controlledMenu,
-        parentMenu: parentMenu
+  class TreeviewToggle extends BaseMenuToggle {
+    constructor(_ref) {
+      let {
+        menuToggleElement,
+        parentElement,
+        controlledMenu,
+        parentMenu = null,
+        initialize = true
+      } = _ref;
+      super({
+        menuToggleElement,
+        parentElement,
+        controlledMenu,
+        parentMenu
       });
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    return TreeviewToggle;
-  }(BaseMenuToggle);
+  }
 
-  function _typeof$3(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$3 = function _typeof(obj) { return typeof obj; }; } else { _typeof$3 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$3(obj); }
-  function _toConsumableArray$1(arr) { return _arrayWithoutHoles$1(arr) || _iterableToArray$1(arr) || _unsupportedIterableToArray$1(arr) || _nonIterableSpread$1(); }
-  function _nonIterableSpread$1() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-  function _unsupportedIterableToArray$1(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
-  function _iterableToArray$1(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-  function _arrayWithoutHoles$1(arr) { if (Array.isArray(arr)) return _arrayLikeToArray$1(arr); }
-  function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-  function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties$1(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass$1(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$1(Constructor.prototype, protoProps); if (staticProps) _defineProperties$1(Constructor, staticProps); return Constructor; }
-  function _get$1() { if (typeof Reflect !== "undefined" && Reflect.get) { _get$1 = Reflect.get; } else { _get$1 = function _get(target, property, receiver) { var base = _superPropBase$1(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get$1.apply(this, arguments); }
-  function _superPropBase$1(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf$3(object); if (object === null) break; } return object; }
-  function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$3(subClass, superClass); }
-  function _setPrototypeOf$3(o, p) { _setPrototypeOf$3 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$3(o, p); }
-  function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$3(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$3(this, result); }; }
-  function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$3(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized$3(self); }
-  function _assertThisInitialized$3(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf$3(o) { _getPrototypeOf$3 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$3(o); }
-  function _defineProperty$2(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var Treeview = function (_BaseMenu) {
-    _inherits$3(Treeview, _BaseMenu);
-    var _super = _createSuper$3(Treeview);
-    function Treeview(_ref) {
-      var _this;
-      var menuElement = _ref.menuElement,
-          _ref$menuItemSelector = _ref.menuItemSelector,
-          menuItemSelector = _ref$menuItemSelector === void 0 ? "li" : _ref$menuItemSelector,
-          _ref$menuLinkSelector = _ref.menuLinkSelector,
-          menuLinkSelector = _ref$menuLinkSelector === void 0 ? "a" : _ref$menuLinkSelector,
-          _ref$submenuItemSelec = _ref.submenuItemSelector,
-          submenuItemSelector = _ref$submenuItemSelec === void 0 ? "" : _ref$submenuItemSelec,
-          _ref$submenuToggleSel = _ref.submenuToggleSelector,
-          submenuToggleSelector = _ref$submenuToggleSel === void 0 ? "a" : _ref$submenuToggleSel,
-          _ref$submenuSelector = _ref.submenuSelector,
-          submenuSelector = _ref$submenuSelector === void 0 ? "ul" : _ref$submenuSelector,
-          _ref$controllerElemen = _ref.controllerElement,
-          controllerElement = _ref$controllerElemen === void 0 ? null : _ref$controllerElemen,
-          _ref$containerElement = _ref.containerElement,
-          containerElement = _ref$containerElement === void 0 ? null : _ref$containerElement,
-          _ref$openClass = _ref.openClass,
-          openClass = _ref$openClass === void 0 ? "show" : _ref$openClass,
-          _ref$closeClass = _ref.closeClass,
-          closeClass = _ref$closeClass === void 0 ? "hide" : _ref$closeClass,
-          _ref$isTopLevel = _ref.isTopLevel,
-          isTopLevel = _ref$isTopLevel === void 0 ? true : _ref$isTopLevel,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu,
-          _ref$hoverType = _ref.hoverType,
-          hoverType = _ref$hoverType === void 0 ? "off" : _ref$hoverType,
-          _ref$hoverDelay = _ref.hoverDelay,
-          hoverDelay = _ref$hoverDelay === void 0 ? 250 : _ref$hoverDelay,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck$3(this, Treeview);
-      _this = _super.call(this, {
-        menuElement: menuElement,
-        menuItemSelector: menuItemSelector,
-        menuLinkSelector: menuLinkSelector,
-        submenuItemSelector: submenuItemSelector,
-        submenuToggleSelector: submenuToggleSelector,
-        submenuSelector: submenuSelector,
-        controllerElement: controllerElement,
-        containerElement: containerElement,
-        openClass: openClass,
-        closeClass: closeClass,
-        isTopLevel: isTopLevel,
-        parentMenu: parentMenu,
-        hoverType: hoverType,
-        hoverDelay: hoverDelay
+  function _defineProperty$2(obj, key, value) { key = _toPropertyKey$2(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey$2(arg) { var key = _toPrimitive$2(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive$2(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class Treeview extends BaseMenu {
+    constructor(_ref) {
+      let {
+        menuElement,
+        menuItemSelector = "li",
+        menuLinkSelector = "a",
+        submenuItemSelector = "",
+        submenuToggleSelector = "a",
+        submenuSelector = "ul",
+        controllerElement = null,
+        containerElement = null,
+        openClass = "show",
+        closeClass = "hide",
+        isTopLevel = true,
+        parentMenu = null,
+        hoverType = "off",
+        hoverDelay = 250,
+        initialize = true
+      } = _ref;
+      super({
+        menuElement,
+        menuItemSelector,
+        menuLinkSelector,
+        submenuItemSelector,
+        submenuToggleSelector,
+        submenuSelector,
+        controllerElement,
+        containerElement,
+        openClass,
+        closeClass,
+        isTopLevel,
+        parentMenu,
+        hoverType,
+        hoverDelay
       });
-      _defineProperty$2(_assertThisInitialized$3(_this), "_MenuType", Treeview);
-      _defineProperty$2(_assertThisInitialized$3(_this), "_MenuItemType", TreeviewItem);
-      _defineProperty$2(_assertThisInitialized$3(_this), "_MenuToggleType", TreeviewToggle);
+      _defineProperty$2(this, "_MenuType", Treeview);
+      _defineProperty$2(this, "_MenuItemType", TreeviewItem);
+      _defineProperty$2(this, "_MenuToggleType", TreeviewToggle);
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    _createClass$1(Treeview, [{
-      key: "initialize",
-      value: function initialize() {
-        try {
-          _get$1(_getPrototypeOf$3(Treeview.prototype), "initialize", this).call(this);
-          if (this.isTopLevel) {
-            this.dom.menu.setAttribute("role", "tree");
-            this.elements.menuItems[0].dom.link.tabIndex = 0;
+    initialize() {
+      try {
+        super.initialize();
+        if (this.isTopLevel) {
+          this.dom.menu.setAttribute("role", "tree");
+          this.elements.menuItems[0].dom.link.tabIndex = 0;
+        } else {
+          this.dom.menu.setAttribute("role", "group");
+        }
+        this._handleFocus();
+        this._handleClick();
+        this._handleHover();
+        this._handleKeydown();
+        this._handleKeyup();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    _handleKeydown() {
+      super._handleKeydown();
+      this.dom.menu.addEventListener("keydown", event => {
+        this.currentEvent = "keyboard";
+        const key = keyPress(event);
+        if (key === "Tab") {
+          if (this.elements.rootMenu.focusState !== "none") {
+            this.elements.rootMenu.blur();
           } else {
-            this.dom.menu.setAttribute("role", "group");
+            this.elements.rootMenu.focus();
           }
-          this._handleFocus();
-          this._handleClick();
-          this._handleHover();
-          this._handleKeydown();
-          this._handleKeyup();
-        } catch (error) {
-          console.error(error);
         }
-      }
-    }, {
-      key: "_handleKeydown",
-      value: function _handleKeydown() {
-        var _this2 = this;
-        _get$1(_getPrototypeOf$3(Treeview.prototype), "_handleKeydown", this).call(this);
-        this.dom.menu.addEventListener("keydown", function (event) {
-          _this2.currentEvent = "keyboard";
-          var key = keyPress(event);
-          if (key === "Tab") {
-            if (_this2.elements.rootMenu.focusState !== "none") {
-              _this2.elements.rootMenu.blur();
-            } else {
-              _this2.elements.rootMenu.focus();
-            }
-          }
-          if (_this2.focusState === "self") {
-            var keys = ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "Asterisk", "Home", "End"];
-            var submenuKeys = ["Enter", "ArrowRight"];
-            var controllerKeys = ["Escape"];
-            if (keys.includes(key)) {
-              preventEvent(event);
-            } else if (_this2.currentMenuItem.isSubmenuItem && submenuKeys.includes(key)) {
-              preventEvent(event);
-            } else if (_this2.elements.controller && controllerKeys.includes(key)) {
-              preventEvent(event);
-            }
-          }
-        });
-      }
-    }, {
-      key: "_handleKeyup",
-      value: function _handleKeyup() {
-        var _this3 = this;
-        _get$1(_getPrototypeOf$3(Treeview.prototype), "_handleKeyup", this).call(this);
-        this.dom.menu.addEventListener("keyup", function (event) {
-          _this3.currentEvent = "keyboard";
-          var key = keyPress(event);
-          var altKey = event.altKey,
-              crtlKey = event.crtlKey,
-              metaKey = event.metaKey;
-          var modifier = altKey || crtlKey || metaKey;
-          if (key === "Character" && !modifier) {
+        if (this.focusState === "self") {
+          const keys = ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "Asterisk", "Home", "End"];
+          const submenuKeys = ["Enter", "ArrowRight"];
+          const controllerKeys = ["Escape"];
+          if (keys.includes(key)) {
             preventEvent(event);
-            _this3.elements.rootMenu.currentEvent = "character";
-            _this3.focusNextNodeWithCharacter(event.key);
-          } else if (_this3.focusState === "self") {
-            if (key === "Enter" || key === "Space") {
-              preventEvent(event);
-              if (_this3.currentMenuItem.isSubmenuItem) {
-                if (_this3.currentMenuItem.elements.toggle.isOpen) {
-                  _this3.currentMenuItem.elements.toggle.close();
-                } else {
-                  _this3.currentMenuItem.elements.toggle.preview();
-                }
+          } else if (this.currentMenuItem.isSubmenuItem && submenuKeys.includes(key)) {
+            preventEvent(event);
+          } else if (this.elements.controller && controllerKeys.includes(key)) {
+            preventEvent(event);
+          }
+        }
+      });
+    }
+    _handleKeyup() {
+      super._handleKeyup();
+      this.dom.menu.addEventListener("keyup", event => {
+        this.currentEvent = "keyboard";
+        const key = keyPress(event);
+        const {
+          altKey,
+          crtlKey,
+          metaKey
+        } = event;
+        const modifier = altKey || crtlKey || metaKey;
+        if (key === "Character" && !modifier) {
+          preventEvent(event);
+          this.elements.rootMenu.currentEvent = "character";
+          this.focusNextNodeWithCharacter(event.key);
+        } else if (this.focusState === "self") {
+          if (key === "Enter" || key === "Space") {
+            preventEvent(event);
+            if (this.currentMenuItem.isSubmenuItem) {
+              if (this.currentMenuItem.elements.toggle.isOpen) {
+                this.currentMenuItem.elements.toggle.close();
               } else {
-                _this3.currentMenuItem.dom.link.click();
+                this.currentMenuItem.elements.toggle.preview();
               }
-            } else if (key === "Escape") {
-              if (_this3.isTopLevel && _this3.elements.controller && _this3.elements.controller.isOpen) {
-                _this3.elements.controller.close();
-                _this3.focusController();
-              }
-            } else if (key === "ArrowDown") {
-              preventEvent(event);
-              if (_this3.currentMenuItem.isSubmenuItem && _this3.currentMenuItem.elements.toggle.isOpen) {
-                _this3.blurCurrentChild();
-                _this3.currentMenuItem.elements.childMenu.currentEvent = _this3.currentEvent;
-                _this3.currentMenuItem.elements.childMenu.focusFirstChild();
-              } else if (!_this3.isTopLevel && _this3.currentChild === _this3.elements.menuItems.length - 1) {
-                _this3.focusParentsNextChild();
-              } else {
-                _this3.focusNextChild();
-              }
-            } else if (key === "ArrowUp") {
-              preventEvent(event);
-              var previousMenuItem = _this3.elements.menuItems[_this3.currentChild - 1];
-              if (previousMenuItem && previousMenuItem.isSubmenuItem && previousMenuItem.elements.toggle.isOpen) {
-                _this3.blurCurrentChild();
-                _this3.currentChild = _this3.currentChild - 1;
-                _this3.currentMenuItem.elements.childMenu.currentEvent = _this3.currentEvent;
-                _this3.focusChildsLastNode();
-              } else if (!_this3.isTopLevel && _this3.currentChild === 0) {
-                _this3.blurCurrentChild();
-                _this3.elements.parentMenu.currentEvent = _this3.currentEvent;
-                _this3.elements.parentMenu.focusCurrentChild();
-              } else {
-                _this3.focusPreviousChild();
-              }
-            } else if (key === "ArrowRight") {
-              if (_this3.currentMenuItem.isSubmenuItem) {
-                preventEvent(event);
-                if (_this3.currentMenuItem.elements.toggle.isOpen) {
-                  _this3.blurCurrentChild();
-                  _this3.currentMenuItem.elements.childMenu.currentEvent = _this3.currentEvent;
-                  _this3.currentMenuItem.elements.childMenu.focusFirstChild();
-                } else {
-                  _this3.currentMenuItem.elements.toggle.preview();
-                }
-              }
-            } else if (key === "ArrowLeft") {
-              preventEvent(event);
-              if (_this3.currentMenuItem.isSubmenuItem && _this3.currentMenuItem.elements.toggle.isOpen) {
-                _this3.currentMenuItem.elements.childMenu.blurCurrentChild();
-                _this3.currentMenuItem.elements.toggle.close();
-              } else if (!_this3.isTopLevel) {
-                _this3.blurCurrentChild();
-                _this3.elements.parentMenu.currentEvent = _this3.currentEvent;
-                _this3.elements.parentMenu.focusCurrentChild();
-              }
-            } else if (key === "Home") {
-              preventEvent(event);
-              _this3.blurCurrentChild();
-              _this3.elements.rootMenu.focusFirstChild();
-            } else if (key === "End") {
-              preventEvent(event);
-              _this3.blurCurrentChild();
-              _this3.elements.rootMenu.focusLastNode();
-            } else if (key === "Asterisk") {
-              preventEvent(event);
-              _this3.openChildren();
+            } else {
+              this.currentMenuItem.dom.link.click();
             }
+          } else if (key === "Escape") {
+            if (this.isTopLevel && this.elements.controller && this.elements.controller.isOpen) {
+              this.elements.controller.close();
+              this.focusController();
+            }
+          } else if (key === "ArrowDown") {
+            preventEvent(event);
+            if (this.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.toggle.isOpen) {
+              this.blurCurrentChild();
+              this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent;
+              this.currentMenuItem.elements.childMenu.focusFirstChild();
+            } else if (!this.isTopLevel && this.currentChild === this.elements.menuItems.length - 1) {
+              this.focusParentsNextChild();
+            } else {
+              this.focusNextChild();
+            }
+          } else if (key === "ArrowUp") {
+            preventEvent(event);
+            const previousMenuItem = this.elements.menuItems[this.currentChild - 1];
+            if (previousMenuItem && previousMenuItem.isSubmenuItem && previousMenuItem.elements.toggle.isOpen) {
+              this.blurCurrentChild();
+              this.currentChild = this.currentChild - 1;
+              this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent;
+              this.focusChildsLastNode();
+            } else if (!this.isTopLevel && this.currentChild === 0) {
+              this.blurCurrentChild();
+              this.elements.parentMenu.currentEvent = this.currentEvent;
+              this.elements.parentMenu.focusCurrentChild();
+            } else {
+              this.focusPreviousChild();
+            }
+          } else if (key === "ArrowRight") {
+            if (this.currentMenuItem.isSubmenuItem) {
+              preventEvent(event);
+              if (this.currentMenuItem.elements.toggle.isOpen) {
+                this.blurCurrentChild();
+                this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent;
+                this.currentMenuItem.elements.childMenu.focusFirstChild();
+              } else {
+                this.currentMenuItem.elements.toggle.preview();
+              }
+            }
+          } else if (key === "ArrowLeft") {
+            preventEvent(event);
+            if (this.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.toggle.isOpen) {
+              this.currentMenuItem.elements.childMenu.blurCurrentChild();
+              this.currentMenuItem.elements.toggle.close();
+            } else if (!this.isTopLevel) {
+              this.blurCurrentChild();
+              this.elements.parentMenu.currentEvent = this.currentEvent;
+              this.elements.parentMenu.focusCurrentChild();
+            }
+          } else if (key === "Home") {
+            preventEvent(event);
+            this.blurCurrentChild();
+            this.elements.rootMenu.focusFirstChild();
+          } else if (key === "End") {
+            preventEvent(event);
+            this.blurCurrentChild();
+            this.elements.rootMenu.focusLastNode();
+          } else if (key === "Asterisk") {
+            preventEvent(event);
+            this.openChildren();
+          }
+        }
+      });
+    }
+    focusLastNode() {
+      const numberOfItems = this.elements.menuItems.length - 1;
+      const lastChild = this.elements.menuItems[numberOfItems];
+      if (lastChild.isSubmenuItem && lastChild.elements.toggle.isOpen) {
+        this.currentChild = numberOfItems;
+        lastChild.elements.childMenu.currentEvent = this.currentEvent;
+        lastChild.elements.childMenu.focusLastNode();
+      } else {
+        this.focusLastChild();
+      }
+    }
+    openChildren() {
+      this.elements.submenuToggles.forEach(toggle => toggle.preview());
+    }
+    focusNextNodeWithCharacter(char) {
+      function getOpenMenuItems(menu) {
+        let menuItems = [];
+        menu.elements.menuItems.forEach(menuItem => {
+          menuItems.push(menuItem);
+          if (menuItem.isSubmenuItem && menuItem.elements.toggle.isOpen) {
+            menuItems = [...menuItems, ...getOpenMenuItems(menuItem.elements.toggle.elements.controlledMenu)];
           }
         });
+        return menuItems;
       }
-    }, {
-      key: "focusLastNode",
-      value: function focusLastNode() {
-        var numberOfItems = this.elements.menuItems.length - 1;
-        var lastChild = this.elements.menuItems[numberOfItems];
-        if (lastChild.isSubmenuItem && lastChild.elements.toggle.isOpen) {
-          this.currentChild = numberOfItems;
-          lastChild.elements.childMenu.currentEvent = this.currentEvent;
-          lastChild.elements.childMenu.focusLastNode();
+      const match = char.toLowerCase();
+      const menuItems = getOpenMenuItems(this.elements.rootMenu);
+      const currentItem = menuItems.indexOf(this.currentMenuItem) + 1;
+      const sortedMenuItems = [...menuItems.slice(currentItem), ...menuItems.slice(0, currentItem)];
+      let ctr = 0;
+      let found = false;
+      while (!found && ctr < sortedMenuItems.length) {
+        let text = "";
+        if (sortedMenuItems[ctr].dom.item.innerText) {
+          text = sortedMenuItems[ctr].dom.item.innerText;
         } else {
-          this.focusLastChild();
+          text = sortedMenuItems[ctr].dom.item.textContent;
         }
-      }
-    }, {
-      key: "openChildren",
-      value: function openChildren() {
-        this.elements.submenuToggles.forEach(function (toggle) {
-          return toggle.preview();
-        });
-      }
-    }, {
-      key: "focusNextNodeWithCharacter",
-      value: function focusNextNodeWithCharacter(char) {
-        function getOpenMenuItems(menu) {
-          var menuItems = [];
-          menu.elements.menuItems.forEach(function (menuItem) {
-            menuItems.push(menuItem);
-            if (menuItem.isSubmenuItem && menuItem.elements.toggle.isOpen) {
-              menuItems = [].concat(_toConsumableArray$1(menuItems), _toConsumableArray$1(getOpenMenuItems(menuItem.elements.toggle.elements.controlledMenu)));
-            }
-          });
-          return menuItems;
+        text = text.replace(/[\s]/g, "").toLowerCase().charAt(0);
+        if (text === match) {
+          found = true;
+          const menu = sortedMenuItems[ctr].elements.parentMenu;
+          const index = menu.elements.menuItems.indexOf(sortedMenuItems[ctr]);
+          this.elements.rootMenu.blurChildren();
+          menu.focusChild(index);
         }
-        var match = char.toLowerCase();
-        var menuItems = getOpenMenuItems(this.elements.rootMenu);
-        var currentItem = menuItems.indexOf(this.currentMenuItem) + 1;
-        var sortedMenuItems = [].concat(_toConsumableArray$1(menuItems.slice(currentItem)), _toConsumableArray$1(menuItems.slice(0, currentItem)));
-        var ctr = 0;
-        var found = false;
-        while (!found && ctr < sortedMenuItems.length) {
-          var text = "";
-          if (sortedMenuItems[ctr].dom.item.innerText) {
-            text = sortedMenuItems[ctr].dom.item.innerText;
-          } else {
-            text = sortedMenuItems[ctr].dom.item.textContent;
-          }
-          text = text.replace(/[\s]/g, "").toLowerCase().charAt(0);
-          if (text === match) {
-            found = true;
-            var menu = sortedMenuItems[ctr].elements.parentMenu;
-            var index = menu.elements.menuItems.indexOf(sortedMenuItems[ctr]);
-            this.elements.rootMenu.blurChildren();
-            menu.focusChild(index);
-          }
-          ctr++;
-        }
+        ctr++;
       }
-    }, {
-      key: "focusParentsNextChild",
-      value: function focusParentsNextChild() {
-        if (!this.elements.parentMenu) return;
-        this.elements.parentMenu.currentEvent = this.currentEvent;
-        if (this.elements.parentMenu.currentChild === this.elements.parentMenu.elements.menuItems.length - 1) {
-          this.elements.parentMenu.blurCurrentChild();
-          this.elements.parentMenu.focusParentsNextChild();
-        } else {
-          this.blurChildren();
-          this.elements.parentMenu.focusNextChild();
-        }
+    }
+    focusParentsNextChild() {
+      if (!this.elements.parentMenu) return;
+      this.elements.parentMenu.currentEvent = this.currentEvent;
+      if (this.elements.parentMenu.currentChild === this.elements.parentMenu.elements.menuItems.length - 1) {
+        this.elements.parentMenu.blurCurrentChild();
+        this.elements.parentMenu.focusParentsNextChild();
+      } else {
+        this.blurChildren();
+        this.elements.parentMenu.focusNextChild();
       }
-    }, {
-      key: "focusChildsLastNode",
-      value: function focusChildsLastNode() {
-        this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent;
-        this.currentMenuItem.elements.childMenu.focusLastChild();
-        if (this.currentMenuItem.elements.childMenu.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.childMenu.currentMenuItem.elements.toggle.isOpen) {
-          this.currentMenuItem.elements.childMenu.blurCurrentChild();
-          this.currentMenuItem.elements.childMenu.focusChildsLastNode();
-        }
+    }
+    focusChildsLastNode() {
+      this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent;
+      this.currentMenuItem.elements.childMenu.focusLastChild();
+      if (this.currentMenuItem.elements.childMenu.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.childMenu.currentMenuItem.elements.toggle.isOpen) {
+        this.currentMenuItem.elements.childMenu.blurCurrentChild();
+        this.currentMenuItem.elements.childMenu.focusChildsLastNode();
       }
-    }]);
-    return Treeview;
-  }(BaseMenu);
+    }
+  }
 
-  function _typeof$2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
-  function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _inherits$2(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$2(subClass, superClass); }
-  function _setPrototypeOf$2(o, p) { _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$2(o, p); }
-  function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf$2(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$2(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$2(this, result); }; }
-  function _possibleConstructorReturn$2(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized$2(self); }
-  function _assertThisInitialized$2(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf$2(o) { _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$2(o); }
-  var Bootstrap5TreeviewItem = function (_TreeviewItem) {
-    _inherits$2(Bootstrap5TreeviewItem, _TreeviewItem);
-    var _super = _createSuper$2(Bootstrap5TreeviewItem);
-    function Bootstrap5TreeviewItem(_ref) {
-      var _this;
-      var menuItemElement = _ref.menuItemElement,
-          menuLinkElement = _ref.menuLinkElement,
-          parentMenu = _ref.parentMenu,
-          _ref$isSubmenuItem = _ref.isSubmenuItem,
-          isSubmenuItem = _ref$isSubmenuItem === void 0 ? false : _ref$isSubmenuItem,
-          _ref$childMenu = _ref.childMenu,
-          childMenu = _ref$childMenu === void 0 ? null : _ref$childMenu,
-          _ref$toggle = _ref.toggle,
-          toggle = _ref$toggle === void 0 ? null : _ref$toggle,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck$2(this, Bootstrap5TreeviewItem);
-      _this = _super.call(this, {
-        menuItemElement: menuItemElement,
-        menuLinkElement: menuLinkElement,
-        parentMenu: parentMenu,
-        isSubmenuItem: isSubmenuItem,
-        childMenu: childMenu,
-        toggle: toggle,
+  class Bootstrap5TreeviewItem extends TreeviewItem {
+    constructor(_ref) {
+      let {
+        menuItemElement,
+        menuLinkElement,
+        parentMenu,
+        isSubmenuItem = false,
+        childMenu = null,
+        toggle = null,
+        initialize = true
+      } = _ref;
+      super({
+        menuItemElement,
+        menuLinkElement,
+        parentMenu,
+        isSubmenuItem,
+        childMenu,
+        toggle,
         initialize: false
       });
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    return Bootstrap5TreeviewItem;
-  }(TreeviewItem);
+  }
 
-  function _typeof$1(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
-  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-  function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-  function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
-  function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf$1(object); if (object === null) break; } return object; }
-  function _inherits$1(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
-  function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
-  function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = _getPrototypeOf$1(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$1(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$1(this, result); }; }
-  function _possibleConstructorReturn$1(self, call) { if (call && (_typeof$1(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized$1(self); }
-  function _assertThisInitialized$1(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
-  function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var Bootstrap5TreeviewToggle = function (_TreeviewToggle) {
-    _inherits$1(Bootstrap5TreeviewToggle, _TreeviewToggle);
-    var _super = _createSuper$1(Bootstrap5TreeviewToggle);
-    function Bootstrap5TreeviewToggle(_ref) {
-      var _this;
-      var menuToggleElement = _ref.menuToggleElement,
-          parentElement = _ref.parentElement,
-          controlledMenu = _ref.controlledMenu,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck$1(this, Bootstrap5TreeviewToggle);
-      _this = _super.call(this, {
-        menuToggleElement: menuToggleElement,
-        parentElement: parentElement,
-        controlledMenu: controlledMenu,
-        parentMenu: parentMenu,
+  function _defineProperty$1(obj, key, value) { key = _toPropertyKey$1(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey$1(arg) { var key = _toPrimitive$1(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive$1(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class Bootstrap5TreeviewToggle extends TreeviewToggle {
+    constructor(_ref) {
+      let {
+        menuToggleElement,
+        parentElement,
+        controlledMenu,
+        parentMenu = null,
+        initialize = true
+      } = _ref;
+      super({
+        menuToggleElement,
+        parentElement,
+        controlledMenu,
+        parentMenu,
         initialize: false
       });
-      _defineProperty$1(_assertThisInitialized$1(_this), "_dom", {
+      _defineProperty$1(this, "_dom", {
         toggle: null,
         parent: null,
         container: null
       });
-      _this._dom.toggle = menuToggleElement;
-      _this._dom.parent = parentElement;
-      _this._dom.container = controlledMenu.isTopLevel ? controlledMenu.dom.container : controlledMenu.dom.menu;
+      this._dom.toggle = menuToggleElement;
+      this._dom.parent = parentElement;
+      this._dom.container = controlledMenu.isTopLevel ? controlledMenu.dom.container : controlledMenu.dom.menu;
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    _createClass(Bootstrap5TreeviewToggle, [{
-      key: "initialize",
-      value: function initialize() {
-        _get(_getPrototypeOf$1(Bootstrap5TreeviewToggle.prototype), "initialize", this).call(this);
-        if (this.dom.toggle.hasAttribute("data-bs-toggle")) {
-          this.dom.toggle.removeAttribute("data-bs-toggle");
-        }
-        if (this.dom.toggle.hasAttribute("data-bs-target")) {
-          this.dom.toggle.removeAttribute("data-bs-target");
+    initialize() {
+      super.initialize();
+      if (this.dom.toggle.hasAttribute("data-bs-toggle")) {
+        this.dom.toggle.removeAttribute("data-bs-toggle");
+      }
+      if (this.dom.toggle.hasAttribute("data-bs-target")) {
+        this.dom.toggle.removeAttribute("data-bs-target");
+      }
+    }
+    _expand() {
+      let emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      const {
+        openClass
+      } = this.elements.controlledMenu;
+      this.dom.toggle.setAttribute("aria-expanded", "true");
+      if (openClass !== "") {
+        if (typeof openClass === "string") {
+          this.dom.container.classList.add(openClass);
+        } else {
+          this.dom.container.classList.add(...openClass);
         }
       }
-    }, {
-      key: "_expand",
-      value: function _expand() {
-        var emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-        var openClass = this.elements.controlledMenu.openClass;
-        this.dom.toggle.setAttribute("aria-expanded", "true");
-        if (openClass !== "") {
-          if (typeof openClass === "string") {
-            this.dom.container.classList.add(openClass);
-          } else {
-            var _this$dom$container$c;
-            (_this$dom$container$c = this.dom.container.classList).add.apply(_this$dom$container$c, _toConsumableArray(openClass));
-          }
-        }
-        if (emit) {
-          this.dom.toggle.dispatchEvent(this._expandEvent);
+      if (emit) {
+        this.dom.toggle.dispatchEvent(this._expandEvent);
+      }
+    }
+    _collapse() {
+      let emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      const {
+        closeClass,
+        openClass
+      } = this.elements.controlledMenu;
+      this.dom.toggle.setAttribute("aria-expanded", "false");
+      if (closeClass !== "") {
+        if (typeof closeClass === "string") {
+          this.dom.container.classList.add(closeClass);
+        } else {
+          this.dom.container.classList.add(...closeClass);
         }
       }
-    }, {
-      key: "_collapse",
-      value: function _collapse() {
-        var emit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-        var _this$elements$contro = this.elements.controlledMenu,
-            closeClass = _this$elements$contro.closeClass,
-            openClass = _this$elements$contro.openClass;
-        this.dom.toggle.setAttribute("aria-expanded", "false");
-        if (closeClass !== "") {
-          if (typeof closeClass === "string") {
-            this.dom.container.classList.add(closeClass);
-          } else {
-            var _this$dom$container$c2;
-            (_this$dom$container$c2 = this.dom.container.classList).add.apply(_this$dom$container$c2, _toConsumableArray(closeClass));
-          }
-        }
-        if (openClass !== "") {
-          if (typeof openClass === "string") {
-            this.dom.container.classList.remove(openClass);
-          } else {
-            var _this$dom$container$c3;
-            (_this$dom$container$c3 = this.dom.container.classList).remove.apply(_this$dom$container$c3, _toConsumableArray(openClass));
-          }
-        }
-        if (emit) {
-          this.dom.toggle.dispatchEvent(this._collapseEvent);
+      if (openClass !== "") {
+        if (typeof openClass === "string") {
+          this.dom.container.classList.remove(openClass);
+        } else {
+          this.dom.container.classList.remove(...openClass);
         }
       }
-    }]);
-    return Bootstrap5TreeviewToggle;
-  }(TreeviewToggle);
+      if (emit) {
+        this.dom.toggle.dispatchEvent(this._collapseEvent);
+      }
+    }
+  }
 
-  function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-  function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-  function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-  function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-  function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  var Bootstrap5Treeview = function (_Treeview) {
-    _inherits(Bootstrap5Treeview, _Treeview);
-    var _super = _createSuper(Bootstrap5Treeview);
-    function Bootstrap5Treeview(_ref) {
-      var _this;
-      var menuElement = _ref.menuElement,
-          _ref$menuItemSelector = _ref.menuItemSelector,
-          menuItemSelector = _ref$menuItemSelector === void 0 ? ".nav-item" : _ref$menuItemSelector,
-          _ref$menuLinkSelector = _ref.menuLinkSelector,
-          menuLinkSelector = _ref$menuLinkSelector === void 0 ? ".nav-link,.dropdown-item" : _ref$menuLinkSelector,
-          _ref$submenuItemSelec = _ref.submenuItemSelector,
-          submenuItemSelector = _ref$submenuItemSelec === void 0 ? ".dropdown" : _ref$submenuItemSelec,
-          _ref$submenuToggleSel = _ref.submenuToggleSelector,
-          submenuToggleSelector = _ref$submenuToggleSel === void 0 ? ".dropdown-toggle" : _ref$submenuToggleSel,
-          _ref$submenuSelector = _ref.submenuSelector,
-          submenuSelector = _ref$submenuSelector === void 0 ? ".dropdown-menu" : _ref$submenuSelector,
-          _ref$controllerElemen = _ref.controllerElement,
-          controllerElement = _ref$controllerElemen === void 0 ? null : _ref$controllerElemen,
-          _ref$containerElement = _ref.containerElement,
-          containerElement = _ref$containerElement === void 0 ? null : _ref$containerElement,
-          _ref$openClass = _ref.openClass,
-          openClass = _ref$openClass === void 0 ? "show" : _ref$openClass,
-          _ref$closeClass = _ref.closeClass,
-          closeClass = _ref$closeClass === void 0 ? "collapse" : _ref$closeClass,
-          _ref$isTopLevel = _ref.isTopLevel,
-          isTopLevel = _ref$isTopLevel === void 0 ? true : _ref$isTopLevel,
-          _ref$parentMenu = _ref.parentMenu,
-          parentMenu = _ref$parentMenu === void 0 ? null : _ref$parentMenu,
-          _ref$hoverType = _ref.hoverType,
-          hoverType = _ref$hoverType === void 0 ? "off" : _ref$hoverType,
-          _ref$hoverDelay = _ref.hoverDelay,
-          hoverDelay = _ref$hoverDelay === void 0 ? 250 : _ref$hoverDelay,
-          _ref$initialize = _ref.initialize,
-          initialize = _ref$initialize === void 0 ? true : _ref$initialize;
-      _classCallCheck(this, Bootstrap5Treeview);
-      _this = _super.call(this, {
-        menuElement: menuElement,
-        menuItemSelector: menuItemSelector,
-        menuLinkSelector: menuLinkSelector,
-        submenuItemSelector: submenuItemSelector,
-        submenuToggleSelector: submenuToggleSelector,
-        submenuSelector: submenuSelector,
-        controllerElement: controllerElement,
-        containerElement: containerElement,
-        openClass: openClass,
-        closeClass: closeClass,
-        isTopLevel: isTopLevel,
-        parentMenu: parentMenu,
-        hoverType: hoverType,
-        hoverDelay: hoverDelay,
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class Bootstrap5Treeview extends Treeview {
+    constructor(_ref) {
+      let {
+        menuElement,
+        menuItemSelector = ".nav-item",
+        menuLinkSelector = ".nav-link,.dropdown-item",
+        submenuItemSelector = ".dropdown",
+        submenuToggleSelector = ".dropdown-toggle",
+        submenuSelector = ".dropdown-menu",
+        controllerElement = null,
+        containerElement = null,
+        openClass = "show",
+        closeClass = "collapse",
+        isTopLevel = true,
+        parentMenu = null,
+        hoverType = "off",
+        hoverDelay = 250,
+        initialize = true
+      } = _ref;
+      super({
+        menuElement,
+        menuItemSelector,
+        menuLinkSelector,
+        submenuItemSelector,
+        submenuToggleSelector,
+        submenuSelector,
+        controllerElement,
+        containerElement,
+        openClass,
+        closeClass,
+        isTopLevel,
+        parentMenu,
+        hoverType,
+        hoverDelay,
         initialize: false
       });
-      _defineProperty(_assertThisInitialized(_this), "_MenuType", Bootstrap5Treeview);
-      _defineProperty(_assertThisInitialized(_this), "_MenuItemType", Bootstrap5TreeviewItem);
-      _defineProperty(_assertThisInitialized(_this), "_MenuToggleType", Bootstrap5TreeviewToggle);
+      _defineProperty(this, "_MenuType", Bootstrap5Treeview);
+      _defineProperty(this, "_MenuItemType", Bootstrap5TreeviewItem);
+      _defineProperty(this, "_MenuToggleType", Bootstrap5TreeviewToggle);
       if (initialize) {
-        _this.initialize();
+        this.initialize();
       }
-      return _this;
     }
-    return Bootstrap5Treeview;
-  }(Treeview);
+  }
 
   return Bootstrap5Treeview;
 
