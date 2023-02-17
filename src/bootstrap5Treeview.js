@@ -37,9 +37,6 @@ class Bootstrap5Treeview extends Treeview {
 
   /**
    * Constructs the menu.
-   
-  /**
-   * Constructs the menu.
    *
    * @param {object}                    options                                               - The options for generating the menu.
    * @param {HTMLElement}               options.menuElement                                   - The menu element in the DOM.
