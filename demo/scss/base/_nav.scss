@@ -1,0 +1,36 @@
+/**
+ * Nav base styles.
+ */
+
+nav {
+  grid-area: menu;
+
+  &.treeview {
+    grid-area: tree;
+
+    .navbar-collapse,
+    .navbar-nav {
+      height: 100%;
+      width: 100%;
+    }
+
+    .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+
+  &.treeview .dropdown-menu,
+  .dropdown-menu .dropdown-menu {
+    position: relative !important;
+  }
+}
