@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, test, expect, vi } from "vitest";
 import { Bootstrap5DisclosureMenu } from "../../../index";
 import { oneLevelMenu } from "../_common/test-menus";
 import {
@@ -18,7 +19,7 @@ customizedMenu(Bootstrap5DisclosureMenu);
 
 describe("Bootstrap5DisclosureMenu-specific initialization", () => {
   // Mock console.error.
-  console.error = jest.fn((error) => {
+  console.error = vi.fn((error) => {
     throw new Error(error.message);
   });
 
@@ -32,8 +33,6 @@ describe("Bootstrap5DisclosureMenu-specific initialization", () => {
         menuElement: document.querySelector("#menu-0"),
         optionalKeySupport: "true",
       });
-    }).toThrow(
-      "AccessibleMenu: optionalKeySupport must be a boolean. string given."
-    );
+    }).toThrow('optionalKeySupport must be a boolean. "string" given.');
   });
 });

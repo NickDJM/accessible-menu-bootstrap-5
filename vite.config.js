@@ -42,4 +42,7 @@ export default defineConfig({
     lib: lib[buildType] || lib.default,
     emptyOutDir: false,
   },
+  test: {
+    environment: "jsdom",
+  },
 });

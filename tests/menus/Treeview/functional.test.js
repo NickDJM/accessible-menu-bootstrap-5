@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, test, expect } from "vitest";
 import { Bootstrap5Treeview } from "../../../index";
 import {
   openClose,
@@ -160,7 +161,7 @@ describe("Bootstrap5Treeview keypress tests", () => {
         simulateKeypress(key, subControlledMenu.dom.menu);
 
         // Toggle expectations.
-        expect(submenuToggle.isOpen).toBeTrue();
+        expect(submenuToggle.isOpen).toBeTruthy();
         expect(submenuToggle.dom.toggle.getAttribute("aria-expanded")).toBe(
           "true"
         );
@@ -169,10 +170,10 @@ describe("Bootstrap5Treeview keypress tests", () => {
         expect(subControlledMenu.focusState).toBe("none");
         expect(
           subControlledMenu.dom.menu.classList.contains("show")
-        ).toBeTrue();
+        ).toBeTruthy();
         expect(
           subControlledMenu.dom.menu.classList.contains("collapse")
-        ).toBeTrue();
+        ).toBeTruthy();
 
         toggleIsPreviewed(toggle);
         expect(menu.currentChild).toBe(2);

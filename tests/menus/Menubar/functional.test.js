@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, test, expect } from "vitest";
 import { Bootstrap5Menubar } from "../../../index";
 import {
   openClose,
@@ -329,11 +330,10 @@ describe("Bootstrap5Menubar submenu keypress tests", () => {
       // Simluate the keypress.
       simulateKeypress(key, controlledMenu.dom.menu);
 
-      // Use requestAnimationFrame because the keypress itself it trigger the same.
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         toggleIsOpen(toggle);
         expect(subControlledMenu.currentChild).toBe(0);
-      });
+      }, 500);
     });
   });
 
