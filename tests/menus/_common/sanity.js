@@ -26,7 +26,7 @@ export function singleLevelSanity(MenuClass) {
 
     describe("has correct dom selectors", () => {
       const defaultSelectors = [
-        { selector: "menuItems", value: ".nav-item" },
+        { selector: "menuItems", value: ".nav-item,li" },
         { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
         { selector: "submenuItems", value: ".dropdown" },
         { selector: "submenuToggles", value: ".dropdown-toggle" },
@@ -166,7 +166,7 @@ export function twoLevelSanity(MenuClass) {
 
     describe("has correct dom selectors", () => {
       const defaultSelectors = [
-        { selector: "menuItems", value: ".nav-item" },
+        { selector: "menuItems", value: ".nav-item,li" },
         { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
         { selector: "submenuItems", value: ".dropdown" },
         { selector: "submenuToggles", value: ".dropdown-toggle" },
@@ -297,7 +297,7 @@ export function twoLevelSanity(MenuClass) {
       describe(`submenu ${index}`, () => {
         describe("has correct dom selectors", () => {
           const defaultSelectors = [
-            { selector: "menuItems", value: ".nav-item" },
+            { selector: "menuItems", value: ".nav-item,li" },
             { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
             { selector: "submenuItems", value: ".dropdown" },
             { selector: "submenuToggles", value: ".dropdown-toggle" },

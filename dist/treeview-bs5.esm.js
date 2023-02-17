@@ -1431,7 +1431,7 @@ class Bootstrap5Treeview extends Treeview {
   constructor(_ref) {
     let {
       menuElement,
-      menuItemSelector = ".nav-item",
+      menuItemSelector = ".nav-item,li",
       menuLinkSelector = ".nav-link,.dropdown-item",
       submenuItemSelector = ".dropdown",
       submenuToggleSelector = ".dropdown-toggle",
