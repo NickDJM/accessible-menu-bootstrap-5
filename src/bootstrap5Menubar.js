@@ -35,26 +35,26 @@ class Bootstrap5Menubar extends Menubar {
   /**
    * Constructs the menu.
    *
-   * @param {object}                   options                             - The options for generating the menu.
-   * @param {HTMLElement}              options.menuElement                 - The menu element in the DOM.
-   * @param {string}                   [options.menuItemSelector = li]     - The CSS selector string for menu items.
-   * @param {string}                   [options.menuLinkSelector = a]      - The CSS selector string for menu links.
-   * @param {string}                   [options.submenuItemSelector]       - The CSS selector string for menu items containing submenus.
-   * @param {string}                   [options.submenuToggleSelector = a] - The CSS selector string for submenu toggle buttons/links.
-   * @param {string}                   [options.submenuSelector = ul]      - The CSS selector string for submenus.
-   * @param {(HTMLElement|null)}       [options.controllerElement = null]  - The element controlling the menu in the DOM.
-   * @param {(HTMLElement|null)}       [options.containerElement = null]   - The element containing the menu in the DOM.
-   * @param {(string|string[]|null)}   [options.openClass = show]          - The class to apply when a menu is "open".
-   * @param {(string|string[]|null)}   [options.closeClass = collapse]     - The class to apply when a menu is "closed".
-   * @param {boolean}                  [options.isTopLevel = false]        - A flag to mark the root menu.
-   * @param {(Bootstrap5Menubar|null)} [options.parentMenu = null]         - The parent menu to this menu.
-   * @param {string}                   [options.hoverType = off]           - The type of hoverability a menu has.
-   * @param {number}                   [options.hoverDelay = 250]          - The delay for closing menus if the menu is hoverable (in miliseconds).
-   * @param {boolean}                  [options.initialize = true]         - A flag to initialize the menu immediately upon creation.
+   * @param {object}                   options                                               - The options for generating the menu.
+   * @param {HTMLElement}              options.menuElement                                   - The menu element in the DOM.
+   * @param {string}                   [options.menuItemSelector = .nav-item,li]             - The CSS selector string for menu items.
+   * @param {string}                   [options.menuLinkSelector = .nav-link,.dropdown-item] - The CSS selector string for menu links.
+   * @param {string}                   [options.submenuItemSelector = .dropdown]             - The CSS selector string for menu items containing submenus.
+   * @param {string}                   [options.submenuToggleSelector = .dropdown-toggle]    - The CSS selector string for submenu toggle buttons/links.
+   * @param {string}                   [options.submenuSelector = .dropdown-menu]            - The CSS selector string for submenus.
+   * @param {(HTMLElement|null)}       [options.controllerElement = null]                    - The element controlling the menu in the DOM.
+   * @param {(HTMLElement|null)}       [options.containerElement = null]                     - The element containing the menu in the DOM.
+   * @param {(string|string[]|null)}   [options.openClass = show]                            - The class to apply when a menu is "open".
+   * @param {(string|string[]|null)}   [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
+   * @param {boolean}                  [options.isTopLevel = false]                          - A flag to mark the root menu.
+   * @param {(Bootstrap5Menubar|null)} [options.parentMenu = null]                           - The parent menu to this menu.
+   * @param {string}                   [options.hoverType = off]                             - The type of hoverability a menu has.
+   * @param {number}                   [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
+   * @param {boolean}                  [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
   constructor({
     menuElement,
-    menuItemSelector = ".nav-item",
+    menuItemSelector = ".nav-item,li",
     menuLinkSelector = ".nav-link,.dropdown-item",
     submenuItemSelector = ".dropdown",
     submenuToggleSelector = ".dropdown-toggle",
