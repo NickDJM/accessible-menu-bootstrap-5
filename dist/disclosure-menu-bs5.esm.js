@@ -1352,7 +1352,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   constructor(_ref) {
     let {
       menuElement,
-      menuItemSelector = ".nav-item",
+      menuItemSelector = ".nav-item,li",
       menuLinkSelector = ".nav-link,.dropdown-item",
       submenuItemSelector = ".dropdown",
       submenuToggleSelector = ".dropdown-toggle",
