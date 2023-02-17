@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.1...v1.0.2) (2023-02-17)
+
+
+### Bug Fixes
+
+* add li to default menu item selector to work with bootstrap dropdowns ([4f7b68b](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/4f7b68be55bcb493d0af331fe10f9b48ee856a95))
+
 ### [1.0.1](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.0...v1.0.1) (2023-02-17)
 
 
