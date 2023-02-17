@@ -1912,10 +1912,7 @@ class V extends A {
      * The DOM elements within the menu toggle.
      *
      * @type {Object<HTMLElement>}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @property {HTMLElement} toggle    - The menu toggle.
      * @property {HTMLElement} parent    - The menu containing this toggle.
      * @property {HTMLElement} container - The element that controlls the visibility of the child menu.
@@ -2017,10 +2014,7 @@ class D extends I {
      * The class to use when generating submenus.
      *
      * @type {typeof Bootstrap5Menubar}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuType", D);
@@ -2028,10 +2022,7 @@ class D extends I {
      * The class to use when generating menu items.
      *
      * @type {typeof Bootstrap5MenubarItem}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuItemType", j);
@@ -2039,10 +2030,7 @@ class D extends I {
      * The class to use when generating submenu toggles.
      *
      * @type {typeof Bootstrap5MenubarToggle}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuToggleType", V);

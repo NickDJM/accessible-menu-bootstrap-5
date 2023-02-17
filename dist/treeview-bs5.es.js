@@ -1868,10 +1868,7 @@ class V extends A {
      * The DOM elements within the menu toggle.
      *
      * @type {Object<HTMLElement>}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @property {HTMLElement} toggle    - The menu toggle.
      * @property {HTMLElement} parent    - The menu containing this toggle.
      * @property {HTMLElement} container - The element that controlls the visibility of the child menu.
@@ -1916,30 +1913,6 @@ class V extends A {
 }
 class x extends w {
   /**
-<<<<<<< HEAD
-   * Constructs the menu.
-   
-  /**
-   * Constructs the menu.
-   *
-   * @param {object}                    options                                               - The options for generating the menu.
-   * @param {HTMLElement}               options.menuElement                                   - The menu element in the DOM.
-   * @param {string}                    [options.menuItemSelector = .nav-item,li]             - The CSS selector string for menu items.
-   * @param {string}                    [options.menuLinkSelector = .nav-link,.dropdown-item] - The CSS selector string for menu links.
-   * @param {string}                    [options.submenuItemSelector = .dropdown]             - The CSS selector string for menu items containing submenus.
-   * @param {string}                    [options.submenuToggleSelector = .dropdown-toggle]    - The CSS selector string for submenu toggle buttons/links.
-   * @param {string}                    [options.submenuSelector = .dropdown-menu]            - The CSS selector string for submenus.
-   * @param {(HTMLElement|null)}        [options.controllerElement = null]                    - The element controlling the menu in the DOM.
-   * @param {(HTMLElement|null)}        [options.containerElement = null]                     - The element containing the menu in the DOM.
-   * @param {(string|string[]|null)}    [options.openClass = show]                            - The class to apply when a menu is "open".
-   * @param {(string|string[]|null)}    [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
-   * @param {boolean}                   [options.isTopLevel = false]                          - A flag to mark the root menu.
-   * @param {(Bootstrap5Treeview|null)} [options.parentMenu = null]                           - The parent menu to this menu.
-   * @param {string}                    [options.hoverType = off]                             - The type of hoverability a menu has.
-   * @param {number}                    [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
-   * @param {boolean}                   [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
-   */
-=======
      * Constructs the menu.
   
     /**
@@ -1962,7 +1935,6 @@ class x extends w {
      * @param {number}                    [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
      * @param {boolean}                   [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
      */
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
   constructor({
     menuElement: t,
     menuItemSelector: s = ".nav-item,li",
@@ -2001,10 +1973,7 @@ class x extends w {
      * The class to use when generating submenus.
      *
      * @type {typeof Bootstrap5Treeview}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuType", x);
@@ -2012,10 +1981,7 @@ class x extends w {
      * The class to use when generating menu items.
      *
      * @type {typeof Bootstrap5TreeviewItem}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuItemType", N);
@@ -2023,10 +1989,7 @@ class x extends w {
      * The class to use when generating submenu toggles.
      *
      * @type {typeof Bootstrap5TreeviewToggle}
-<<<<<<< HEAD
-=======
      *
->>>>>>> 95b5727fe758dc4a8ac034206ac0b740917bc7da
      * @public
      */
     l(this, "_MenuToggleType", V);
