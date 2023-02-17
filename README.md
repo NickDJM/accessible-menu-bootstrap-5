@@ -2,8 +2,8 @@
 
 [![Latest release](https://img.shields.io/npm/v/accessible-menu-bootstrap-5?label=RELEASE&style=for-the-badge)](https://www.npmjs.com/package/accessible-menu-bootstrap-5)
 [![License](https://img.shields.io/github/license/NickDJM/accessible-menu-bootstrap-5?style=for-the-badge)](/LICENSE)
-[![Jest tests](https://img.shields.io/github/workflow/status/nickdjm/accessible-menu-bootstrap-5/Tests/1.x?label=Tests&style=for-the-badge)](https://github.com/NickDJM/accessible-menu-bootstrap-5/actions/workflows/test.yml)
-[![GitHub CodeQL](https://img.shields.io/github/workflow/status/nickdjm/accessible-menu-bootstrap-5/CodeQL/1.x?label=CodeQL&style=for-the-badge)](https://github.com/NickDJM/accessible-menu-bootstrap-5/actions/workflows/codeql-analysis.yml)
+[![Jest tests](https://img.shields.io/github/actions/workflow/status/nickdjm/accessible-menu-bootstrap-5/test.yml?branch=1.x&label=Tests&style=for-the-badge)](https://github.com/NickDJM/accessible-menu-bootstrap-5/actions/workflows/test.yml)
+[![GitHub CodeQL](https://img.shields.io/github/actions/workflow/status/nickdjm/accessible-menu-bootstrap-5/codeql-analysis.yml?branch=1.x&label=CodeQL&style=for-the-badge)](https://github.com/NickDJM/accessible-menu-bootstrap-5/actions/workflows/codeql-analysis.yml)
 
 A JavaScript library to help you generate WAI-ARIA accessible menus with in the DOM using Bootstrap 5.
 
