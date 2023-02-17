@@ -76,40 +76,40 @@ export const twoLevelTopLink =
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Mammals</a>
-        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Mammals</a>
+        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Wild</a></li>
           <li><a href="#" class="dropdown-item">Domesticated</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Reptiles</a>
-        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Reptiles</a>
+        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Wild</a></li>
           <li><a href="#" class="dropdown-item">Domesticated</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Amphibians</a>
-        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Amphibians</a>
+        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Wild</a></li>
           <li><a href="#" class="dropdown-item">Domesticated</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Birds</a>
-        <button aria-label="Birds submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Birds</a>
+        <button aria-label="Birds submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Wild</a></li>
           <li><a href="#" class="dropdown-item">Domesticated</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Fish</a>
-        <button aria-label="Fish submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Fish</a>
+        <button aria-label="Fish submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Wild</a></li>
           <li><a href="#" class="dropdown-item">Domesticated</a></li>
@@ -249,8 +249,8 @@ export const threeLevelTopLink =
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Mammals</a>
-        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Mammals</a>
+        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li class="nav-item dropdown">
             <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
@@ -271,8 +271,8 @@ export const threeLevelTopLink =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Reptiles</a>
-        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Reptiles</a>
+        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li class="nav-item dropdown">
             <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
@@ -293,8 +293,8 @@ export const threeLevelTopLink =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Amphibians</a>
-        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Amphibians</a>
+        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li class="nav-item dropdown">
             <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
@@ -315,8 +315,8 @@ export const threeLevelTopLink =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Birds</a>
-        <button aria-label="Birds submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Birds</a>
+        <button aria-label="Birds submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li class="nav-item dropdown">
             <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
@@ -337,8 +337,8 @@ export const threeLevelTopLink =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link">Fish</a>
-        <button aria-label="Fish submenu" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></button>
+        <a href="#" class="nav-link d-inline">Fish</a>
+        <button aria-label="Fish submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li class="nav-item dropdown">
             <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
