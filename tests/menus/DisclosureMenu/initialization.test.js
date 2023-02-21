@@ -1,10 +1,8 @@
 /**
  * Test the Bootstrap5DisclosureMenu class to make sure it can initialize under various scenarios.
- *
- * @jest-environment jsdom
  */
 
-import { describe, test, expect, vi } from "vitest";
+import { describe, test, expect } from "vitest";
 import { Bootstrap5DisclosureMenu } from "../../../index";
 import { oneLevelMenu } from "../_common/test-menus";
 import {
@@ -18,11 +16,6 @@ controlledMenu(Bootstrap5DisclosureMenu);
 customizedMenu(Bootstrap5DisclosureMenu);
 
 describe("Bootstrap5DisclosureMenu-specific initialization", () => {
-  // Mock console.error.
-  console.error = vi.fn((error) => {
-    throw new Error(error.message);
-  });
-
   // Set up the DOM.
   document.body.innerHTML = oneLevelMenu;
 

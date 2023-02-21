@@ -1,7 +1,5 @@
 /**
  * Reusable initialization tests.
- *
- * @jest-environment jsdom
  */
 /* eslint-disable no-new */
 
@@ -11,17 +9,17 @@ import { oneLevelMenu } from "./test-menus";
 /**
  * A set of default initialization tests.
  *
- * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function defaultInitialization(MenuClass) {
+  // Mock console.error.
+  console.error = vi.fn((error) => {
+    throw new Error(error);
+  });
+
   const menuType = MenuClass.name;
 
   describe(`${menuType} default initialization`, () => {
-    // Mock console.error.
-    console.error = vi.fn((error) => {
-      throw new Error(error.message);
-    });
-
     // Set up the DOM.
     document.body.innerHTML = oneLevelMenu;
     const options = {
@@ -54,17 +52,17 @@ export function defaultInitialization(MenuClass) {
 /**
  * A set of controlled menu initialization tests.
  *
- * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function controlledMenu(MenuClass) {
+  // Mock console.error.
+  console.error = vi.fn((error) => {
+    throw new Error(error);
+  });
+
   const menuType = MenuClass.name;
 
   describe(`${menuType} controlled menu initialization`, () => {
-    // Mock console.error.
-    console.error = vi.fn((error) => {
-      throw new Error(error.message);
-    });
-
     // Set up the DOM.
     document.body.innerHTML = oneLevelMenu;
     const menuElement = document.querySelector("#menu-0");
@@ -132,27 +130,23 @@ export function controlledMenu(MenuClass) {
 /**
  * A set of customized menu initialization tests.
  *
- * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function customizedMenu(MenuClass) {
+  // Mock console.error.
+  console.error = vi.fn((error) => {
+    throw new Error(error);
+  });
+
   const menuType = MenuClass.name;
 
   describe(`${menuType} custom initialization`, () => {
-    // Mock console.error.
-    console.error = vi.fn((error) => {
-      throw new Error(error.message);
-    });
-
     // Set up the DOM.
     document.body.innerHTML = oneLevelMenu;
     const menuElement = document.querySelector("#menu-0");
 
     // CSS selectors for testing.
-    const basicCSSSelectors = [
-      "menuItemSelector",
-      "menuLinkSelector",
-      "submenuItemSelector",
-    ];
+    const basicCSSSelectors = ["menuItemSelector", "submenuItemSelector"];
 
     // Class lists for testing.
     const classLists = ["openClass", "closeClass"];
@@ -171,23 +165,38 @@ export function customizedMenu(MenuClass) {
       }
     );
 
-    test("will fail if submenuItemSelector is provided and submenuToggleSelector isn't a CSS selector", () => {
+    test("will fail if menuLinkSelector isn't a CSS selector", () => {
+      const errorValue =
+        menuType === "Bootstrap5TopLinkDisclosureMenu"
+          ? "123,.dropdown-toggle"
+          : "123";
       expect(() => {
         new MenuClass({
           menuElement,
-          submenuItemSelector: "li.dropdown",
-          submenuToggleSelector: 123,
+          menuLinkSelector: 123,
         });
       }).toThrow(
-        'submenuToggleSelector must be a valid CSS selector. "123" given.'
+        `menuLinkSelector must be a valid CSS selector. "${errorValue}" given.`
       );
     });
+
+    if (menuType !== "Bootstrap5TopLinkDisclosureMenu") {
+      test("will fail if submenuItemSelector is provided and submenuToggleSelector isn't a CSS selector", () => {
+        expect(() => {
+          new MenuClass({
+            menuElement,
+            submenuToggleSelector: 123,
+          });
+        }).toThrow(
+          `submenuToggleSelector must be a valid CSS selector. "123" given.`
+        );
+      });
+    }
 
     test("will fail if submenuItemSelector is provided and submenuSelector isn't a CSS selector", () => {
       expect(() => {
         new MenuClass({
           menuElement,
-          submenuItemSelector: "li.dropdown",
           submenuSelector: 123,
         });
       }).toThrow('submenuSelector must be a valid CSS selector. "123" given.');

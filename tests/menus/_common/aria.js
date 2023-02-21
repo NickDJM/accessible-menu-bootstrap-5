@@ -1,24 +1,25 @@
 /**
  * Reusable ARIA tests.
- *
- * @jest-environment jsdom
  */
 /* eslint-disable no-new */
 
 import { describe, test, expect } from "vitest";
-import { twoLevelMenu } from "./test-menus";
+import { twoLevelMenu, twoLevelTopLinkMenu } from "./test-menus";
 
 /**
  * A set of ARIA tests.
  *
- * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function aria(MenuClass) {
   const menuType = MenuClass.name;
 
   describe(`${menuType}`, () => {
     // Set up the DOM.
-    document.body.innerHTML = twoLevelMenu;
+    document.body.innerHTML =
+      menuType === "Bootstrap5TopLinkDisclosureMenu"
+        ? twoLevelTopLinkMenu
+        : twoLevelMenu;
     const menu = new MenuClass({
       menuElement: document.querySelector("#menu-0"),
       containerElement: document.querySelector("nav"),
@@ -74,9 +75,11 @@ export function aria(MenuClass) {
       test("has proper ARIA attributes", () => {
         const submenuElement =
           menu.elements.submenuToggles[index].elements.controlledMenu.dom.menu;
+        const labelledByItem =
+          menuType === "Bootstrap5TopLinkDisclosureMenu" ? "toggle" : "link";
 
         expect(submenuElement.getAttribute("aria-labelledby")).toBe(
-          `link-${id}-0-0`
+          `${labelledByItem}-${id}-0-0`
         );
 
         if (menuType === "Bootstrap5Menubar") {

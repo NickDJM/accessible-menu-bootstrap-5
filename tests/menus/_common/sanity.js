@@ -1,16 +1,14 @@
 /**
  * Reusable tests to make sure menus "just work".
- *
- * @jest-environment jsdom
  */
 
 import { describe, test, expect, expectTypeOf } from "vitest";
-import { oneLevelMenu, twoLevelMenu } from "./test-menus";
+import { oneLevelMenu, twoLevelMenu, twoLevelTopLinkMenu } from "./test-menus";
 
 /**
  * A set of single-level menu sanity tests.
  *
- * @param {(typeof DisclosureMenu|typeof Menubar|typeof Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function singleLevelSanity(MenuClass) {
   const menuType = MenuClass.name;
@@ -28,9 +26,18 @@ export function singleLevelSanity(MenuClass) {
     describe("has correct dom selectors", () => {
       const defaultSelectors = [
         { selector: "menuItems", value: ".nav-item,li" },
-        { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
+        {
+          selector: "menuLinks",
+          value:
+            menuType === "Bootstrap5TopLinkDisclosureMenu"
+              ? ".nav-link,.dropdown-item,.dropdown-toggle"
+              : ".nav-link,.dropdown-item",
+        },
         { selector: "submenuItems", value: ".dropdown" },
-        { selector: "submenuToggles", value: ".dropdown-toggle" },
+        {
+          selector: "submenuToggles",
+          value: ".dropdown-toggle",
+        },
         { selector: "submenus", value: ".dropdown-menu" },
       ];
 
@@ -106,7 +113,10 @@ export function singleLevelSanity(MenuClass) {
     });
 
     test("has correct current child", () => {
-      if (menuType === "Bootstrap5DisclosureMenu") {
+      if (
+        menuType === "Bootstrap5DisclosureMenu" ||
+        menuType === "Bootstrap5TopLinkDisclosureMenu"
+      ) {
         expect(menu.currentChild).toBe(-1);
       } else {
         expect(menu.currentChild).toBe(0);
@@ -122,7 +132,10 @@ export function singleLevelSanity(MenuClass) {
     });
 
     test("current menu item is correct", () => {
-      if (menuType === "Bootstrap5DisclosureMenu") {
+      if (
+        menuType === "Bootstrap5DisclosureMenu" ||
+        menuType === "Bootstrap5TopLinkDisclosureMenu"
+      ) {
         expect(menu.currentMenuItem).toBeUndefined();
       } else {
         expect(menu.currentMenuItem).toBe(menu.elements.menuItems[0]);
@@ -146,21 +159,26 @@ export function singleLevelSanity(MenuClass) {
 /**
  * A set of two-level menu sanity tests.
  *
- * @param {(typeof DisclosureMenu|typeof Menubar|typeof Treeview)} MenuClass - The menu class to test.
+ * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview|typeof Bootstrap5TopLinkDisclosureMenu)} MenuClass - The menu class to test.
  */
 export function twoLevelSanity(MenuClass) {
   const menuType = MenuClass.name;
 
   describe(`${menuType} two-level menu sanity check`, () => {
     // Set up the DOM.
-    document.body.innerHTML = twoLevelMenu;
+    document.body.innerHTML =
+      menuType === "Bootstrap5TopLinkDisclosureMenu"
+        ? twoLevelTopLinkMenu
+        : twoLevelMenu;
     const menuElement = document.querySelector("#menu-0");
-    const submenuItemSelector = ".dropdown";
     const containerElement = document.querySelector("nav");
     const controllerElement = document.querySelector("#toggle-0");
     const menuItems = Array.from(menuElement.querySelectorAll("li"));
     const submenuItems = Array.from(menuElement.querySelectorAll(".dropdown"));
-    const menuLinks = Array.from(menuElement.querySelectorAll("li a"));
+    const menuLinks =
+      menuType === "Bootstrap5TopLinkDisclosureMenu"
+        ? Array.from(menuElement.querySelectorAll("li a, li button"))
+        : Array.from(menuElement.querySelectorAll("li a"));
     const submenuElements = Array.from(
       menuElement.querySelectorAll(".dropdown ul")
     );
@@ -168,7 +186,6 @@ export function twoLevelSanity(MenuClass) {
     // Declare the menu.
     const menu = new MenuClass({
       menuElement,
-      submenuItemSelector,
       containerElement,
       controllerElement,
     });
@@ -176,9 +193,18 @@ export function twoLevelSanity(MenuClass) {
     describe("has correct dom selectors", () => {
       const defaultSelectors = [
         { selector: "menuItems", value: ".nav-item,li" },
-        { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
+        {
+          selector: "menuLinks",
+          value:
+            menuType === "Bootstrap5TopLinkDisclosureMenu"
+              ? ".nav-link,.dropdown-item,.dropdown-toggle"
+              : ".nav-link,.dropdown-item",
+        },
         { selector: "submenuItems", value: ".dropdown" },
-        { selector: "submenuToggles", value: ".dropdown-toggle" },
+        {
+          selector: "submenuToggles",
+          value: ".dropdown-toggle",
+        },
         { selector: "submenus", value: ".dropdown-menu" },
       ];
 
@@ -207,7 +233,13 @@ export function twoLevelSanity(MenuClass) {
         expect(menu.dom.submenuItems).toMatchObject(submenuItems);
       });
       test("submenuToggles", () => {
-        const expectedIDs = ["link-2-0-0", "link-3-0-0", "link-5-0-0"];
+        const toggleIDBase =
+          menuType === "Bootstrap5TopLinkDisclosureMenu" ? "toggle" : "link";
+        const expectedIDs = [
+          `${toggleIDBase}-2-0-0`,
+          `${toggleIDBase}-3-0-0`,
+          `${toggleIDBase}-5-0-0`,
+        ];
         expect(menu.dom.submenuToggles).toMatchObject(
           menuLinks.filter((item) => expectedIDs.includes(item.id))
         );
@@ -235,8 +267,10 @@ export function twoLevelSanity(MenuClass) {
             (element) => element.constructor.name === `${menuType}Item`
           );
         };
+        const menuItemCount =
+          menuType === "Bootstrap5TopLinkDisclosureMenu" ? 8 : 5;
         expectTypeOf(menu.elements.menuItems).toBeArray();
-        expect(menu.elements.menuItems).toHaveLength(5);
+        expect(menu.elements.menuItems).toHaveLength(menuItemCount);
         expect(menu.elements.menuItems).toSatisfy(isCorrectMenuItemClass);
       });
       test("parentMenu", () => {
@@ -272,7 +306,10 @@ export function twoLevelSanity(MenuClass) {
     });
 
     test("has correct current child", () => {
-      if (menuType === "Bootstrap5DisclosureMenu") {
+      if (
+        menuType === "Bootstrap5DisclosureMenu" ||
+        menuType === "Bootstrap5TopLinkDisclosureMenu"
+      ) {
         expect(menu.currentChild).toBe(-1);
       } else {
         expect(menu.currentChild).toBe(0);
@@ -288,7 +325,10 @@ export function twoLevelSanity(MenuClass) {
     });
 
     test("current menu item is correct", () => {
-      if (menuType === "Bootstrap5DisclosureMenu") {
+      if (
+        menuType === "Bootstrap5DisclosureMenu" ||
+        menuType === "Bootstrap5TopLinkDisclosureMenu"
+      ) {
         expect(menu.currentMenuItem).toBeUndefined();
       } else {
         expect(menu.currentMenuItem).toBe(menu.elements.menuItems[0]);
@@ -315,9 +355,18 @@ export function twoLevelSanity(MenuClass) {
         describe("has correct dom selectors", () => {
           const defaultSelectors = [
             { selector: "menuItems", value: ".nav-item,li" },
-            { selector: "menuLinks", value: ".nav-link,.dropdown-item" },
+            {
+              selector: "menuLinks",
+              value:
+                menuType === "Bootstrap5TopLinkDisclosureMenu"
+                  ? ".nav-link,.dropdown-item,.dropdown-toggle"
+                  : ".nav-link,.dropdown-item",
+            },
             { selector: "submenuItems", value: ".dropdown" },
-            { selector: "submenuToggles", value: ".dropdown-toggle" },
+            {
+              selector: "submenuToggles",
+              value: ".dropdown-toggle",
+            },
             { selector: "submenus", value: ".dropdown-menu" },
           ];
 
@@ -396,7 +445,10 @@ export function twoLevelSanity(MenuClass) {
       });
 
       test("has correct current child", () => {
-        if (menuType === "Bootstrap5DisclosureMenu") {
+        if (
+          menuType === "Bootstrap5DisclosureMenu" ||
+          menuType === "Bootstrap5TopLinkDisclosureMenu"
+        ) {
           expect(submenu.currentChild).toBe(-1);
         } else {
           expect(submenu.currentChild).toBe(0);
@@ -412,7 +464,10 @@ export function twoLevelSanity(MenuClass) {
       });
 
       test("current menu item is correct", () => {
-        if (menuType === "Bootstrap5DisclosureMenu") {
+        if (
+          menuType === "Bootstrap5DisclosureMenu" ||
+          menuType === "Bootstrap5TopLinkDisclosureMenu"
+        ) {
           expect(submenu.currentMenuItem).toBeUndefined();
         } else {
           expect(submenu.currentMenuItem).toBe(submenu.elements.menuItems[0]);

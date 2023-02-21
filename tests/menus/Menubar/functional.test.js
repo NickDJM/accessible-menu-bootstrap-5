@@ -1,7 +1,5 @@
 /**
  * Test the Bootstrap5Menubar class to make sure it functions correctly.
- *
- * @jest-environment jsdom
  */
 
 import { describe, test, expect } from "vitest";
@@ -80,7 +78,7 @@ describe("Bootstrap5Menubar keypress tests", () => {
   describe("'ArrowRight' key", () => {
     const key = "ArrowRight";
 
-    test("Moves focus to the next item in the Bootstrap5Menubar.", () => {
+    test("Moves focus to the next item in the menubar.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -121,7 +119,7 @@ describe("Bootstrap5Menubar keypress tests", () => {
   describe("'ArrowLeft' key", () => {
     const key = "ArrowLeft";
 
-    test("Moves focus to the previous item in the Bootstrap5Menubar.", () => {
+    test("Moves focus to the previous item in the menubar.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -222,7 +220,7 @@ describe("Bootstrap5Menubar keypress tests", () => {
   describe("'Home' key", () => {
     const key = "Home";
 
-    test("Moves focus to first item in the Bootstrap5Menubar.", () => {
+    test("Moves focus to first item in the menubar.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -246,7 +244,7 @@ describe("Bootstrap5Menubar keypress tests", () => {
   describe("'End' key", () => {
     const key = "End";
 
-    test("Moves focus to last item in the Bootstrap5Menubar.", () => {
+    test("Moves focus to last item in the menubar.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -267,7 +265,7 @@ describe("Bootstrap5Menubar keypress tests", () => {
   describe("'Character' keys", () => {
     const key = "t";
 
-    test("Moves focus to next item in the Bootstrap5Menubar having a name that starts with the typed character.", () => {
+    test("Moves focus to next item in the menubar having a name that starts with the typed character.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -340,7 +338,7 @@ describe("Bootstrap5Menubar submenu keypress tests", () => {
   describe("'Escape' key", () => {
     const key = "Escape";
 
-    test("Closes submenu. Moves focus to parent Bootstrap5Menubar item.", () => {
+    test("Closes submenu. Moves focus to parent menubar item.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -394,7 +392,7 @@ describe("Bootstrap5Menubar submenu keypress tests", () => {
       expect(subControlledMenu.currentChild).toBe(0);
     });
 
-    test("If focus is on an item that does not have a submenu: Closes submenu. Moves focus to next item in the Bootstrap5Menubar. Opens submenu of newly focused Bootstrap5Menubar item, keeping focus on that parent Bootstrap5Menubar item.", () => {
+    test("If focus is on an item that does not have a submenu: Closes submenu. Moves focus to next item in the menubar. Opens submenu of newly focused menubar item, keeping focus on that parent menubar item.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({
@@ -452,7 +450,7 @@ describe("Bootstrap5Menubar submenu keypress tests", () => {
       expect(controlledMenu.currentChild).toBe(1);
     });
 
-    test("If parent menu item is in the Bootstrap5Menubar, also: moves focus to previous item in the Bootstrap5Menubar. Opens submenu of newly focused Bootstrap5Menubar item, keeping focus on that parent Bootstrap5Menubar item.", () => {
+    test("If parent menu item is in the menubar, also: moves focus to previous item in the menubar. Opens submenu of newly focused menubar item, keeping focus on that parent menubar item.", () => {
       // Set up the DOM.
       document.body.innerHTML = fullMenu;
       const menu = new Bootstrap5Menubar({

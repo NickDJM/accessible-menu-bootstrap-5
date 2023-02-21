@@ -12,6 +12,7 @@ This project is an extension of [accessible-menu](https://github.com/NickDJM/acc
 The supported menu types are:
 
 - [Disclosure Navigation Menus](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/),
+- [Disclosure Navigation Menus with Top-Level Links](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation-hybrid/),
 - [Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/), and
 - [Navigation Treeview](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/examples/treeview-navigation/)
 
@@ -130,6 +131,26 @@ then
 
 ```js
 const menu = new Bootstrap5Menubar({
+  menuElement: document.querySelector("#example-menu"),
+});
+```
+
+#### Bootstrap5TopLinkDisclosureMenu usage
+
+```js
+import { Bootstrap5TopLinkDisclosureMenu } from "accessible-menu";
+```
+
+or
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/accessible-menu@4.0.0-beta.0/dist/top-link-disclosure-menu-bs5.min.js"></script>
+```
+
+then
+
+```js
+const menu = new Bootstrap5TopLinkDisclosureMenu({
   menuElement: document.querySelector("#example-menu"),
 });
 ```

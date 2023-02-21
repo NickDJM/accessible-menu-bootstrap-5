@@ -28,6 +28,12 @@ const lib = {
     formats,
     fileName: (format) => `menubar-bs5.${format}.js`,
   },
+  TopLinkDisclosureMenu: {
+    entry: resolve(__dirname, "/src/bootstrap5TopLinkDisclosureMenu.js"),
+    name: "Bootstrap5TopLinkDisclosureMenu",
+    formats,
+    fileName: (format) => `top-link-disclosure-menu-bs5.${format}.js`,
+  },
   Treeview: {
     entry: resolve(__dirname, "/src/bootstrap5Treeview.js"),
     name: "Bootstrap5Treeview",
