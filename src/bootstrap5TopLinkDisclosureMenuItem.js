@@ -17,6 +17,7 @@ class Bootstrap5TopLinkDisclosureMenuItem extends TopLinkDisclosureMenuItem {
    * @param {Bootstrap5TopLinkDisclosureMenu|null}       [options.childMenu = null]      - The child menu.
    * @param {Bootstrap5TopLinkDisclosureMenuToggle|null} [options.toggle = null]         - The controller for the child menu.
    * @param {boolean}                                    [options.initialize = true]     - A flag to initialize the menu item immediately upon creation.
+   * @param {Bootstrap5TopLinkDisclosureMenuToggle|null} [options.submenuSibling = null] - The sibling menu item that controls a submenu.
    */
   constructor({
     menuItemElement,
@@ -26,6 +27,7 @@ class Bootstrap5TopLinkDisclosureMenuItem extends TopLinkDisclosureMenuItem {
     childMenu = null,
     toggle = null,
     initialize = true,
+    submenuSibling = null,
   }) {
     super({
       menuItemElement,
@@ -35,6 +37,7 @@ class Bootstrap5TopLinkDisclosureMenuItem extends TopLinkDisclosureMenuItem {
       childMenu,
       toggle,
       initialize: false,
+      submenuSibling,
     });
 
     if (initialize) {
