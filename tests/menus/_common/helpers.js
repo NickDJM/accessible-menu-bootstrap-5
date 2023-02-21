@@ -6,7 +6,8 @@ import { expect } from "vitest";
 
 /**
  * Extends jsdom MouseEvent class as PointerEvent class
- * NOTE: It should be deprecated if JSDOM fully supports PointEvent in the future
+ *
+ * @todo: deprecate if/when JSDOM fully supports PointerEvents.
  */
 class PointerEvent extends window.MouseEvent {
   constructor(type, props) {
@@ -90,7 +91,7 @@ export function simulateKeypress(key, element, options = {}) {
 /**
  * Checks if a toggle is open.
  *
- * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle} toggle - The toggle to check.
+ * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle|Bootstrap5TopLinkDisclosureMenuToggle} toggle - The toggle to check.
  */
 export function toggleIsOpen(toggle) {
   const { parentMenu, controlledMenu } = toggle.elements;
@@ -115,7 +116,7 @@ export function toggleIsOpen(toggle) {
 /**
  * Checks if a toggle is previewed.
  *
- * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle} toggle - The toggle to check.
+ * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle|Bootstrap5TopLinkDisclosureMenuToggle} toggle - The toggle to check.
  */
 export function toggleIsPreviewed(toggle) {
   const { parentMenu, controlledMenu } = toggle.elements;
@@ -140,7 +141,7 @@ export function toggleIsPreviewed(toggle) {
 /**
  * Checks if a toggle is closed.
  *
- * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle} toggle - The toggle to check.
+ * @param {Bootstrap5DisclosureMenuToggle|Bootstrap5MenubarToggle|Bootstrap5TreeviewToggle|Bootstrap5TopLinkDisclosureMenuToggle} toggle - The toggle to check.
  */
 export function toggleIsClosed(toggle) {
   const { parentMenu, controlledMenu } = toggle.elements;

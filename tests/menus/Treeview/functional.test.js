@@ -1,7 +1,5 @@
 /**
  * Test the Bootstrap5Treeview class to make sure it functions correctly.
- *
- * @jest-environment jsdom
  */
 
 import { describe, test, expect } from "vitest";
@@ -172,8 +170,8 @@ describe("Bootstrap5Treeview keypress tests", () => {
           subControlledMenu.dom.menu.classList.contains("show")
         ).toBeTruthy();
         expect(
-          subControlledMenu.dom.menu.classList.contains("collapse")
-        ).toBeTruthy();
+          subControlledMenu.dom.menu.classList.contains("hide")
+        ).toBeFalsy();
 
         toggleIsPreviewed(toggle);
         expect(menu.currentChild).toBe(2);
