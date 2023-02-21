@@ -1966,6 +1966,7 @@ class F extends D {
    * @param {Bootstrap5TopLinkDisclosureMenu|null}       [options.childMenu = null]      - The child menu.
    * @param {Bootstrap5TopLinkDisclosureMenuToggle|null} [options.toggle = null]         - The controller for the child menu.
    * @param {boolean}                                    [options.initialize = true]     - A flag to initialize the menu item immediately upon creation.
+   * @param {Bootstrap5TopLinkDisclosureMenuToggle|null} [options.submenuSibling = null] - The sibling menu item that controls a submenu.
    */
   constructor({
     menuItemElement: e,
@@ -1974,7 +1975,8 @@ class F extends D {
     isSubmenuItem: i = !1,
     childMenu: o = null,
     toggle: r = null,
-    initialize: u = !0
+    initialize: u = !0,
+    submenuSibling: c = null
   }) {
     super({
       menuItemElement: e,
@@ -1983,7 +1985,8 @@ class F extends D {
       isSubmenuItem: i,
       childMenu: o,
       toggle: r,
-      initialize: !1
+      initialize: !1,
+      submenuSibling: c
     }), u && this.initialize();
   }
 }
