@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.0](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.2...v2.0.0-beta.0) (2023-02-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* vite changes the naming convention for the dist files
+
+### Features
+
+* **menu:** implement new top link disclosure menu subclass ([fecb681](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/fecb681b9a6f48ab35716e6808404cbe284433d7)), closes [#10](https://github.com/NickDJM/accessible-menu-bootstrap-5/issues/10)
+
+
+### Continuous Integration
+
+* **workflow:** allow workflows to run on all .x branches ([57e7a07](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/57e7a070d86b7770db311a3db3ba33123801e225))
+
+
+### Build System
+
+* replace rollup and jest with vite and vitest with demo env ([ced8b93](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/ced8b93d4c953fa8182577773557d0fa7d69e54d)), closes [#32](https://github.com/NickDJM/accessible-menu-bootstrap-5/issues/32)
+
 ### [1.0.2](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.1...v1.0.2) (2023-02-17)
 
 
