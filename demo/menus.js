@@ -7,13 +7,14 @@ export const singleLevel =
   </button>
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Mammals</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Reptiles</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Amphibians</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Birds</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Fish</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Mammals</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Reptiles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Amphibians</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Birds</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Fish</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -28,58 +29,65 @@ export const twoLevel =
   </button>
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mammals</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Mammals</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reptiles</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reptiles</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Amphibians</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Amphibians</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Birds</a>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Birds</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Fish</a>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fish</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact</a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Socials</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
@@ -94,63 +102,71 @@ export const twoLevelTopLink =
   </button>
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Mammals</a>
-        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Mammals</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Mammals submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Reptiles</a>
-        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Reptiles</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Reptiles submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Amphibians</a>
-        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Amphibians</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Amphibians submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Birds</a>
-        <button aria-label="Birds submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Birds</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Birds submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Fish</a>
-        <button aria-label="Fish submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Fish</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Fish submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
-          <li><a href="#" class="dropdown-item">Wild</a></li>
-          <li><a href="#" class="dropdown-item">Domesticated</a></li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Domesticated</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Food</a></li>
         </ul>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Contact</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Contact submenu"></button>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Socials</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
@@ -165,128 +181,172 @@ export const threeLevel =
   </button>
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mammals</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Mammals</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Bears</a></li>
-              <li><a href="#" class="dropdown-item">Lions</a></li>
-              <li><a href="#" class="dropdown-item">Wolves</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Bears</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lions</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wolves</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Cats</a></li>
-              <li><a href="#" class="dropdown-item">Dogs</a></li>
-              <li><a href="#" class="dropdown-item">Horses</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Cats</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Dogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Horses</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reptiles</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reptiles</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Snakes</a></li>
-              <li><a href="#" class="dropdown-item">Lizards</a></li>
-              <li><a href="#" class="dropdown-item">Turtles</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Snakes</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lizards</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Turtles</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Geckos</a></li>
-              <li><a href="#" class="dropdown-item">Tortoises</a></li>
-              <li><a href="#" class="dropdown-item">Iguanas</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Geckos</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Tortoises</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Iguanas</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Amphibians</a>
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Amphibians</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Frogs</a></li>
-              <li><a href="#" class="dropdown-item">Toads</a></li>
-              <li><a href="#" class="dropdown-item">Salamanders</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Frogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Toads</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Salamanders</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Axolotls</a></li>
-              <li><a href="#" class="dropdown-item">Newts</a></li>
-              <li><a href="#" class="dropdown-item">Frogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Axolotls</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Newts</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Frogs</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Birds</a>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Birds</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Eagles</a></li>
-              <li><a href="#" class="dropdown-item">Hawks</a></li>
-              <li><a href="#" class="dropdown-item">Owls</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Eagles</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Hawks</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Owls</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Parakeets</a></li>
-              <li><a href="#" class="dropdown-item">Pigeons</a></li>
-              <li><a href="#" class="dropdown-item">Chickens</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Parakeets</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Pigeons</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Chickens</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Fish</a>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fish</a>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Trout</a></li>
-              <li><a href="#" class="dropdown-item">Carp</a></li>
-              <li><a href="#" class="dropdown-item">Perch</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Trout</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Carp</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Perch</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Goldfish</a></li>
-              <li><a href="#" class="dropdown-item">Koi</a></li>
-              <li><a href="#" class="dropdown-item">Betta</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Goldfish</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Koi</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Betta</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact</a>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Socials</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Twitter</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Facebook</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Instagram</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
@@ -301,133 +361,179 @@ export const threeLevelTopLink =
   </button>
   <div class="collapse navbar-collapse" id="exampleCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-          <li><a href="#" class="dropdown-item">About</a></li>
-        <a href="#" class="nav-link d-inline">Mammals</a>
-        <button aria-label="Mammals submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Mammals</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Mammals submenu"></button>
         <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Bears</a></li>
-              <li><a href="#" class="dropdown-item">Lions</a></li>
-              <li><a href="#" class="dropdown-item">Wolves</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Bears</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lions</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wolves</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Cats</a></li>
-              <li><a href="#" class="dropdown-item">Dogs</a></li>
-              <li><a href="#" class="dropdown-item">Horses</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Cats</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Dogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Horses</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Reptiles</a>
-        <button aria-label="Reptiles submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Reptiles</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Reptiles submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Snakes</a></li>
-              <li><a href="#" class="dropdown-item">Lizards</a></li>
-              <li><a href="#" class="dropdown-item">Turtles</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Snakes</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lizards</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Turtles</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Geckos</a></li>
-              <li><a href="#" class="dropdown-item">Tortoises</a></li>
-              <li><a href="#" class="dropdown-item">Iguanas</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Geckos</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Tortoises</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Iguanas</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Amphibians</a>
-        <button aria-label="Amphibians submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+        <a class="nav-link d-inline-block" href="#">Amphibians</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Amphibians submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Frogs</a></li>
-              <li><a href="#" class="dropdown-item">Toads</a></li>
-              <li><a href="#" class="dropdown-item">Salamanders</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Frogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Toads</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Salamanders</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Axolotls</a></li>
-              <li><a href="#" class="dropdown-item">Newts</a></li>
-              <li><a href="#" class="dropdown-item">Frogs</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Axolotls</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Newts</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Frogs</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Birds</a>
-        <button aria-label="Birds submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Birds</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Birds submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Eagles</a></li>
-              <li><a href="#" class="dropdown-item">Hawks</a></li>
-              <li><a href="#" class="dropdown-item">Owls</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Eagles</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Hawks</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Owls</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Parakeets</a></li>
-              <li><a href="#" class="dropdown-item">Pigeons</a></li>
-              <li><a href="#" class="dropdown-item">Chickens</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Parakeets</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Pigeons</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Chickens</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link d-inline">Fish</a>
-        <button aria-label="Fish submenu" class="nav-link dropdown-toggle btn btn-link d-inline" data-bs-toggle="dropdown"></button>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Fish</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Fish submenu"></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">About</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Wild</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Trout</a></li>
-              <li><a href="#" class="dropdown-item">Carp</a></li>
-              <li><a href="#" class="dropdown-item">Perch</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Trout</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Carp</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Perch</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Domesticated</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</a>
             <ul class="dropdown-menu">
-              <li><a href="#" class="dropdown-item">Goldfish</a></li>
-              <li><a href="#" class="dropdown-item">Koi</a></li>
-              <li><a href="#" class="dropdown-item">Betta</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Goldfish</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Koi</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Betta</a></li>
             </ul>
           </li>
-          <li><a href="#" class="dropdown-item">Habitats</a></li>
-          <li><a href="#" class="dropdown-item">Food</a></li>
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
+      <li class="nav-item dropdown dropdown-left">
+        <a class="nav-link d-inline-block" href="#">Contact</a>
+        <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Contact submenu"></button>
+        <ul class="dropdown-menu">
+          <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-item" href="#">Socials</a>
+            <button class="nav-link dropdown-toggle btn btn-link d-inline-block" aria-label="Socials submenu"></button>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Twitter</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Facebook</a></li>
+              <li class="nav-item"><a class="nav-link dropdown-item" href="#">Instagram</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
