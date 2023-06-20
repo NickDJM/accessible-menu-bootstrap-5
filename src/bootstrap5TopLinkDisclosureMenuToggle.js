@@ -1,6 +1,7 @@
 /* eslint-disable jsdoc/no-undefined-types */
 
 import TopLinkDisclosureMenuToggle from "accessible-menu/src/topLinkDisclosureMenuToggle.js";
+import { addClass, removeClass } from "accessible-menu/src/domHelpers.js";
 
 /*
  * A link or button that controls the visibility of a Bootstrap5TopLinkDisclosureMenu.
@@ -84,17 +85,25 @@ class Bootstrap5TopLinkDisclosureMenuToggle extends TopLinkDisclosureMenuToggle 
    * @param {boolean} [emit = true] - A toggle to emit the expand event once expanded.
    */
   _expand(emit = true) {
-    const { openClass } = this.elements.controlledMenu;
+    const { openClass, transitionClass } = this.elements.controlledMenu;
 
     this.dom.toggle.setAttribute("aria-expanded", "true");
 
-    // Add the open class
-    if (openClass !== "") {
-      if (typeof openClass === "string") {
-        this.dom.container.classList.add(openClass);
-      } else {
-        this.dom.container.classList.add(...openClass);
-      }
+    // If we're dealing with transition classes, then we need to utilize
+    // requestAnimationFrame to add the transition class, add the open class,
+    // and then remove the transition class.
+    if (transitionClass !== "") {
+      addClass(transitionClass, this.dom.container);
+
+      requestAnimationFrame(() => {
+        addClass(openClass, this.dom.container);
+
+        requestAnimationFrame(() => {
+          removeClass(transitionClass, this.dom.container);
+        });
+      });
+    } else if (openClass !== "") {
+      addClass(openClass, this.dom.container);
     }
 
     if (emit) {
@@ -110,25 +119,41 @@ class Bootstrap5TopLinkDisclosureMenuToggle extends TopLinkDisclosureMenuToggle 
    * @param {boolean} [emit = true] - A toggle to emit the collapse event once collapsed.
    */
   _collapse(emit = true) {
-    const { closeClass, openClass } = this.elements.controlledMenu;
+    const { closeClass, openClass, transitionClass } =
+      this.elements.controlledMenu;
 
     this.dom.toggle.setAttribute("aria-expanded", "false");
 
-    // Add the close class
-    if (closeClass !== "") {
-      if (typeof closeClass === "string") {
-        this.dom.container.classList.add(closeClass);
-      } else {
-        this.dom.container.classList.add(...closeClass);
-      }
-    }
+    // If we're dealing with transition classes, then we need to utilize
+    // requestAnimationFrame to add the transition class, remove the open class,
+    // add the close class, and finally remove the transition class.
+    if (transitionClass !== "") {
+      addClass(transitionClass, this.dom.container);
 
-    // Remove the open class.
-    if (openClass !== "") {
-      if (typeof openClass === "string") {
-        this.dom.container.classList.remove(openClass);
-      } else {
-        this.dom.container.classList.remove(...openClass);
+      requestAnimationFrame(() => {
+        if (openClass !== "") {
+          removeClass(openClass, this.dom.container);
+        }
+
+        requestAnimationFrame(() => {
+          if (closeClass !== "") {
+            addClass(closeClass, this.dom.container);
+          }
+
+          requestAnimationFrame(() => {
+            removeClass(transitionClass, this.dom.container);
+          });
+        });
+      });
+    } else {
+      // Add the close class
+      if (closeClass !== "") {
+        addClass(closeClass, this.dom.container);
+      }
+
+      // Remove the open class.
+      if (openClass !== "") {
+        removeClass(openClass, this.dom.container);
       }
     }
 
