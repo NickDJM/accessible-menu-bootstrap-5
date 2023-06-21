@@ -51,10 +51,13 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {(HTMLElement|null)}              [options.containerElement = null]                     - The element containing the menu in the DOM.
    * @param {(string|string[]|null)}          [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}          [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
+   * @param {?(string|string[])}              [options.transitionClass = transitioning]             - The class to apply when a menu is transitioning between "open" and "closed" states.
    * @param {boolean}                         [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5DisclosureMenu|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                          [options.hoverType = off]                             - The type of hoverability a menu has.
    * @param {number}                          [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
+   * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
+   * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
    * @param {boolean}                         [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
@@ -69,10 +72,13 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
     containerElement = null,
     openClass = "show",
     closeClass = "collapse",
+    transitionClass = "transitioning",
     isTopLevel = true,
     parentMenu = null,
     hoverType = "off",
     hoverDelay = 250,
+    enterDelay = -1,
+    leaveDelay = -1,
     optionalKeySupport = false,
     initialize = true,
   }) {
@@ -87,10 +93,13 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
       containerElement,
       openClass,
       closeClass,
+      transitionClass,
       isTopLevel,
       parentMenu,
       hoverType,
       hoverDelay,
+      enterDelay,
+      leaveDelay,
       optionalKeySupport,
       initialize: false,
     });
