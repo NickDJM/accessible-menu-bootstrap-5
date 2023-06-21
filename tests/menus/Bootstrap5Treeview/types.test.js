@@ -1,5 +1,5 @@
 /**
- * Types test for Bootstrap5Treeview component.
+ * Type tests for the Bootstrap5Treeview class.
  */
 
 import { describe, it, expect } from "vitest";
@@ -32,6 +32,9 @@ describe("Bootstrap5Treeview", () => {
   it("should have a _MenuToggleType of Bootstrap5TreeviewToggle", () => {
     expect(menu._MenuToggleType).toBe(Bootstrap5TreeviewToggle);
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });
 
 // Test the Bootstrap5Treeview custom class types for a multi-level menu.
@@ -64,9 +67,9 @@ describe("Bootstrap5Treeview (multi-level)", () => {
   // Test that the Bootstrap5Treeview's submenu's _MenuItemType is Bootstrap5TreeviewItem.
   it("should have all submenu's _MenuItemType be Bootstrap5TreeviewItem", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      toggle.elements.controlledMenu.elements.menuItems.forEach((item) => {
-        expect(item._MenuItemType).toBe(Bootstrap5TreeviewItem);
-      });
+      expect(toggle.elements.controlledMenu._MenuItemType).toBe(
+        Bootstrap5TreeviewItem
+      );
     });
   });
 
@@ -78,7 +81,12 @@ describe("Bootstrap5Treeview (multi-level)", () => {
   // Test that the Bootstrap5Treeview's submenu's _MenuToggleType is Bootstrap5TreeviewToggle.
   it("should have all submenu's _MenuToggleType be Bootstrap5TreeviewToggle", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      expect(toggle._MenuToggleType).toBe(Bootstrap5TreeviewToggle);
+      expect(toggle.elements.controlledMenu._MenuToggleType).toBe(
+        Bootstrap5TreeviewToggle
+      );
     });
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });

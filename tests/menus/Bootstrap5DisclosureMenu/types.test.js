@@ -1,5 +1,5 @@
 /**
- * Types test for Bootstrap5DisclosureMenu component.
+ * Type tests for the Bootstrap5DisclosureMenu class.
  */
 
 import { describe, it, expect } from "vitest";
@@ -32,6 +32,9 @@ describe("Bootstrap5DisclosureMenu", () => {
   it("should have a _MenuToggleType of Bootstrap5DisclosureMenuToggle", () => {
     expect(menu._MenuToggleType).toBe(Bootstrap5DisclosureMenuToggle);
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });
 
 // Test the Bootstrap5DisclosureMenu custom class types for a multi-level menu.
@@ -66,9 +69,9 @@ describe("Bootstrap5DisclosureMenu (multi-level)", () => {
   // Test that the Bootstrap5DisclosureMenu's submenu's _MenuItemType is Bootstrap5DisclosureMenuItem.
   it("should have all submenu's _MenuItemType be Bootstrap5DisclosureMenuItem", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      toggle.elements.controlledMenu.elements.menuItems.forEach((item) => {
-        expect(item._MenuItemType).toBe(Bootstrap5DisclosureMenuItem);
-      });
+      expect(toggle.elements.controlledMenu._MenuItemType).toBe(
+        Bootstrap5DisclosureMenuItem
+      );
     });
   });
 
@@ -80,7 +83,12 @@ describe("Bootstrap5DisclosureMenu (multi-level)", () => {
   // Test that the Bootstrap5DisclosureMenu's submenu's _MenuToggleType is Bootstrap5DisclosureMenuToggle.
   it("should have all submenu's _MenuToggleType be Bootstrap5DisclosureMenuToggle", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      expect(toggle._MenuToggleType).toBe(Bootstrap5DisclosureMenuToggle);
+      expect(toggle.elements.controlledMenu._MenuToggleType).toBe(
+        Bootstrap5DisclosureMenuToggle
+      );
     });
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });

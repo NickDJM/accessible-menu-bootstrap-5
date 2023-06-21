@@ -16,7 +16,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-// Test all getter methods in the Bootstrap5Treeview class.
+// Test all getter/setter methods in the Bootstrap5Treeview class.
 describe("Bootstrap5Treeview getter/setters", () => {
   // Test Bootstrap5Treeview dom.
   describe("dom", () => {
@@ -61,8 +61,8 @@ describe("Bootstrap5Treeview getter/setters", () => {
   describe("openClass", () => {
     // Test that openClass gets the open class name.
     it("should get the open class name", () => {
-      // Create a Bootstrap5Treeview instance for testing.
-      const menu = Bootstrap5Treeview({
+      // Create a new Bootstrap5Treeview instance for testing.
+      const menu = new Bootstrap5Treeview({
         menuElement: document.querySelector("ul"),
       });
 
@@ -71,8 +71,8 @@ describe("Bootstrap5Treeview getter/setters", () => {
 
     // Test that openClass sets the open class name.
     it("should set the open class name", () => {
-      // Create a Bootstrap5Treeview instance for testing.
-      const menu = Bootstrap5Treeview({
+      // Create a new Bootstrap5Treeview instance for testing.
+      const menu = new Bootstrap5Treeview({
         menuElement: document.querySelector("ul"),
       });
 

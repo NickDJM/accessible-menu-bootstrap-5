@@ -240,7 +240,7 @@ describe("Bootstrap5DisclosureMenu (custom arguments)", () => {
       // Create the Bootstrap5DisclosureMenu instance for testing.
       new Bootstrap5DisclosureMenu({
         menuElement: document.querySelector("ul"),
-        menuLinkSelector: ".menu-link",
+        menuLinkSelector: "a",
       });
     }).not.toThrow();
   });

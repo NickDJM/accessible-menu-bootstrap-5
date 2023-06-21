@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import Bootstrap5Menubar from "../../../src/Bootstrap5Menubar.js";
+import Bootstrap5Menubar from "../../../src/bootstrap5Menubar.js";
 import { twoLevel } from "../../../demo/menus.js";
 import Menubar from "accessible-menu/src/menubar.js";
 import * as validation from "accessible-menu/src/validate.js";
@@ -16,7 +16,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-// Test all getter methods in the Bootstrap5Menubar class.
+// Test all getter/setter methods in the Bootstrap5Menubar class.
 describe("Bootstrap5Menubar getter/setters", () => {
   // Test Bootstrap5Menubar dom.
   describe("dom", () => {

@@ -1,5 +1,5 @@
 /**
- * Types test for Bootstrap5Menubar component.
+ * Type tests for the Bootstrap5Menubar class.
  */
 
 import { describe, it, expect } from "vitest";
@@ -32,6 +32,9 @@ describe("Bootstrap5Menubar", () => {
   it("should have a _MenuToggleType of Bootstrap5MenubarToggle", () => {
     expect(menu._MenuToggleType).toBe(Bootstrap5MenubarToggle);
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });
 
 // Test the Bootstrap5Menubar custom class types for a multi-level menu.
@@ -64,9 +67,9 @@ describe("Bootstrap5Menubar (multi-level)", () => {
   // Test that the Bootstrap5Menubar's submenu's _MenuItemType is Bootstrap5MenubarItem.
   it("should have all submenu's _MenuItemType be Bootstrap5MenubarItem", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      toggle.elements.controlledMenu.elements.menuItems.forEach((item) => {
-        expect(item._MenuItemType).toBe(Bootstrap5MenubarItem);
-      });
+      expect(toggle.elements.controlledMenu._MenuItemType).toBe(
+        Bootstrap5MenubarItem
+      );
     });
   });
 
@@ -78,7 +81,12 @@ describe("Bootstrap5Menubar (multi-level)", () => {
   // Test that the Bootstrap5Menubar's submenu's _MenuToggleType is Bootstrap5MenubarToggle.
   it("should have all submenu's _MenuToggleType be Bootstrap5MenubarToggle", () => {
     menu.elements.submenuToggles.forEach((toggle) => {
-      expect(toggle._MenuToggleType).toBe(Bootstrap5MenubarToggle);
+      expect(toggle.elements.controlledMenu._MenuToggleType).toBe(
+        Bootstrap5MenubarToggle
+      );
     });
   });
+
+  // Clean up the test menu.
+  document.body.innerHTML = "";
 });

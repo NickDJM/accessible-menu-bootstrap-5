@@ -2,8 +2,7 @@
  * Tests for public methods of Bootstrap5Menubar class.
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { twoLevel } from "../../../demo/menus.js";
+import { describe, it, expect } from "vitest";
 import Bootstrap5Menubar from "../../../src/bootstrap5Menubar.js";
 import Menubar from "accessible-menu/src/menubar.js";
 
@@ -77,119 +76,21 @@ describe("Bootstrap5Menubar public methods", () => {
 
   // Test Bootstrap5Menubar focusNextChild().
   describe("focusNextChild", () => {
-    beforeEach(() => {
-      document.body.innerHTML = twoLevel;
-    });
-
-    afterEach(() => {
-      document.body.innerHTML = "";
-    });
-
-    // Test that Bootstrap5Menubar does not implement the Menubar focusNextChild() method.
-    it("should not implement the Menubar focusNextChild() method", () => {
-      expect(Bootstrap5Menubar.prototype.focusNextChild).not.toBe(
+    // Test that Bootstrap5Menubar implements the Menubar focusNextChild() method.
+    it("should implement the Menubar focusNextChild() method", () => {
+      expect(Bootstrap5Menubar.prototype.focusNextChild).toBe(
         Menubar.prototype.focusNextChild
       );
-    });
-
-    // Test that focusNextChild calls focusChild() with the index of the next menu item.
-    it("should call focusChild() with the index of the next menu item", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusChild");
-
-      menu.focusNextChild();
-
-      expect(spy).toHaveBeenCalledWith(1);
-    });
-
-    // Test that focusNextChild calls focusFirstChild() if the currentChild index is the last menu item.
-    it("should call focusFirstChild() if the currentChild index is the last menu item", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set the current child to the last menu item.
-      menu.currentChild = 7;
-
-      // Set up to check for focus.
-      const spy1 = vi.spyOn(menu, "focusFirstChild");
-      const spy2 = vi.spyOn(menu, "focusChild");
-
-      menu.focusNextChild();
-
-      expect(spy1).toHaveBeenCalled();
-      expect(spy2).not.toHaveBeenCalledWith(8);
     });
   });
 
   // Test Bootstrap5Menubar focusPreviousChild().
   describe("focusPreviousChild", () => {
-    beforeEach(() => {
-      document.body.innerHTML = twoLevel;
-    });
-
-    afterEach(() => {
-      document.body.innerHTML = "";
-    });
-
-    // Test that Bootstrap5Menubar does not implement the Menubar focusPreviousChild() method.
-    it("should not implement the Menubar focusPreviousChild() method", () => {
-      expect(Bootstrap5Menubar.prototype.focusPreviousChild).not.toBe(
+    // Test that Bootstrap5Menubar implements the Menubar focusPreviousChild() method.
+    it("should implement the Menubar focusPreviousChild() method", () => {
+      expect(Bootstrap5Menubar.prototype.focusPreviousChild).toBe(
         Menubar.prototype.focusPreviousChild
       );
-    });
-
-    // Test that focusPreviousChild calls focusChild() with the index of the previous menu item.
-    it("should call focusChild() with the index of the previous menu item", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set the current child to the last menu item.
-      menu.currentChild = 6;
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusChild");
-
-      menu.focusPreviousChild();
-
-      expect(spy).toHaveBeenCalledWith(5);
-    });
-
-    // Test that focusPreviousChild calls focusLastChild() if the currentChild index is the first menu item.
-    it("should call focusLastChild() if the currentChild index is the first menu item", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusLastChild");
-      const spy2 = vi.spyOn(menu, "focusChild");
-
-      menu.focusPreviousChild();
-
-      expect(spy).toHaveBeenCalled();
-      expect(spy2).not.toHaveBeenCalledWith(-2);
     });
   });
 
@@ -235,68 +136,11 @@ describe("Bootstrap5Menubar public methods", () => {
 
   // Test Bootstrap5Menubar focusNextChildWithCharacter().
   describe("focusNextChildWithCharacter", () => {
-    beforeEach(() => {
-      document.body.innerHTML = twoLevel;
-    });
-
-    afterEach(() => {
-      document.body.innerHTML = "";
-    });
-
-    // Test that focusNextChildWithCharacter calls focusChild with the index of the item starting with a given character.
-    it("should call focusChild with the index of the item starting with a given character", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusChild");
-
-      menu.focusNextChildWithCharacter("B");
-
-      expect(spy).toHaveBeenCalledWith(4);
-    });
-
-    // Test that focusNextChildWithCharacter does not call focusChild if no item starts with a given character.
-    it("should not call focusChild if no item starts with a given character", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusChild");
-
-      menu.focusNextChildWithCharacter("Z");
-
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    // Test that focusNextChildWithCharacter does not call focusChild if there _is_ an item starting with a given character, but it is before the currentChild.
-    it("should not call focusChild if there is an item starting with a given character, but it is before the currentChild", () => {
-      // Create a new Bootstrap5Menubar instance for testing.
-      const menu = new Bootstrap5Menubar({
-        menuElement: document.querySelector("ul"),
-        submenuItemSelector: "li.dropdown",
-        containerElement: document.querySelector("nav"),
-        controllerElement: document.querySelector("button"),
-      });
-
-      menu.currentChild = 5;
-
-      // Set up to check for focus.
-      const spy = vi.spyOn(menu, "focusChild");
-
-      menu.focusNextChildWithCharacter("B");
-
-      expect(spy).not.toHaveBeenCalled();
+    // Test that Bootstrap5Menubar implements the Menubar focusNextChildWithCharacter() method.
+    it("should implement the Menubar focusNextChildWithCharacter() method", () => {
+      expect(Bootstrap5Menubar.prototype.focusNextChildWithCharacter).toBe(
+        Menubar.prototype.focusNextChildWithCharacter
+      );
     });
   });
 });

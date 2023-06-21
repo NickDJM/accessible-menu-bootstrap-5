@@ -216,7 +216,7 @@ describe("Bootstrap5Menubar (custom arguments)", () => {
       // Create the Bootstrap5Menubar instance for testing.
       new Bootstrap5Menubar({
         menuElement: document.querySelector("ul"),
-        menuItemSelector: ".menu-item",
+        menuItemSelector: "li",
       });
     }).not.toThrow();
   });
@@ -240,7 +240,7 @@ describe("Bootstrap5Menubar (custom arguments)", () => {
       // Create the Bootstrap5Menubar instance for testing.
       new Bootstrap5Menubar({
         menuElement: document.querySelector("ul"),
-        menuLinkSelector: ".menu-link",
+        menuLinkSelector: "a",
       });
     }).not.toThrow();
   });

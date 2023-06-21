@@ -16,7 +16,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-// Test all getter methods in the Bootstrap5TopLinkDisclosureMenu class.
+// Test all getter/setter methods in the Bootstrap5TopLinkDisclosureMenu class.
 describe("Bootstrap5TopLinkDisclosureMenu getter/setters", () => {
   // Test Bootstrap5TopLinkDisclosureMenu dom.
   describe("dom", () => {

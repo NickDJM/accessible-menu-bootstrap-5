@@ -27,7 +27,7 @@ describe("Bootstrap5Menubar", () => {
 
   // Test the root menu's role attribute.
   it("should set the root menu's role attribute", () => {
-    expect(menu.dom.menu.getAttribute("role")).toBe("Bootstrap5menubar");
+    expect(menu.dom.menu.getAttribute("role")).toBe("menubar");
   });
 
   // Test the root menu's controller's aria-haspopup attribute.
@@ -94,7 +94,7 @@ describe("Bootstrap5Menubar", () => {
     // Test the submenu's role attribute.
     it("should set the submenu's role attribute", () => {
       expect(toggle.elements.controlledMenu.dom.menu.getAttribute("role")).toBe(
-        "Bootstrap5menubar"
+        "menubar"
       );
     });
 

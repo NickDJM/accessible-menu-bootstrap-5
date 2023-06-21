@@ -216,7 +216,7 @@ describe("Bootstrap5Treeview (custom arguments)", () => {
       // Create the Bootstrap5Treeview instance for testing.
       new Bootstrap5Treeview({
         menuElement: document.querySelector("ul"),
-        menuItemSelector: ".menu-item",
+        menuItemSelector: "li",
       });
     }).not.toThrow();
   });
@@ -240,7 +240,7 @@ describe("Bootstrap5Treeview (custom arguments)", () => {
       // Create the Bootstrap5Treeview instance for testing.
       new Bootstrap5Treeview({
         menuElement: document.querySelector("ul"),
-        menuLinkSelector: ".menu-link",
+        menuLinkSelector: "a",
       });
     }).not.toThrow();
   });
