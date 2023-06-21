@@ -61,7 +61,7 @@
     "@babel/preset-env": "^7.12.1",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
-    "@vitest/ui": "^0.28.5",
+    "@vitest/ui": "^0.32.2",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.12.1",
@@ -78,6 +78,6 @@
     "standard-version": "^9.0.0",
     "vite": "^4.1.2",
     "vite-plugin-browser-sync": "^1.0.2",
-    "vitest": "^0.28.5"
+    "vitest": "^0.32.2"
   }
 }
