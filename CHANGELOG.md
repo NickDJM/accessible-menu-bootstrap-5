@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.1](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2023-06-21)
+
+
+### Features
+
+* add support for hover enter/leave delays and transition classes ([46a583a](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/46a583a0ddcd6ecc1e29fb3a05cd6410f7f6d06f))
+
+
+### Build System
+
+* bump eslint-plugin-jsdoc from 40.3.0 to 43.0.0 ([c5aea11](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/c5aea11082e46e5699ec49ac4f6a33b2a59c102a))
+* **eslint:** update rules for jsdoc plugin ([fb597c6](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/fb597c6af6cfd717d6ccd5732df434c9876e5274))
+
 ## [2.0.0-beta.0](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.2...v2.0.0-beta.0) (2023-02-21)
 
 
