@@ -1,5 +1,6 @@
 /**
  * Reusable ARIA tests.
+ *
  * @jest-environment jsdom
  */
 /* eslint-disable no-new */
@@ -8,6 +9,7 @@ import { twoLevelMenu } from "./test-menus";
 
 /**
  * A set of ARIA tests.
+ *
  * @param {(typeof Bootstrap5DisclosureMenu|typeof Bootstrap5Menubar|typeof Bootstrap5Treeview)} MenuClass - The menu class to test.
  */
 export function aria(MenuClass) {

@@ -1,4 +1,5 @@
-/* eslint-disable jsdoc/no-undefined-types */
+// eslint-disable-next-line no-unused-vars
+/* global Bootstrap5Treeview */
 
 import TreeviewToggle from "accessible-menu/src/treeviewToggle.js";
 
@@ -10,6 +11,7 @@ class Bootstrap5TreeviewToggle extends TreeviewToggle {
    * The DOM elements within the menu toggle.
    *
    * @type {Object<HTMLElement>}
+   *
    * @property {HTMLElement} toggle    - The menu toggle.
    * @property {HTMLElement} parent    - The menu containing this toggle.
    * @property {HTMLElement} container - The element that controlls the visibility of the child menu.

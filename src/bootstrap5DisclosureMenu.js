@@ -14,14 +14,16 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * The class to use when generating submenus.
    *
    * @type {typeof Bootstrap5DisclosureMenu}
+   *
    * @protected
    */
-  _MenuType = Bootstrap5DisclosureMenu;
+  _MenuType = Bootstrap5DisclosureMenu; // eslint-disable-line no-use-before-define
 
   /**
    * The class to use when generating menu items.
    *
    * @type {typeof Bootstrap5DisclosureMenuItem}
+   *
    * @protected
    */
   _MenuItemType = Bootstrap5DisclosureMenuItem;
@@ -30,6 +32,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * The class to use when generating submenu toggles.
    *
    * @type {typeof Bootstrap5DisclosureMenuToggle}
+   *
    * @protected
    */
   _MenuToggleType = Bootstrap5DisclosureMenuToggle;

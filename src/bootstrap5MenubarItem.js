@@ -1,4 +1,5 @@
-/* eslint-disable jsdoc/no-undefined-types */
+// eslint-disable-next-line no-unused-vars
+/* global Bootstrap5Menubar Bootstrap5MenubarToggle */
 
 import MenubarItem from "accessible-menu/src/menubarItem.js";
 

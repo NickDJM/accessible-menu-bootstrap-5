@@ -12,14 +12,16 @@ class Bootstrap5Menubar extends Menubar {
    * The class to use when generating submenus.
    *
    * @type {typeof Bootstrap5Menubar}
+   *
    * @public
    */
-  _MenuType = Bootstrap5Menubar;
+  _MenuType = Bootstrap5Menubar; // eslint-disable-line no-use-before-define
 
   /**
    * The class to use when generating menu items.
    *
    * @type {typeof Bootstrap5MenubarItem}
+   *
    * @public
    */
   _MenuItemType = Bootstrap5MenubarItem;
@@ -28,6 +30,7 @@ class Bootstrap5Menubar extends Menubar {
    * The class to use when generating submenu toggles.
    *
    * @type {typeof Bootstrap5MenubarToggle}
+   *
    * @public
    */
   _MenuToggleType = Bootstrap5MenubarToggle;
