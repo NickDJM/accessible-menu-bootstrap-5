@@ -458,7 +458,7 @@ class O {
    * the {@link BaseMenuToggle#isOpen|isOpen} value to `false`.
    */
   close() {
-    this.isOpen && (this.elements.controlledMenu.currentChild = 0, this.elements.controlledMenu.blur(), this.elements.parentMenu && (this.elements.parentMenu.focusState = "self"), this._collapse(), this.isOpen = !1);
+    this.isOpen && (this.elements.controlledMenu.blur(), this.elements.parentMenu && (this.elements.parentMenu.focusState = "self"), this._collapse(), this.isOpen = !1);
   }
   /**
    * Toggles the open state of the controlled menu between `true` and `false`.
@@ -671,6 +671,7 @@ class S {
      * @type {typeof BaseMenu}
      */
     r(this, "_MenuType", S);
+    // eslint-disable-line no-use-before-define
     /**
      * The class to use when generating menu items.
      *
@@ -1091,7 +1092,7 @@ class S {
    * - The menu's {@link BaseMenu#currentEvent|current event} is "keyboard".
    * - The menu's current event is "character".
    * - The menu's current event is "mouse" _and_ the menu's
-   *   {@link BaseMenu_hoverTypeType|hover type} is "dynamic".
+   *   {@link BaseMenu#_hoverType|hover type} is "dynamic".
    *
    * @type {boolean}
    */
@@ -1318,10 +1319,13 @@ class S {
           submenuSelector: this.selectors.submenus,
           openClass: this.openClass,
           closeClass: this.closeClass,
+          transitionClass: this.transitionClass,
           isTopLevel: !1,
           parentMenu: this,
           hoverType: this.hoverType,
-          hoverDelay: this.hoverDelay
+          hoverDelay: this.hoverDelay,
+          enterDelay: this.enterDelay,
+          leaveDelay: this.leaveDelay
         }), l = new this._MenuToggleType({
           menuToggleElement: s,
           parentElement: e,
@@ -1406,7 +1410,7 @@ class S {
    *
    * Adds `pointerenter` listeners to all menu items and `pointerleave` listeners
    * to all submenu items which function differently depending on
-   * the menu's {@link BaseMenu_hoverTypeType|hover type}.
+   * the menu's {@link BaseMenu#_hoverType|hover type}.
    *
    * Before executing anything, the event is checked to make sure the event wasn't
    * triggered by a pen or touch.
@@ -1420,7 +1424,7 @@ class S {
    *   toggle will be called.
    * - When a `pointerleave` event triggers on an open submenu item the
    *   {@link BaseMenuToggle#close|close method} for the submenu item's toggle
-   *   will be called after a delay set by the menu's {@link BaseMenu_hoverTypeDelay|hover delay}.
+   *   will be called after a delay set by the menu's {@link BaseMenu#_hoverDelay|hover delay}.
    *
    * <strong>Hover Type "dynamic"</strong>
    * - When a `pointerenter` event triggers on any menu item the menu's
@@ -1449,14 +1453,14 @@ class S {
       e.dom.link.addEventListener("pointerenter", (s) => {
         if (!(s.pointerType === "pen" || s.pointerType === "touch")) {
           if (this.hoverType === "on")
-            this.currentEvent = "mouse", this.currentChild = t, e.isSubmenuItem && (this.enterDelay > 0 ? this._hoverTimeout = setTimeout(() => {
+            this.currentEvent = "mouse", this.elements.rootMenu.blurChildren(), this.focusChild(t), e.isSubmenuItem && (this.enterDelay > 0 ? this._hoverTimeout = setTimeout(() => {
               e.elements.toggle.preview();
             }, this.enterDelay) : e.elements.toggle.preview());
           else if (this.hoverType === "dynamic") {
             const i = this.elements.submenuToggles.some(
               (o) => o.isOpen
             );
-            this.currentChild = t, (!this.isTopLevel || this.focusState !== "none") && (this.currentEvent = "mouse", this.focusCurrentChild()), e.isSubmenuItem && (!this.isTopLevel || i) && (this.currentEvent = "mouse", this.enterDelay > 0 ? this._hoverTimeout = setTimeout(() => {
+            this.currentChild = t, (!this.isTopLevel || this.focusState !== "none") && (this.currentEvent = "mouse", this.elements.rootMenu.blurChildren(), this.focusCurrentChild()), e.isSubmenuItem && (!this.isTopLevel || i) && (this.currentEvent = "mouse", this.elements.rootMenu.blurChildren(), this.focusCurrentChild(), this.enterDelay > 0 ? this._hoverTimeout = setTimeout(() => {
               e.elements.toggle.preview();
             }, this.enterDelay) : e.elements.toggle.preview());
           }
@@ -1494,7 +1498,7 @@ class S {
    * Handles keyup events throughout the menu for proper menu use.
    *
    * - Adds a `keyup` listener to the menu's controller (if the menu is the root menu).
-   *   - Opens the menu when the user hits "Space" or "Enter".
+   *   - Toggles the menu when the user hits "Space" or "Enter".
    *
    * @protected
    */
@@ -1502,7 +1506,7 @@ class S {
     this.isTopLevel && this.elements.controller && this.elements.controller.dom.toggle.addEventListener("keyup", (e) => {
       this.currentEvent = "keyboard";
       const t = w(e);
-      (t === "Space" || t === "Enter") && (a(e), this.elements.controller.open(), this.focusFirstChild());
+      (t === "Space" || t === "Enter") && (a(e), this.elements.controller.toggle(), this.elements.controller.isOpen && this.focusFirstChild());
     });
   }
   /**
@@ -1754,6 +1758,7 @@ class L extends S {
      * @type {typeof DisclosureMenu}
      */
     r(this, "_MenuType", L);
+    // eslint-disable-line no-use-before-define
     /**
      * The class to use when generating menu items.
      *
@@ -1771,7 +1776,7 @@ class L extends S {
      */
     r(this, "_MenuToggleType", z);
     /**
-     * The index of the currently selected {@link BaseMenuItem|menu item} in the menu.
+     * The index of the currently selected {@link DisclosureMenu|menu item} in the menu.
      *
      * @protected
      *

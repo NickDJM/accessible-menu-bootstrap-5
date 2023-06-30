@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.2](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2023-06-30)
+
+
+### Build System
+
+* **npm:** require at least accessible-menu v4.0.0-beta.4 ([b6ac3d5](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/b6ac3d5a256fa3f815092e3f2042e2bbe64cfd67)), closes [#62](https://github.com/NickDJM/accessible-menu-bootstrap-5/issues/62)
+
 ## [2.0.0-beta.1](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2023-06-21)
 
 
