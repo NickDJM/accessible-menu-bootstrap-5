@@ -155,10 +155,28 @@ function isTag(tagName, elements) {
   }
 }
 
-function _defineProperty$5(obj, key, value) { key = _toPropertyKey$5(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey$5(arg) { var key = _toPrimitive$5(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive$5(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class BaseMenuToggle {
+  _dom = {
+    toggle: null,
+    parent: null
+  };
+  _elements = {
+    controlledMenu: null,
+    parentMenu: null
+  };
+  _open = false;
+  _expandEvent = new CustomEvent("accessibleMenuExpand", {
+    bubbles: true,
+    detail: {
+      toggle: this
+    }
+  });
+  _collapseEvent = new CustomEvent("accessibleMenuCollapse", {
+    bubbles: true,
+    detail: {
+      toggle: this
+    }
+  });
   constructor(_ref) {
     let {
       menuToggleElement,
@@ -166,27 +184,6 @@ class BaseMenuToggle {
       controlledMenu,
       parentMenu = null
     } = _ref;
-    _defineProperty$5(this, "_dom", {
-      toggle: null,
-      parent: null
-    });
-    _defineProperty$5(this, "_elements", {
-      controlledMenu: null,
-      parentMenu: null
-    });
-    _defineProperty$5(this, "_open", false);
-    _defineProperty$5(this, "_expandEvent", new CustomEvent("accessibleMenuExpand", {
-      bubbles: true,
-      detail: {
-        toggle: this
-      }
-    }));
-    _defineProperty$5(this, "_collapseEvent", new CustomEvent("accessibleMenuCollapse", {
-      bubbles: true,
-      detail: {
-        toggle: this
-      }
-    }));
     this._dom.toggle = menuToggleElement;
     this._dom.parent = parentElement;
     this._elements.controlledMenu = controlledMenu;
@@ -331,10 +328,17 @@ class BaseMenuToggle {
   }
 }
 
-function _defineProperty$4(obj, key, value) { key = _toPropertyKey$4(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey$4(arg) { var key = _toPrimitive$4(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive$4(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class BaseMenuItem {
+  _dom = {
+    item: null,
+    link: null
+  };
+  _elements = {
+    parentMenu: null,
+    childMenu: null,
+    toggle: null
+  };
+  _submenu = false;
   constructor(_ref) {
     let {
       menuItemElement,
@@ -344,16 +348,6 @@ class BaseMenuItem {
       childMenu = null,
       toggle = null
     } = _ref;
-    _defineProperty$4(this, "_dom", {
-      item: null,
-      link: null
-    });
-    _defineProperty$4(this, "_elements", {
-      parentMenu: null,
-      childMenu: null,
-      toggle: null
-    });
-    _defineProperty$4(this, "_submenu", false);
     this._dom.item = menuItemElement;
     this._dom.link = menuLinkElement;
     this._elements.parentMenu = parentMenu;
@@ -410,10 +404,41 @@ function preventEvent(event) {
   event.stopPropagation();
 }
 
-function _defineProperty$3(obj, key, value) { key = _toPropertyKey$3(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey$3(arg) { var key = _toPrimitive$3(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive$3(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class BaseMenu {
+  _MenuType = BaseMenu;
+  _MenuItemType = BaseMenuItem;
+  _MenuToggleType = BaseMenuToggle;
+  _dom = {
+    menu: null,
+    menuItems: [],
+    submenuItems: [],
+    submenuToggles: [],
+    submenus: [],
+    controller: null,
+    container: null
+  };
+  _selectors = {
+    menuItems: "",
+    menuLinks: "",
+    submenuItems: "",
+    submenuToggles: "",
+    submenus: ""
+  };
+  _elements = {
+    menuItems: [],
+    submenuToggles: [],
+    controller: null,
+    parentMenu: null,
+    rootMenu: null
+  };
+  _openClass = "show";
+  _closeClass = "hide";
+  _root = true;
+  _currentChild = 0;
+  _focusState = "none";
+  _currentEvent = "none";
+  _hoverType = "off";
+  _hoverDelay = 250;
   constructor(_ref) {
     let {
       menuElement,
@@ -431,40 +456,6 @@ class BaseMenu {
       hoverType = "off",
       hoverDelay = 250
     } = _ref;
-    _defineProperty$3(this, "_MenuType", BaseMenu);
-    _defineProperty$3(this, "_MenuItemType", BaseMenuItem);
-    _defineProperty$3(this, "_MenuToggleType", BaseMenuToggle);
-    _defineProperty$3(this, "_dom", {
-      menu: null,
-      menuItems: [],
-      submenuItems: [],
-      submenuToggles: [],
-      submenus: [],
-      controller: null,
-      container: null
-    });
-    _defineProperty$3(this, "_selectors", {
-      menuItems: "",
-      menuLinks: "",
-      submenuItems: "",
-      submenuToggles: "",
-      submenus: ""
-    });
-    _defineProperty$3(this, "_elements", {
-      menuItems: [],
-      submenuToggles: [],
-      controller: null,
-      parentMenu: null,
-      rootMenu: null
-    });
-    _defineProperty$3(this, "_openClass", "show");
-    _defineProperty$3(this, "_closeClass", "hide");
-    _defineProperty$3(this, "_root", true);
-    _defineProperty$3(this, "_currentChild", 0);
-    _defineProperty$3(this, "_focusState", "none");
-    _defineProperty$3(this, "_currentEvent", "none");
-    _defineProperty$3(this, "_hoverType", "off");
-    _defineProperty$3(this, "_hoverDelay", 250);
     this._dom.menu = menuElement;
     this._dom.controller = controllerElement;
     this._dom.container = containerElement;
@@ -917,8 +908,10 @@ class BaseMenu {
         const key = keyPress(event);
         if (key === "Space" || key === "Enter") {
           preventEvent(event);
-          this.elements.controller.open();
-          this.focusFirstChild();
+          this.elements.controller.toggle();
+          if (this.elements.controller.isOpen) {
+            this.focusFirstChild();
+          }
         }
       });
     }
@@ -1079,10 +1072,10 @@ class MenubarToggle extends BaseMenuToggle {
   }
 }
 
-function _defineProperty$2(obj, key, value) { key = _toPropertyKey$2(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey$2(arg) { var key = _toPrimitive$2(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive$2(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class Menubar extends BaseMenu {
+  _MenuType = Menubar;
+  _MenuItemType = MenubarItem;
+  _MenuToggleType = MenubarToggle;
   constructor(_ref) {
     let {
       menuElement,
@@ -1117,9 +1110,6 @@ class Menubar extends BaseMenu {
       hoverType,
       hoverDelay
     });
-    _defineProperty$2(this, "_MenuType", Menubar);
-    _defineProperty$2(this, "_MenuItemType", MenubarItem);
-    _defineProperty$2(this, "_MenuToggleType", MenubarToggle);
     if (initialize) {
       this.initialize();
     }
@@ -1127,7 +1117,11 @@ class Menubar extends BaseMenu {
   initialize() {
     try {
       super.initialize();
-      this.dom.menu.setAttribute("role", "menubar");
+      if (this.isTopLevel) {
+        this.dom.menu.setAttribute("role", "menubar");
+      } else {
+        this.dom.menu.setAttribute("role", "menu");
+      }
       this._handleFocus();
       this._handleClick();
       this._handleHover();
@@ -1405,10 +1399,12 @@ class Bootstrap5MenubarItem extends MenubarItem {
   }
 }
 
-function _defineProperty$1(obj, key, value) { key = _toPropertyKey$1(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey$1(arg) { var key = _toPrimitive$1(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive$1(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class Bootstrap5MenubarToggle extends MenubarToggle {
+  _dom = {
+    toggle: null,
+    parent: null,
+    container: null
+  };
   constructor(_ref) {
     let {
       menuToggleElement,
@@ -1423,11 +1419,6 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
       controlledMenu,
       parentMenu,
       initialize: false
-    });
-    _defineProperty$1(this, "_dom", {
-      toggle: null,
-      parent: null,
-      container: null
     });
     this._dom.toggle = menuToggleElement;
     this._dom.parent = parentElement;
@@ -1489,10 +1480,10 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
   }
 }
 
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 class Bootstrap5Menubar extends Menubar {
+  _MenuType = Bootstrap5Menubar;
+  _MenuItemType = Bootstrap5MenubarItem;
+  _MenuToggleType = Bootstrap5MenubarToggle;
   constructor(_ref) {
     let {
       menuElement,
@@ -1528,9 +1519,6 @@ class Bootstrap5Menubar extends Menubar {
       hoverDelay,
       initialize: false
     });
-    _defineProperty(this, "_MenuType", Bootstrap5Menubar);
-    _defineProperty(this, "_MenuItemType", Bootstrap5MenubarItem);
-    _defineProperty(this, "_MenuToggleType", Bootstrap5MenubarToggle);
     if (initialize) {
       this.initialize();
     }

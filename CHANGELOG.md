@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.2...v1.0.3) (2023-06-30)
+
+
+### Continuous Integration
+
+* **codeql:** upgrade to v2 ([14ef7c0](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/14ef7c04a5779d8280df0989dc2d733ef780aece)), closes [#45](https://github.com/NickDJM/accessible-menu-bootstrap-5/issues/45)
+
+
+### Build System
+
+* bump eslint-plugin-jsdoc from 40.3.0 to 43.0.0 ([90de79c](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/90de79cd8fc30d03d1bf1fd40eaf5bbcca3275be))
+* bump eslint-plugin-jsdoc from 43.2.0 to 44.2.4 ([c3d1234](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/c3d12341c67c10a1b5cd5b82129f06207388620f))
+* bump eslint-plugin-jsdoc from 44.2.7 to 46.2.6 ([ab12a60](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/ab12a6050680e65430775b9e616551b503152a4e))
+* bump jest-extended from 3.2.4 to 4.0.0 ([0fff635](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/0fff63509bccb2b955e0c95b72e3084a04b2fb7f))
+* bump rollup from 2.79.1 to 3.19.1 ([d4ad6b1](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/d4ad6b1ad198ae6552e79d54e6590245c50c8d66))
+* **npm:** require at least accessible-menu v3.0.7 ([3e112ba](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/3e112bad1838a3b41c846dcb18bea3352e695b84)), closes [#62](https://github.com/NickDJM/accessible-menu-bootstrap-5/issues/62)
+* **npm:** update all dependencies to latest ([361693a](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/361693a17c64893fc4a43f1d7f4683fc11e3fb44))
+* **rollup:** upgrade plugins and config for v3 ([c491210](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/c491210f6fc0a1b53b1ab8e3b66ea08115ee8285))
+
 ### [1.0.2](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.1...v1.0.2) (2023-02-17)
 
 
