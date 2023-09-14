@@ -62,22 +62,6 @@ class Bootstrap5TopLinkDisclosureMenuToggle extends TopLinkDisclosureMenuToggle 
   }
 
   /**
-   * Initializes the toggle by removing the default bootstrap toggle information
-   * and running the parent's initialization.
-   */
-  initialize() {
-    super.initialize();
-
-    if (this.dom.toggle.hasAttribute("data-bs-toggle")) {
-      this.dom.toggle.removeAttribute("data-bs-toggle");
-    }
-
-    if (this.dom.toggle.hasAttribute("data-bs-target")) {
-      this.dom.toggle.removeAttribute("data-bs-target");
-    }
-  }
-
-  /**
    * Expands the controlled menu.
    *
    * Alters ARIA attributes and classes.
