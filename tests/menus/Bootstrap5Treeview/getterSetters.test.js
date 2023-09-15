@@ -337,4 +337,45 @@ describe("Bootstrap5Treeview getter/setters", () => {
       );
     });
   });
+
+  // Test Bootstrap5Treeview bootstrapDisabled.
+  describe("bootstrapDisabled", () => {
+    // Test that bootstrapDisabled gets the bootstrap disabled value.
+    it("should get the bootstrap disabled value", () => {
+      // Create a new Bootstrap5Treeview instance for testing.
+      const menu = new Bootstrap5Treeview({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapDisabled).toBe(menu._disableBootstrap);
+    });
+  });
+
+  // Test Bootstrap5Treeview bootstrapPseudoDropdownElement.
+  describe("bootstrapPseudoDropdownElement", () => {
+    // Test that bootstrapPseudoDropdownElement gets the bootstrap pseudo dropdown element.
+    it("should get the bootstrap pseudo dropdown element", () => {
+      // Create a new Bootstrap5Treeview instance for testing.
+      const menu = new Bootstrap5Treeview({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapPseudoDropdownElement).toBe(
+        menu._pseudoDropdownElement
+      );
+    });
+  });
+
+  // Test Bootstrap5Treeview bootstrapEvents.
+  describe("bootstrapEvents", () => {
+    // Test that bootstrapEvents gets the bootstrap events array.
+    it("should get the bootstrap events array", () => {
+      // Create a new Bootstrap5Treeview instance for testing.
+      const menu = new Bootstrap5Treeview({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapEvents).toEqual(menu._bootstrapEvents);
+    });
+  });
 });

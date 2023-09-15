@@ -1,5 +1,7 @@
 /**
  * Tests for protected methods of Bootstrap5Treeview class.
+ *
+ * @todo: Add tests for: _disableBootstrapDropdownBehaviour().
  */
 
 import { describe, it, expect } from "vitest";

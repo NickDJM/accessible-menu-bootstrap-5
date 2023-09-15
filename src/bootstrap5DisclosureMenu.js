@@ -1,6 +1,8 @@
 import DisclosureMenu from "accessible-menu/src/disclosureMenu.js";
 import Bootstrap5DisclosureMenuItem from "./bootstrap5DisclosureMenuItem.js";
 import Bootstrap5DisclosureMenuToggle from "./bootstrap5DisclosureMenuToggle.js";
+import { preventEvent } from "accessible-menu/src/eventHandlers.js";
+import { isValidType } from "accessible-menu/src/validate.js";
 
 /**
  * An accessible disclosure menu in the DOM.
@@ -38,6 +40,38 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   _MenuToggleType = Bootstrap5DisclosureMenuToggle;
 
   /**
+   * A flag to disable bootstrap's dropdown behaviour.
+   *
+   * @type {boolean}
+   *
+   * @protected
+   */
+  _disableBootstrap = true;
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's dropdown events.
+   *
+   * @type {HTMLElement}
+   *
+   * @protected
+   */
+  _pseudoDropdownElement = document.createElement("div");
+
+  /**
+   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   *
+   * @type {string[]}
+   *
+   * @protected
+   */
+  _bootstrapEvents = [
+    "show.bs.dropdown",
+    "shown.bs.dropdown",
+    "hide.bs.dropdown",
+    "hidden.bs.dropdown",
+  ];
+
+  /**
    * Constructs the menu.
    *
    * @param {object}                          options                                               - The options for generating the menu.
@@ -59,6 +93,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
    * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
+   * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
    * @param {boolean}                         [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
   constructor({
@@ -80,6 +115,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
     enterDelay = -1,
     leaveDelay = -1,
     optionalKeySupport = false,
+    disableBootstrap = true,
     initialize = true,
   }) {
     super({
@@ -104,9 +140,131 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
       initialize: false,
     });
 
+    this._disableBootstrap = disableBootstrap;
+
     if (initialize) {
       this.initialize();
     }
+  }
+
+  /**
+   * Initializes the menu.
+   *
+   * Initialize will call the {@link DisclosureMenu#initialize|DisclosureMenu's initialize method}
+   * as well as the {@link Bootstrap5DisclosureMenu#_disableBootstrapDropdownBehaviour|disableBootstrapDropdown} event
+   * for the menu.
+   */
+  initialize() {
+    super.initialize();
+
+    if (this.bootstrapDisabled) {
+      this._disableBootstrapDropdownBehaviour();
+    }
+  }
+
+  /**
+   * A flag to disable bootstrap's dropdown behaviour.
+   *
+   * @readonly
+   *
+   * @type {boolean}
+   *
+   * @see _disableBootstrapDropdownBehaviour;
+   */
+  get bootstrapDisabled() {
+    return this._disableBootstrap;
+  }
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's dropdown events.
+   *
+   * @readonly
+   *
+   * @type {HTMLElement}
+   *
+   * @see _pseudoDropdownElement
+   */
+  get bootstrapPseudoDropdownElement() {
+    return this._pseudoDropdownElement;
+  }
+
+  /**
+   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   *
+   * @readonly
+   *
+   * @type {string[]}
+   *
+   * @see _bootstrapEvents
+   */
+  get bootstrapEvents() {
+    return this._bootstrapEvents;
+  }
+
+  /**
+   * Validates all aspects of the menu to ensure proper functionality.
+   *
+   * @protected
+   *
+   * @return {boolean} - The result of the validation.
+   */
+  _validate() {
+    let check = super._validate();
+
+    // Bootstrap disabled check.
+    const bootstrapDisabledCheck = isValidType("boolean", {
+      disableBootstrap: this._disableBootstrap,
+    });
+
+    if (!bootstrapDisabledCheck.status) {
+      this._errors.push(bootstrapDisabledCheck.error.message);
+      check = false;
+    }
+
+    return check;
+  }
+
+  /**
+   * Disable bootstrap's dropdown behaviour.
+   *
+   * This is done by intercepting the bootstrap dropdown events (once) to get the
+   * dropdown instance and then setting the dropdown instance's menu to an empty
+   * element.
+   *
+   * We have to wait for the events because it's possible just selecting the
+   * DOM elements will happen before Bootstrap initializes it's dropdown behaviour.
+   *
+   * This is a pretty brute-force method, but it works.
+   *
+   * @protected
+   */
+  _disableBootstrapDropdownBehaviour() {
+    this.elements.submenuToggles.forEach((submenuToggle) => {
+      // Intercept each bootstrap dropdown event once.
+      this.bootstrapEvents.forEach((eventType) => {
+        submenuToggle.dom.toggle.addEventListener(
+          eventType,
+          (event) => {
+            preventEvent(event);
+
+            const dropdownInstance = bootstrap.Dropdown.getInstance(
+              event.target
+            );
+
+            if (!dropdownInstance) return;
+
+            if (
+              dropdownInstance._menu !== this.bootstrapPseudoDropdownElement
+            ) {
+              dropdownInstance._menu = this.bootstrapPseudoDropdownElement;
+            }
+          },
+          {
+            once: true,
+          }
+        );
+      });
+    });
   }
 }
 

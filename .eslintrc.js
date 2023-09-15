@@ -4,6 +4,9 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  globals: {
+    bootstrap: true,
+  },
   extends: ["standard", "plugin:jsdoc/recommended", "prettier"],
   plugins: ["jsdoc"],
   parser: "@babel/eslint-parser",
