@@ -591,6 +591,18 @@ describe("Bootstrap5DisclosureMenu (custom arguments)", () => {
       });
     }).toThrow('optionalKeySupport must be a boolean. "number" given.');
   });
+
+  // Test that the Bootstrap5DisclosureMenu with throw an error if an invalid disableBootstrap is passed.
+  it("should throw an error if an invalid disableBootstrap is passed", () => {
+    // Test that the menu throws an error.
+    expect(() => {
+      // Create a new Bootstrap5DisclosureMenu instance for testing.
+      new Bootstrap5DisclosureMenu({
+        menuElement: document.querySelector("ul"),
+        disableBootstrap: 1,
+      });
+    }).toThrow('disableBootstrap must be a boolean. "number" given.');
+  });
 });
 
 // Bootstrap5DisclosureMenu controlled initialization tests.

@@ -567,6 +567,18 @@ describe("Bootstrap5Treeview (custom arguments)", () => {
       });
     }).toThrow('leaveDelay must be a number. "string" given.');
   });
+
+  // Test that the Bootstrap5Treeview with throw an error if an invalid disableBootstrap is passed.
+  it("should throw an error if an invalid disableBootstrap is passed", () => {
+    // Test that the menu throws an error.
+    expect(() => {
+      // Create a new Bootstrap5Treeview instance for testing.
+      new Bootstrap5Treeview({
+        menuElement: document.querySelector("ul"),
+        disableBootstrap: 1,
+      });
+    }).toThrow('disableBootstrap must be a boolean. "number" given.');
+  });
 });
 
 // Bootstrap5Treeview controlled initialization tests.

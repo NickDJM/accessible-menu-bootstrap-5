@@ -567,6 +567,18 @@ describe("Bootstrap5Menubar (custom arguments)", () => {
       });
     }).toThrow('leaveDelay must be a number. "string" given.');
   });
+
+  // Test that the Bootstrap5Menubar with throw an error if an invalid disableBootstrap is passed.
+  it("should throw an error if an invalid disableBootstrap is passed", () => {
+    // Test that the menu throws an error.
+    expect(() => {
+      // Create a new Bootstrap5Menubar instance for testing.
+      new Bootstrap5Menubar({
+        menuElement: document.querySelector("ul"),
+        disableBootstrap: 1,
+      });
+    }).toThrow('disableBootstrap must be a boolean. "number" given.');
+  });
 });
 
 // Bootstrap5Menubar controlled initialization tests.

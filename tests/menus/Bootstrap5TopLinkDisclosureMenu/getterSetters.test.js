@@ -370,4 +370,45 @@ describe("Bootstrap5TopLinkDisclosureMenu getter/setters", () => {
       expect(menu._optionalSupport).toBeTruthy();
     });
   });
+
+  // Test Bootstrap5TopLinkDisclosureMenu bootstrapDisabled.
+  describe("bootstrapDisabled", () => {
+    // Test that bootstrapDisabled gets the bootstrap disabled value.
+    it("should get the bootstrap disabled value", () => {
+      // Create a new Bootstrap5TopLinkDisclosureMenu instance for testing.
+      const menu = new Bootstrap5TopLinkDisclosureMenu({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapDisabled).toBe(menu._disableBootstrap);
+    });
+  });
+
+  // Test Bootstrap5TopLinkDisclosureMenu bootstrapPseudoDropdownElement.
+  describe("bootstrapPseudoDropdownElement", () => {
+    // Test that bootstrapPseudoDropdownElement gets the bootstrap pseudo dropdown element.
+    it("should get the bootstrap pseudo dropdown element", () => {
+      // Create a new Bootstrap5TopLinkDisclosureMenu instance for testing.
+      const menu = new Bootstrap5TopLinkDisclosureMenu({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapPseudoDropdownElement).toBe(
+        menu._pseudoDropdownElement
+      );
+    });
+  });
+
+  // Test Bootstrap5TopLinkDisclosureMenu bootstrapEvents.
+  describe("bootstrapEvents", () => {
+    // Test that bootstrapEvents gets the bootstrap events array.
+    it("should get the bootstrap events array", () => {
+      // Create a new Bootstrap5TopLinkDisclosureMenu instance for testing.
+      const menu = new Bootstrap5TopLinkDisclosureMenu({
+        menuElement: document.querySelector("ul"),
+      });
+
+      expect(menu.bootstrapEvents).toEqual(menu._bootstrapEvents);
+    });
+  });
 });
