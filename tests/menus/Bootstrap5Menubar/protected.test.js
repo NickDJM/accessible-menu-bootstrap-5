@@ -1,7 +1,7 @@
 /**
  * Tests for protected methods of Bootstrap5Menubar class.
  *
- * @todo: Add tests for: _disableBootstrapDropdownBehaviour().
+ * @todo Add tests for: _disableBootstrapDropdownBehaviour().
  */
 
 import { describe, it, expect } from "vitest";
