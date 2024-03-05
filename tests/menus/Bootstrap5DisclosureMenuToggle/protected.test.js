@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { twoLevel } from "../../../demo/menus.js";
+import { twoLevelDisclosure } from "../../../demo/menus.js";
 import Bootstrap5DisclosureMenu from "../../../src/bootstrap5DisclosureMenu.js";
 import Bootstrap5DisclosureMenuToggle from "../../../src/bootstrap5DisclosureMenuToggle.js";
 import DisclosureMenuToggle from "accessible-menu/src/disclosureMenuToggle.js";
@@ -11,7 +11,7 @@ import DisclosureMenuToggle from "accessible-menu/src/disclosureMenuToggle.js";
 vi.mock("accessible-menu/src/domHelpers.js");
 
 beforeEach(() => {
-  document.body.innerHTML = twoLevel;
+  document.body.innerHTML = twoLevelDisclosure;
 });
 
 afterEach(() => {

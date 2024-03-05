@@ -17,7 +17,7 @@ import {
   beforeEach,
   afterEach,
 } from "vitest";
-import { singleLevel, twoLevel } from "../../../demo/menus.js";
+import { singleLevel, twoLevelDisclosure } from "../../../demo/menus.js";
 import Bootstrap5DisclosureMenu from "../../../src/bootstrap5DisclosureMenu.js";
 
 beforeAll(() => {
@@ -34,7 +34,7 @@ afterAll(() => {
 
 beforeEach(() => {
   // Create the test menu.
-  document.body.innerHTML = twoLevel;
+  document.body.innerHTML = twoLevelDisclosure;
 });
 
 afterEach(() => {
