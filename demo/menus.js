@@ -104,7 +104,7 @@ export const twoLevelDisclosure =
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Mammals</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Mammals</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
@@ -114,7 +114,7 @@ export const twoLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reptiles</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Reptiles</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
@@ -124,7 +124,7 @@ export const twoLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Amphibians</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Amphibians</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
@@ -134,7 +134,7 @@ export const twoLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Birds</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Birds</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
@@ -144,7 +144,7 @@ export const twoLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fish</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Fish</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Wild</a></li>
@@ -155,7 +155,7 @@ export const twoLevelDisclosure =
       </li>
       <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Contact</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Socials</a></li>
@@ -436,11 +436,11 @@ export const threeLevelDisclosure =
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Mammals</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Mammals</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Wild</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Bears</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lions</a></li>
@@ -448,7 +448,7 @@ export const threeLevelDisclosure =
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Domesticated</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Cats</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Dogs</a></li>
@@ -457,7 +457,7 @@ export const threeLevelDisclosure =
           </li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Food</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
@@ -466,11 +466,11 @@ export const threeLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reptiles</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Reptiles</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Wild</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Snakes</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Lizards</a></li>
@@ -478,7 +478,7 @@ export const threeLevelDisclosure =
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Domesticated</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Geckos</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Tortoises</a></li>
@@ -487,7 +487,7 @@ export const threeLevelDisclosure =
           </li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Food</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
@@ -496,11 +496,11 @@ export const threeLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Amphibians</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Amphibians</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Wild</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Frogs</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Toads</a></li>
@@ -508,7 +508,7 @@ export const threeLevelDisclosure =
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Domesticated</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Axolotls</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Newts</a></li>
@@ -517,7 +517,7 @@ export const threeLevelDisclosure =
           </li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Food</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
@@ -526,11 +526,11 @@ export const threeLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Birds</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Birds</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Wild</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Eagles</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Hawks</a></li>
@@ -538,7 +538,7 @@ export const threeLevelDisclosure =
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Domesticated</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Parakeets</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Pigeons</a></li>
@@ -547,7 +547,7 @@ export const threeLevelDisclosure =
           </li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Food</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
@@ -556,11 +556,11 @@ export const threeLevelDisclosure =
         </ul>
       </li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fish</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Fish</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">About</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Wild</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Wild</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Trout</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Carp</a></li>
@@ -568,7 +568,7 @@ export const threeLevelDisclosure =
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Domesticated</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Domesticated</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Goldfish</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Koi</a></li>
@@ -577,7 +577,7 @@ export const threeLevelDisclosure =
           </li>
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Habitats</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Food</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Food</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can Eat</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Can't Eat</a></li>
@@ -587,11 +587,11 @@ export const threeLevelDisclosure =
       </li>
       <li class="nav-item"><a class="nav-link" href="#">Map</a></li>
       <li class="nav-item dropdown dropdown-left">
-        <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact</button>
+        <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Contact</button>
         <ul class="dropdown-menu">
           <li class="nav-item"><a class="nav-link dropdown-item" href="#">Email</a></li>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Socials</button>
+            <button class="nav-link dropdown-toggle btn btn-link" href="#" data-bs-toggle="dropdown">Socials</button>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Twitter</a></li>
               <li class="nav-item"><a class="nav-link dropdown-item" href="#">Facebook</a></li>

@@ -13,6 +13,10 @@ header {
   display: contents;
 }
 
+nav {
+  grid-area: menu;
+}
+
 footer {
   grid-area: footer;
 }
@@ -32,6 +36,19 @@ main {
 
     &.treeview {
       grid-template-columns: 30% 1fr 5%;
+    }
+  }
+
+  nav.treeview {
+    grid-area: tree;
+
+    .navbar-collapse: {
+      height: 100%;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      width: 100%;
     }
   }
 }
