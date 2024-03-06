@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/NickDJM/accessible-menu-bootstrap-5#readme",
   "dependencies": {
-    "accessible-menu": "^3.0.8"
+    "accessible-menu": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.5",
