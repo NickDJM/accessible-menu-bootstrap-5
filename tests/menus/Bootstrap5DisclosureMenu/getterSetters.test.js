@@ -4,11 +4,11 @@
 
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import Bootstrap5DisclosureMenu from "../../../src/bootstrap5DisclosureMenu.js";
-import { twoLevel } from "../../../demo/menus.js";
+import { twoLevelDisclosure } from "../../../demo/menus.js";
 import DisclosureMenu from "accessible-menu/src/disclosureMenu.js";
 
 beforeEach(() => {
-  document.body.innerHTML = twoLevel;
+  document.body.innerHTML = twoLevelDisclosure;
 });
 
 afterEach(() => {

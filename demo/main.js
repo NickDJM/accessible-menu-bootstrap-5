@@ -2,9 +2,11 @@ import AccessibleMenuBootstrap5 from "../index";
 import {
   singleLevel,
   twoLevel,
-  twoLevelTopLink,
+  twoLevelDisclosure,
+  twoLevelDisclosureTopLink,
   threeLevel,
-  threeLevelTopLink,
+  threeLevelDisclosure,
+  threeLevelDisclosureTopLink,
 } from "./menus";
 
 /**
@@ -14,7 +16,7 @@ import {
  * @param {string}      structure      - The DOM structure to use.
  * @param {string}      hover          - The hover type for the menu.
  * @param {HTMLElement} container      - The container to generate the menu in.
- * @param {object}      [options = {}] - Option overrides.
+ * @param {object}      [options] - Option overrides.
  */
 function generateMenu(type, structure, hover, container, options = {}) {
   menus.pop();
@@ -23,6 +25,8 @@ function generateMenu(type, structure, hover, container, options = {}) {
 
   if (type === "Bootstrap5TopLinkDisclosureMenu") {
     container.innerHTML = menuDOM.topLink;
+  } else if (type === "Bootstrap5DisclosureMenu") {
+    container.innerHTML = menuDOM.disclosure;
   } else {
     container.innerHTML = menuDOM.default;
   }
@@ -33,26 +37,34 @@ function generateMenu(type, structure, hover, container, options = {}) {
   nav.classList.remove("menubar");
   nav.classList.remove("top-link-disclosure-menu");
   nav.classList.remove("treeview");
+  document.body.classList.remove("disclosure-menu");
+  document.body.classList.remove("menubar");
+  document.body.classList.remove("top-link-disclosure-menu");
+  document.body.classList.remove("treeview");
 
   if (MenuClass !== null) {
     switch (type) {
       case "Bootstrap5TopLinkDisclosureMenu":
         nav.classList.add("top-link-disclosure-menu");
+        document.body.classList.add("top-link-disclosure-menu");
 
         break;
 
       case "Bootstrap5DisclosureMenu":
         nav.classList.add("disclosure-menu");
+        document.body.classList.add("disclosure-menu");
 
         break;
 
       case "Bootstrap5Menubar":
         nav.classList.add("menubar");
+        document.body.classList.add("menubar");
 
         break;
 
       case "Bootstrap5Treeview":
         nav.classList.add("treeview");
+        document.body.classList.add("treeview");
 
         break;
     }
@@ -78,15 +90,18 @@ const hoverButtons = document.querySelectorAll("#hoverButtons button");
 const menuStructures = {
   one: {
     default: singleLevel,
+    disclosure: singleLevel,
     topLink: singleLevel,
   },
   two: {
     default: twoLevel,
-    topLink: twoLevelTopLink,
+    disclosure: twoLevelDisclosure,
+    topLink: twoLevelDisclosureTopLink,
   },
   three: {
     default: threeLevel,
-    topLink: threeLevelTopLink,
+    disclosure: threeLevelDisclosure,
+    topLink: threeLevelDisclosureTopLink,
   },
 };
 const menuOptions = {
@@ -105,7 +120,6 @@ const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
   ? "dark"
   : "light";
 const setTheme = window.localStorage.getItem("setTheme") || preferredTheme;
-const body = document.querySelector("body");
 const themeToggle = document.querySelector("#themeToggle");
 
 // Menu options.
@@ -156,13 +170,13 @@ hoverButtons.forEach((button) => {
 });
 
 // Set up theme switching.
-document.querySelector("#themeToggle").addEventListener("click", () => {
-  if (body.dataset.bsTheme === "dark") {
-    body.dataset.bsTheme = "light";
+themeToggle.addEventListener("click", () => {
+  if (document.body.dataset.bsTheme === "dark") {
+    document.body.dataset.bsTheme = "light";
     window.localStorage.setItem("setTheme", "light");
     themeToggle.innerHTML = "Dark Mode";
   } else {
-    body.dataset.bsTheme = "dark";
+    document.body.dataset.bsTheme = "dark";
     window.localStorage.setItem("setTheme", "dark");
     themeToggle.innerHTML = "Light Mode";
   }
@@ -175,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   generateMenu(menuType, menuStructure, hoverType, header, options);
 
   if (setTheme === "dark") {
-    body.dataset.bsTheme = "dark";
+    document.body.dataset.bsTheme = "dark";
     themeToggle.innerHTML = "Light Mode";
   }
 });

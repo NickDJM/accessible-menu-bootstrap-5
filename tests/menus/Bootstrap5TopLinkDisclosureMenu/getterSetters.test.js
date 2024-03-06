@@ -4,11 +4,11 @@
 
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import Bootstrap5TopLinkDisclosureMenu from "../../../src/bootstrap5TopLinkDisclosureMenu.js";
-import { twoLevelTopLink } from "../../../demo/menus.js";
+import { twoLevelDisclosureTopLink } from "../../../demo/menus.js";
 import TopLinkDisclosureMenu from "accessible-menu/src/topLinkDisclosureMenu.js";
 
 beforeEach(() => {
-  document.body.innerHTML = twoLevelTopLink;
+  document.body.innerHTML = twoLevelDisclosureTopLink;
 });
 
 afterEach(() => {
