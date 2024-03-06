@@ -2,23 +2,87 @@
   "name": "accessible-menu-bootstrap-5",
   "version": "2.0.0-beta.3",
   "description": "A JavaScript library to help you generate WAI-ARIA accessible menus with in the DOM using Bootstrap 5.",
-  "main": "index.js",
+  "type": "module",
+  "sponsor": {
+    "url": "https://github.com/nickdjm/accessible-menu?sponsor=1"
+  },
+  "jsdelivr": "dist/accessible-menu-bs5.iife.js",
+  "unpkg": "dist/accessible-menu-bs5.iife.js",
+  "browser": "dist/accessible-menu-bs5.iife.js",
+  "main": "dist/accessible-menu-bs5.cjs.js",
+  "module": "dist/accessible-menu-bs5.es.js",
   "files": [
     "index.js",
     "dist/",
     "src/"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/accessible-menu-bs5.es.js",
+      "require": "./dist/accessible-menu-bs5.cjs.js"
+    },
+    "./disclosure-menu": {
+      "import": "./dist/disclosure-menu-bs5.es.js",
+      "require": "./dist/disclosure-menu-bs5.cjs.js"
+    },
+    "./menubar": {
+      "import": "./dist/menubar-bs5.es.js",
+      "require": "./dist/menubar-bs5.cjs.js"
+    },
+    "./top-link-disclosure-menu": {
+      "import": "./dist/top-link-disclosure-menu-bs5.es.js",
+      "require": "./dist/top-link-disclosure-menu-bs5.cjs.js"
+    },
+    "./treeview": {
+      "import": "./dist/treeview-bs5.es.js",
+      "require": "./dist/treeview-bs5.cjs.js"
+    },
+    "./src/bootstrap5DisclosureMenu.js": {
+      "import": "./src/bootstrap5DisclosureMenu.js"
+    },
+    "./src/bootstrap5DisclosureMenuItem.js": {
+      "import": "./src/bootstrap5DisclosureMenuItem.js"
+    },
+    "./src/bootstrap5DisclosureMenuToggle.js": {
+      "import": "./src/bootstrap5DisclosureMenuToggle.js"
+    },
+    "./src/bootstrap5Menubar.js": {
+      "import": "./src/bootstrap5Menubar.js"
+    },
+    "./src/bootstrap5MenubarItem.js": {
+      "import": "./src/bootstrap5MenubarItem.js"
+    },
+    "./src/bootstrap5MenubarToggle.js": {
+      "import": "./src/bootstrap5MenubarToggle.js"
+    },
+    "./src/bootstrap5TopLinkDisclosureMenu.js": {
+      "import": "./src/bootstrap5TopLinkDisclosureMenu.js"
+    },
+    "./src/bootstrap5TopLinkDisclosureMenuItem.js": {
+      "import": "./src/bootstrap5TopLinkDisclosureMenuItem.js"
+    },
+    "./src/bootstrap5TopLinkDisclosureMenuToggle.js": {
+      "import": "./src/bootstrap5TopLinkDisclosureMenuToggle.js"
+    },
+    "./src/bootstrap5Treeview.js": {
+      "import": "./src/bootstrap5Treeview.js"
+    },
+    "./src/bootstrap5TreeviewItem.js": {
+      "import": "./src/bootstrap5TreeviewItem.js"
+    },
+    "./src/bootstrap5TreeviewToggle.js": {
+      "import": "./src/bootstrap5TreeviewToggle.js"
+    }
+  },
   "scripts": {
     "prepare": "husky install",
     "commit": "git-cz",
     "lint": "npm run eslint -- --fix && npm run prettier -- --write",
-    "eslint": "eslint --ext .js .",
-    "prettier": "prettier '**/*.js' --ignore-path .eslintignore",
+    "eslint": "eslint .",
+    "prettier": "prettier **/*.{js,cjs}",
     "prerelease": "npm run lint && npm run build && npm run test:run",
     "release": "git add dist/. && standard-version -a",
-    "prebuild": "npm run build:docs",
     "build": "npm run build:default; npm run build:disclosure-menu; npm run build:menubar; npm run build:top-link-disclosure-menu; npm run build:treeview",
-    "build:docs": "jsdoc -c jsdoc.config.js",
     "build:default": "BUILD_TYPE=default vite build",
     "build:disclosure-menu": "BUILD_TYPE=DisclosureMenu vite build",
     "build:menubar": "BUILD_TYPE=Menubar vite build",
@@ -56,27 +120,30 @@
     "accessible-menu": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/eslint-parser": "^7.14.7",
-    "@babel/preset-env": "^7.12.1",
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
-    "@vitest/ui": "^1.3.1",
-    "commitizen": "^4.2.2",
+    "@eslint/js": "^8.50.0",
+    "@vitest/ui": "^1.2.2",
+    "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-jsdoc": "^48.2.0",
+    "eslint-plugin-jsdoc": "^48.1.0",
+    "globals": "^14.0.0",
     "husky": "^9.0.11",
-    "jsdoc": "^4.0.0",
+    "jsdoc": "^4.0.2",
     "jsdoc-typeof-plugin": "^1.0.0",
     "jsdom": "^24.0.0",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "standard-version": "^9.0.0",
-    "vite": "^5.1.5",
-    "vite-plugin-browser-sync": "^3.0.1",
-    "vitest": "^1.3.1"
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.0.3",
+    "standard-version": "^9.5.0",
+    "vite": "^5.1.3",
+    "vite-plugin-browser-sync": "^3.0.0",
+    "vitest": "^1.2.2",
+    "vitest-axe": "^0.1.0"
   }
 }
