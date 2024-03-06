@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import("prettier").Config} */
+const config = {
   tabWidth: 2,
   useTabs: false,
   semi: true,
@@ -8,7 +9,8 @@ module.exports = {
   bracketSpacing: true,
   arrowParens: "always",
   htmlWhitespaceSensitivity: "css",
-  vueIndentScriptAndStyle: false,
   endOfLine: "lf",
   printWidth: 80,
 };
+
+export default config;
