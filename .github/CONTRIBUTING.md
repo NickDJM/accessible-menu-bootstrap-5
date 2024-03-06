@@ -12,12 +12,13 @@ All code changes happen through pull requests.
 
 Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
-1. Fork the repo and create your branch from dev.
+1. Fork the repo and create your branch from 2.x.
 2. Link your pull request to any relavent open issues.
-3. If you've added or changed functionality, update the documentation.
-4. Make sure your code functions. Write a test if you have to!
-5. Make sure your code lints.
-6. Issue the pull request!
+3. If you've added or changed functionality update the documentation.
+4. Make sure your code functions.
+5. Update existing tests or write a new test to ensure your code will _continue_ to function regardless of future changes.
+6. Make sure your code lints.
+7. Issue the pull request!
 
 ## Any contribution you make will be under the ISC License
 
@@ -46,21 +47,16 @@ Everybody loves a thorough bug report!
 ## Keep Your Code Consistent
 
 - Run `npm install` to ensure you have all the tools needed.
-- Keep all functional code inside of the `src/` directory
+- Keep all functional code inside of the `src/` directory.
+- Keep all test code inside of the `tests/` directory.
 - Use the coding standards provided.
 
 This project follows a set of coding standards combining [StandardJS](https://standardjs.com/), [Prettier](https://prettier.io/), and [JSDoc](https://jsdoc.app/).
 
-To check your code, you can use [ESLint](https://eslint.org/) with the provided script:
+To check your code, you can use [ESLint](https://eslint.org/)/Prettier with the provided script:
 
 ```shell
 npm run lint
-```
-
-You can also fix some violations automatically using:
-
-```shell
-npm run fix
 ```
 
 Code that does not follow the linting standards _will not_ be merged.

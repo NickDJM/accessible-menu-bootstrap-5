@@ -4,7 +4,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.x     | ✔                  |
+| 2.x     | ✔                  |
+| 1.x     | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -14,15 +15,12 @@ If a PR is submitted along with the issue to resolve the vulnerability, you can 
 
 ## Vulnerabilities in dependencies
 
-If a vulnerability is found and resolved within the [accessible-menu](https://github.com/NickDJM/accessible-menu) project, a new release will be created for this project as well.
-
-Aside from accessible-menu, accessible-menu-bootstrap-5 does not have any production dependencies, any vulnerable dev dependencies will be updated when/if possible- though a new release of accessible-menu-bootstrap-5 may not be pushed out right away.
+Given that accessible-menu does not have any production dependencies, any vulnerable dev dependencies will be updated when/if possible- though a new release of accessible-menu may not be pushed out right away.
 
 A higher priority will be given to dev dependencies that are directly responsible for compiling the project:
 
 - [babel](https://github.com/babel/babel),
-- [rollup](https://github.com/rollup/rollup),
-- [terser](https://github.com/terser/terser), and
+- [vite](https://github.com/vitejs/vite), and
 - all related plugins
 
 If a vulnerability is found and resolved within one of these dependencies, a new release will be made.
