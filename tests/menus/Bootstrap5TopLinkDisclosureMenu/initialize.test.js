@@ -230,7 +230,7 @@ describe("Bootstrap5TopLinkDisclosureMenu (custom arguments)", () => {
         menuElement: document.querySelector("ul"),
         menuItemSelector: 1,
       });
-    }).toThrow('menuItemSelector must be a valid CSS selector. "1" given.');
+    }).toThrow('menuItemSelector must be a valid query selector. "1" given.');
   });
 
   // Test that the Bootstrap5TopLinkDisclosureMenu will initialize if a valid menuLinkSelector is passed.
@@ -255,7 +255,7 @@ describe("Bootstrap5TopLinkDisclosureMenu (custom arguments)", () => {
         menuLinkSelector: 1,
       });
     }).toThrow(
-      'menuLinkSelector must be a valid CSS selector. "1,.dropdown-toggle" given.'
+      'menuLinkSelector must be a valid query selector. "1,.dropdown-toggle" given.'
     );
   });
 
@@ -280,7 +280,9 @@ describe("Bootstrap5TopLinkDisclosureMenu (custom arguments)", () => {
         menuElement: document.querySelector("ul"),
         submenuItemSelector: 1,
       });
-    }).toThrow('submenuItemSelector must be a valid CSS selector. "1" given.');
+    }).toThrow(
+      'submenuItemSelector must be a valid query selector. "1" given.'
+    );
   });
 
   // Test that the Bootstrap5TopLinkDisclosureMenu will initialize if a valid submenuToggleSelector is passed when the submenuItemSelector is also passed.
@@ -307,7 +309,7 @@ describe("Bootstrap5TopLinkDisclosureMenu (custom arguments)", () => {
         submenuItemSelector: ".menu-item.dropdown",
       });
     }).toThrow(
-      'menuLinkSelector must be a valid CSS selector. ".nav-link,.dropdown-item,1" given.'
+      'menuLinkSelector must be a valid query selector. ".nav-link,.dropdown-item,1" given.'
     );
   });
 
@@ -334,7 +336,7 @@ describe("Bootstrap5TopLinkDisclosureMenu (custom arguments)", () => {
         submenuSelector: 1,
         submenuItemSelector: ".menu-item.dropdown",
       });
-    }).toThrow('submenuSelector must be a valid CSS selector. "1" given.');
+    }).toThrow('submenuSelector must be a valid query selector. "1" given.');
   });
 
   // Class list tests.

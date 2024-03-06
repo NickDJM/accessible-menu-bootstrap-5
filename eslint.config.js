@@ -1,17 +1,21 @@
-module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    es2021: true,
+import jsdoc from "eslint-plugin-jsdoc";
+import globals from "globals";
+import js from "@eslint/js";
+import prettier from "eslint-config-prettier";
+
+const files = ["*.js", "*.cjs"];
+const ignores = ["dist/", "!.*.js", "!.*.mjs", "!.*.cjs"];
+
+const config = {
+  plugins: {
+    jsdoc,
   },
-  globals: {
-    bootstrap: true,
-  },
-  extends: ["standard", "plugin:jsdoc/recommended", "prettier"],
-  plugins: ["jsdoc"],
-  parser: "@babel/eslint-parser",
-  parserOptions: {
-    sourceType: "module",
+  languageOptions: {
+    globals: {
+      ...globals.browser,
+      ...globals.es2021,
+      bootstrap: true,
+    },
   },
   rules: {
     "no-console": [
@@ -20,6 +24,7 @@ module.exports = {
         allow: ["warn", "error"],
       },
     ],
+    "jsdoc/no-defaults": 0,
     "jsdoc/tag-lines": [
       "warn",
       "always",
@@ -47,3 +52,16 @@ module.exports = {
     },
   },
 };
+
+export default [
+  js.configs.recommended,
+  prettier,
+  jsdoc.configs["flat/recommended"],
+  config,
+  {
+    files,
+  },
+  {
+    ignores,
+  },
+];

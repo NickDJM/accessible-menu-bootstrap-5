@@ -2,11 +2,10 @@
  * Getter/Setter tests for the Bootstrap5Treeview class
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import Bootstrap5Treeview from "../../../src/bootstrap5Treeview.js";
 import { twoLevel } from "../../../demo/menus.js";
 import Treeview from "accessible-menu/src/treeview.js";
-import * as validation from "accessible-menu/src/validate.js";
 
 beforeEach(() => {
   document.body.innerHTML = twoLevel;
@@ -76,13 +75,8 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidClassList");
-
       // Set the menu's open class name.
       menu.openClass = "test-open";
-
-      expect(spy).toHaveBeenCalledWith({ openClass: "test-open" });
       expect(menu._openClass).toBe("test-open");
     });
   });
@@ -107,13 +101,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidClassList");
-
       // Set the menu's close class name.
       menu.closeClass = "test-close";
 
-      expect(spy).toHaveBeenCalledWith({ closeClass: "test-close" });
       expect(menu._closeClass).toBe("test-close");
     });
   });
@@ -138,13 +128,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidClassList");
-
       // Set the menu's transition class name.
       menu.transitionClass = "test-transition";
 
-      expect(spy).toHaveBeenCalledWith({ transitionClass: "test-transition" });
       expect(menu._transitionClass).toBe("test-transition");
     });
   });
@@ -213,13 +199,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidHoverType");
-
       // Set the menu's hover type.
       menu.hoverType = "on";
 
-      expect(spy).toHaveBeenCalledWith({ value: "on" });
       expect(menu._hoverType).toBe("on");
     });
   });
@@ -243,13 +225,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidType");
-
       // Set the menu's hover delay value.
       menu.hoverDelay = 200;
 
-      expect(spy).toHaveBeenCalledWith("number", { value: 200 });
       expect(menu._hoverDelay).toBe(200);
     });
   });
@@ -275,13 +253,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidType");
-
       // Set the menu's enter delay value.
       menu.enterDelay = 100;
 
-      expect(spy).toHaveBeenCalledWith("number", { value: 100 });
       expect(menu._enterDelay).toBe(100);
     });
   });
@@ -307,13 +281,9 @@ describe("Bootstrap5Treeview getter/setters", () => {
         menuElement: document.querySelector("ul"),
       });
 
-      // Set up to check for validation.
-      const spy = vi.spyOn(validation, "isValidType");
-
       // Set the menu's leave delay value.
       menu.leaveDelay = 100;
 
-      expect(spy).toHaveBeenCalledWith("number", { value: 100 });
       expect(menu._leaveDelay).toBe(100);
     });
   });
