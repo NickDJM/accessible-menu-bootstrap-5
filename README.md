@@ -41,7 +41,7 @@ We use [jsdelivr](https://www.jsdelivr.com/package/npm/accessible-menu-bootstrap
 
 ## Examples
 
-The following codepens are available as examples of how to use `accessible-menu`:
+The following codepens are available as examples of how to use `accessible-menu-bootstrap-5`:
 
 - [Disclosure Navigation Menu](https://codepen.io/nickdjm/pen/MWRaEoV)
 - [Disclosure Navigation Menu with Top-Level Links](https://codepen.io/nickdjm/pen/XWQmezx)
