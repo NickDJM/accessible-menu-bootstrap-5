@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v2.0.0-beta.3...v2.0.0) (2024-03-07)
+
+
+### Code Refactoring
+
+* **demo:** bring demo up-to-date with v4 changes ([44c3971](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/44c39714207716f05a970198e4024058a90198d7))
+
+
+### Documentation
+
+* clean up docs to match main projects and link to new examples ([156e737](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/156e73708d8f101ced31dbaea79aaa3347eb10d2))
+* **github:** update project information in preparation for v2 ([79932da](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/79932da37b73be8860bf075bf460e7e1d2d12537))
+
+
+### Build System
+
+* **actions:** update checkout to v4 ([3dc9f1d](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/3dc9f1d61832443df8114a2fbbfd2c29f2adff9b))
+* **npm:** update to latest packages and full v4 release ([eba6dd2](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/eba6dd22b1db1db8c238acbed5d2c63d84a446a1))
+* **release:** remove unused updater ([6b59bb1](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/6b59bb116827d60b32fe70c95518a116b2ae5ae6))
+* upgrade build to support modules and cjs ([939b30c](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/939b30ce01951be9b001e4bb251bbec5cb0c7153))
+
 ## [2.0.0-beta.3](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2023-09-15)
 
 
