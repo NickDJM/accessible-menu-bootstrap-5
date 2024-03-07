@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.3...v1.0.4) (2024-03-07)
+
+
+### Build System
+
+* **actions:** update checkout to v4 ([c97eb47](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/c97eb4747df26130e6d53699394c828cb1c70f63))
+* bump @commitlint/cli from 17.8.1 to 19.0.3 ([cb74940](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/cb7494083c2e318d853aec9a769536e9096c42aa))
+* bump @commitlint/config-conventional from 17.8.1 to 19.0.3 ([43e7685](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/43e7685f5c0f69240f27db803e713d6256362298))
+* bump eslint-config-prettier from 8.10.0 to 9.1.0 ([9a8b487](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/9a8b48757c40f928209525b9a8a96a9b1fec57ef))
+* bump eslint-plugin-jsdoc from 46.10.1 to 48.2.0 ([bc6923e](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/bc6923e9929d509f3471368f4fafbd4197cfabd5))
+* bump husky from 8.0.3 to 9.0.11 ([8e500d2](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/8e500d24d41183989be6edf3586874dd5471eb4c))
+* bump lint-staged from 13.3.0 to 15.2.2 ([e0fd084](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/e0fd084c592a30e45bb0e08858a95bf73507192a))
+* bump prettier from 2.8.8 to 3.2.5 ([6b52de0](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/6b52de067836d4a2950921eb895c33ceb635f4da))
+* bump rollup from 2.79.1 to 3.29.4 ([6e0b90b](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/6e0b90ba52c40f1ca03afe2f4884d3a14e929a44))
+* bump rollup from 3.29.4 to 4.12.1 ([580145e](https://github.com/NickDJM/accessible-menu-bootstrap-5/commit/580145e7e8119267047d98fc5480dbd772d0a6da))
+
 ### [1.0.3](https://github.com/NickDJM/accessible-menu-bootstrap-5/compare/v1.0.2...v1.0.3) (2023-06-30)
 
 
