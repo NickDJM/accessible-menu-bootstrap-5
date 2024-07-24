@@ -75,7 +75,7 @@
     }
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky || true",
     "commit": "git-cz",
     "lint": "npm run eslint -- --fix && npm run prettier -- --write",
     "eslint": "eslint .",
@@ -134,7 +134,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-jsdoc": "^48.1.0",
     "globals": "^15.0.0",
-    "husky": "^9.0.11",
+    "husky": "^9.1.1",
     "jsdoc": "^4.0.2",
     "jsdoc-typeof-plugin": "^1.0.0",
     "jsdom": "^24.0.0",
