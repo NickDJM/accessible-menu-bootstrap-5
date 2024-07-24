@@ -75,7 +75,7 @@
     }
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky || true",
     "commit": "git-cz",
     "lint": "npm run eslint -- --fix && npm run prettier -- --write",
     "eslint": "eslint .",
@@ -134,7 +134,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-jsdoc": "^48.1.0",
     "globals": "^15.0.0",
-    "husky": "^9.0.11",
+    "husky": "^9.1.1",
     "jsdoc": "^4.0.2",
     "jsdoc-typeof-plugin": "^1.0.0",
     "jsdom": "^24.0.0",
@@ -142,7 +142,6 @@
     "prettier": "^3.0.3",
     "standard-version": "^9.5.0",
     "vite": "^5.1.3",
-    "vite-plugin-browser-sync": "^3.0.0",
     "vitest": "^1.2.2",
     "vitest-axe": "^0.1.0"
   }
