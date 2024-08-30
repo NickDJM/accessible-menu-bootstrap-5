@@ -56,7 +56,7 @@ class Bootstrap5Menubar extends Menubar {
   _pseudoDropdownElement = document.createElement("div");
 
   /**
-   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   * Bootstrap events that need to be intercepted to disbale dropdowns.
    *
    * @type {string[]}
    *
@@ -84,6 +84,7 @@ class Bootstrap5Menubar extends Menubar {
    * @param {(string|string[]|null)}   [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}   [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
    * @param {?(string|string[])}       [options.transitionClass = transitioning]             - The class to apply when a menu is transitioning between "open" and "closed" states.
+   * @param {number}                   [options.transitionDuration = 250]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
    * @param {boolean}                  [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5Menubar|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                   [options.hoverType = off]                             - The type of hoverability a menu has.
@@ -105,6 +106,7 @@ class Bootstrap5Menubar extends Menubar {
     openClass = "show",
     closeClass = "collapse",
     transitionClass = "transitioning",
+    transitionDuration = 250,
     isTopLevel = true,
     parentMenu = null,
     hoverType = "off",
@@ -126,6 +128,7 @@ class Bootstrap5Menubar extends Menubar {
       openClass,
       closeClass,
       transitionClass,
+      transitionDuration,
       isTopLevel,
       parentMenu,
       hoverType,
@@ -184,7 +187,7 @@ class Bootstrap5Menubar extends Menubar {
   }
 
   /**
-   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   * Bootstrap events that need to be intercepted to disbale dropdowns.
    *
    * @readonly
    *

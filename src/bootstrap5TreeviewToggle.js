@@ -72,6 +72,7 @@ class Bootstrap5TreeviewToggle extends TreeviewToggle {
     const { openClass, transitionClass } = this.elements.controlledMenu;
 
     this.dom.toggle.setAttribute("aria-expanded", "true");
+    this.elements.controlledMenu.elements.rootMenu.hasOpened = true;
 
     // If we're dealing with transition classes, then we need to utilize
     // requestAnimationFrame to add the transition class, add the open class,
