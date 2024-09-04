@@ -62,12 +62,48 @@ class Bootstrap5Menubar extends Menubar {
    *
    * @protected
    */
-  _bootstrapEvents = [
+  _bootstrapDropdownEvents = [
     "show.bs.dropdown",
     "shown.bs.dropdown",
     "hide.bs.dropdown",
     "hidden.bs.dropdown",
   ];
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's collapse events.
+   *
+   * @type {HTMLElement}
+   *
+   * @protected
+   */
+  _pseudoCollapseElement = document.createElement("div");
+
+  /**
+   * Bootstrap events that need to be intercepted to disbale collapses.
+   *
+   * @type {string[]}
+   *
+   * @protected
+   */
+  _bootstrapCollapseEvents = [
+    "show.bs.collapse",
+    "shown.bs.collapse",
+    "hide.bs.collapse",
+    "hidden.bs.collapse",
+  ];
+
+  /**
+   * A flag to emulate bootstrap's transitions for dropdowns and collapses.
+   *
+   * This will add an inline style for height to the submenu when it is transitioning
+   * between "open" and "closed" states. This is to emulate the same behaviour as
+   * Bootstrap's dropdowns and collapses.
+   *
+   * @type {boolean}
+   *
+   * @protected
+   */
+  _bootstrapTransitions = true;
 
   /**
    * Constructs the menu.
@@ -81,9 +117,9 @@ class Bootstrap5Menubar extends Menubar {
    * @param {string}                   [options.submenuSelector = .dropdown-menu]            - The CSS selector string for submenus.
    * @param {(HTMLElement|null)}       [options.controllerElement = null]                    - The element controlling the menu in the DOM.
    * @param {(HTMLElement|null)}       [options.containerElement = null]                     - The element containing the menu in the DOM.
-   * @param {(string|string[]|null)}   [options.openClass = show]                            - The class to apply when a menu is "open".
+   * @param {(string|string[]|null)}   [options.openClass = ["collapse", "show"]]            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}   [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
-   * @param {?(string|string[])}       [options.transitionClass = transitioning]             - The class to apply when a menu is transitioning between "open" and "closed" states.
+   * @param {?(string|string[])}       [options.transitionClass = collapsing]                - The class to apply when a menu is transitioning between "open" and "closed" states.
    * @param {number}                   [options.transitionDuration = 250]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
    * @param {boolean}                  [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5Menubar|null)} [options.parentMenu = null]                           - The parent menu to this menu.
@@ -91,7 +127,8 @@ class Bootstrap5Menubar extends Menubar {
    * @param {number}                   [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
    * @param {number}                   [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
    * @param {number}                   [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
-   * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
+   * @param {boolean}                  [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
+   * @param {boolean}                  [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
    * @param {boolean}                  [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
   constructor({
@@ -103,9 +140,9 @@ class Bootstrap5Menubar extends Menubar {
     submenuSelector = ".dropdown-menu",
     controllerElement = null,
     containerElement = null,
-    openClass = "show",
+    openClass = ["collapse", "show"],
     closeClass = "collapse",
-    transitionClass = "transitioning",
+    transitionClass = "collapsing",
     transitionDuration = 250,
     isTopLevel = true,
     parentMenu = null,
@@ -113,6 +150,7 @@ class Bootstrap5Menubar extends Menubar {
     hoverDelay = 250,
     enterDelay = -1,
     leaveDelay = -1,
+    bootstrapTransitions = true,
     disableBootstrap = true,
     initialize = true,
   }) {
@@ -140,6 +178,8 @@ class Bootstrap5Menubar extends Menubar {
 
     this._disableBootstrap = disableBootstrap;
 
+    this._bootstrapTransitions = bootstrapTransitions;
+
     if (initialize) {
       this.initialize();
     }
@@ -149,7 +189,8 @@ class Bootstrap5Menubar extends Menubar {
    * Initializes the menu.
    *
    * Initialize will call the {@link Menubar#initialize|Menubar's initialize method}
-   * as well as the {@link Bootstrap5Menubar#_disableBootstrapDropdownBehaviour|disableBootstrapDropdown} event
+   * as well as the {@link Bootstrap5Menubar#_disableBootstrapDropdownBehaviour|disableBootstrapDropdown}
+   * and {@link Bootstrap5Menubar#_disableBootstrapCollapseBehaviour|disableBootstrapCollapseBehaviour} methods
    * for the menu.
    */
   initialize() {
@@ -157,7 +198,26 @@ class Bootstrap5Menubar extends Menubar {
 
     if (this.bootstrapDisabled) {
       this._disableBootstrapDropdownBehaviour();
+      this._disableBootstrapCollapseBehaviour();
     }
+  }
+
+  /**
+   * A flag to emulate bootstrap's transitions for dropdowns and collapses.
+   *
+   * This functions differently for root vs. submenus.
+   * Submenus will always inherit their root menu's bootstrap transition state.
+   *
+   * @readonly
+   *
+   * @type {boolean}
+   *
+   * @see _bootstrapTransitions
+   */
+  get bootstrapTransitions() {
+    return this.isTopLevel
+      ? this._bootstrapTransitions
+      : this.elements.rootMenu.bootstrapTransitions;
   }
 
   /**
@@ -193,10 +253,36 @@ class Bootstrap5Menubar extends Menubar {
    *
    * @type {string[]}
    *
-   * @see _bootstrapEvents
+   * @see _bootstrapDropdownEvents
    */
-  get bootstrapEvents() {
-    return this._bootstrapEvents;
+  get bootstrapDropdownEvents() {
+    return this._bootstrapDropdownEvents;
+  }
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's collapse events.
+   *
+   * @readonly
+   *
+   * @type {HTMLElement}
+   *
+   * @see _pseudoCollapseElement
+   */
+  get bootstrapPseudoCollapseElement() {
+    return this._pseudoCollapseElement;
+  }
+
+  /**
+   * Bootstrap events that need to be intercepted to disbale collapses.
+   *
+   * @readonly
+   *
+   * @type {string[]}
+   *
+   * @see _bootstrapCollapseEvents
+   */
+  get bootstrapCollapseEvents() {
+    return this._bootstrapCollapseEvents;
   }
 
   /**
@@ -208,6 +294,16 @@ class Bootstrap5Menubar extends Menubar {
    */
   _validate() {
     let check = super._validate();
+
+    // Bootstrap transitions check.
+    const bootstrapTransitionsCheck = isValidType("boolean", {
+      bootstrapTransitions: this._bootstrapTransitions,
+    });
+
+    if (!bootstrapTransitionsCheck.status) {
+      this._errors.push(bootstrapTransitionsCheck.error.message);
+      check = false;
+    }
 
     // Bootstrap disabled check.
     const bootstrapDisabledCheck = isValidType("boolean", {
@@ -239,7 +335,7 @@ class Bootstrap5Menubar extends Menubar {
   _disableBootstrapDropdownBehaviour() {
     this.elements.submenuToggles.forEach((submenuToggle) => {
       // Intercept each bootstrap dropdown event once.
-      this.bootstrapEvents.forEach((eventType) => {
+      this.bootstrapDropdownEvents.forEach((eventType) => {
         submenuToggle.dom.toggle.addEventListener(
           eventType,
           (event) => {
@@ -263,6 +359,64 @@ class Bootstrap5Menubar extends Menubar {
         );
       });
     });
+  }
+
+  /**
+   * Disable bootstrap's collapse behaviour.
+   *
+   * This is done by intercepting the bootstrap collapse events (once) to get the
+   * collapse instance and then setting the collapse instance's menu to an empty
+   * element.
+   *
+   * We have to wait for the events because it's possible just selecting the
+   * DOM elements will happen before Bootstrap initializes it's collapse behaviour.
+   *
+   * This is a pretty brute-force method, but it works.
+   *
+   * @protected
+   */
+  _disableBootstrapCollapseBehaviour() {
+    if (!this.elements.controller) {
+      return;
+    }
+
+    // Intercept each bootstrap collapse event once.
+    this.bootstrapCollapseEvents.forEach((eventType) => {
+      this.dom.container.addEventListener(
+        eventType,
+        (event) => {
+          preventEvent(event);
+
+          const collapseInstance = bootstrap.Collapse.getInstance(event.target);
+
+          if (!collapseInstance) return;
+
+          if (
+            collapseInstance._element !== this.bootstrapPseudoCollapseElement
+          ) {
+            collapseInstance._element = this.bootstrapPseudoCollapseElement;
+          }
+        },
+        {
+          once: true,
+        }
+      );
+    });
+  }
+
+  /**
+   * Sets the transition duration of the menu as a CSS custom property.
+   *
+   * The custom property is `--am-transition-duration`.
+   *
+   * @protected
+   */
+  _setTransitionDuration() {
+    super._setTransitionDuration();
+    this.dom.container.style.setProperty(
+      "--am-transition-duration",
+      `${this.transitionDuration}ms`
+    );
   }
 }
 
