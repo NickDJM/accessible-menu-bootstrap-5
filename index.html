@@ -92,8 +92,22 @@
           <div id="transitionDelays" class="input-container">
             <div>
               <label for="transitionDuration" class="form-label">Transition Duration (ms):</label>
-              <input id="transitionDuration" class="form-control" type="number" value="250" min="0" />
+              <input id="transitionDuration" class="form-control" type="number" value="350" min="0" />
             </div>
+            <div>
+              <label for="openDuration" class="form-label">Open Duration (ms):</label>
+              <input id="openDuration" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+            <div>
+              <label for="closeDuration" class="form-label">Close Duration (ms):</label>
+              <input id="closeDuration" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+          </div>
+          <div id="bootstrapTransitionButtons" class="button-container">
+            <button id="buttonTransitionBootstrapOn" class="active btn btn-primary"
+              data-transition-bootstrap="true">Bootstrap Transitions</button>
+            <button id="buttonTransitionBootstrapOff" class="btn btn-primary"
+              data-transition-bootstrap="false">No Bootstrap Transitions</button>
           </div>
         </section>
       </div>

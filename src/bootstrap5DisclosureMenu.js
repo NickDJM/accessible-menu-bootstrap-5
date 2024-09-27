@@ -119,10 +119,12 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {string}                          [options.submenuSelector = .dropdown-menu]            - The CSS selector string for submenus.
    * @param {(HTMLElement|null)}              [options.controllerElement = null]                    - The element controlling the menu in the DOM.
    * @param {(HTMLElement|null)}              [options.containerElement = null]                     - The element containing the menu in the DOM.
-   * @param {(string|string[]|null)}          [options.openClass = ["collapse", "show"]]            - The class to apply when a menu is "open".
+   * @param {(string|string[]|null)}          [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}          [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
    * @param {?(string|string[])}              [options.transitionClass = collapsing]                - The class to apply when a menu is transitioning between "open" and "closed" states.
-   * @param {number}                          [options.transitionDuration = 250]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
+   * @param {number}                          [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
+   * @param {boolean}                         [options.openDuration = -1]                           - The duration of the transition from "closed" to "open" states (in milliseconds).
+   * @param {boolean}                         [options.closeDuration = -1]                          - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}                         [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5DisclosureMenu|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                          [options.hoverType = off]                             - The type of hoverability a menu has.
@@ -130,6 +132,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
    * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
+   * @param {?string}                         [options.prefix = am-]                                - The prefix to use for CSS custom properties.
    * @param {boolean}                         [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
    * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
    * @param {boolean}                         [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
@@ -143,10 +146,12 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
     submenuSelector = ".dropdown-menu",
     controllerElement = null,
     containerElement = null,
-    openClass = ["collapse", "show"],
+    openClass = "show",
     closeClass = "collapse",
     transitionClass = "collapsing",
-    transitionDuration = 250,
+    transitionDuration = 350,
+    openDuration = -1,
+    closeDuration = -1,
     isTopLevel = true,
     parentMenu = null,
     hoverType = "off",
@@ -154,6 +159,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
     enterDelay = -1,
     leaveDelay = -1,
     optionalKeySupport = false,
+    prefix = "am-",
     bootstrapTransitions = true,
     disableBootstrap = true,
     initialize = true,
@@ -171,6 +177,8 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
       closeClass,
       transitionClass,
       transitionDuration,
+      openDuration,
+      closeDuration,
       isTopLevel,
       parentMenu,
       hoverType,
@@ -178,6 +186,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
       enterDelay,
       leaveDelay,
       optionalKeySupport,
+      prefix,
       initialize: false,
     });
 
@@ -410,18 +419,36 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   }
 
   /**
-   * Sets the transition duration of the menu as a CSS custom property.
+   * Sets the transition durations of the menu as a CSS custom properties.
    *
-   * The custom property is `--am-transition-duration`.
+   * The custom properties are:
+   *   - `--am-transition-duration`,
+   *   - `--am-open-transition-duration`, and
+   *   - `--am-close-transition-duration`.
+   *
+   * The prefix of `am-` can be changed by setting the menu's prefix value.
    *
    * @protected
    */
-  _setTransitionDuration() {
-    super._setTransitionDuration();
-    this.dom.container.style.setProperty(
-      "--am-transition-duration",
-      `${this.transitionDuration}ms`
-    );
+  _setTransitionDurations() {
+    super._setTransitionDurations();
+
+    if (this.isTopLevel && this.elements.controller) {
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}transition-duration`,
+        `${this.transitionDuration}ms`
+      );
+
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}open-transition-duration`,
+        `${this.openDuration}ms`
+      );
+
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}close-transition-duration`,
+        `${this.closeDuration}ms`
+      );
+    }
   }
 }
 

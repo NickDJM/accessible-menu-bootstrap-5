@@ -47,9 +47,13 @@ const options = {
   hoverType: "off",
   hoverDelay: 250,
   enterDelay: -1,
-  leaveDelat: -1,
+  leaveDelay: -1,
   transitionClass: "collapsing",
-  transitionDuration: 250,
+  transitionDuration: 350,
+  openDuration: -1,
+  closeDuration: -1,
+  optionalKeySupport: true,
+  bootstrapTransitions: true,
 };
 const container = document.querySelector("header");
 
@@ -201,6 +205,39 @@ const transitionDuration = document.querySelector("#transitionDuration");
 transitionDuration.addEventListener("change", () => {
   options.transitionDuration = Number(transitionDuration.value);
   generateMenu();
+});
+
+// Set up the open duration input.
+const openDuration = document.querySelector("#openDuration");
+
+openDuration.addEventListener("change", () => {
+  options.openDuration = Number(openDuration.value);
+  generateMenu();
+});
+
+// Set up the close duration input.
+const closeDuration = document.querySelector("#closeDuration");
+
+closeDuration.addEventListener("change", () => {
+  options.closeDuration = Number(closeDuration.value);
+  generateMenu();
+});
+
+const bootstrapTransitionButtons = document.querySelectorAll(
+  "#bootstrapTransitionButtons button"
+);
+
+bootstrapTransitionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    options.bootstrapTransitions =
+      button.dataset.bootstrapTransitions === "true";
+    generateMenu();
+
+    bootstrapTransitionButtons.forEach((button) => {
+      button.classList.remove("active");
+    });
+    button.classList.add("active");
+  });
 });
 
 // Set up the theme switcher.

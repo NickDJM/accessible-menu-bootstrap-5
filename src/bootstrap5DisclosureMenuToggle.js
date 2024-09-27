@@ -14,7 +14,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
    *
    * @property {HTMLElement} toggle    - The menu toggle.
    * @property {HTMLElement} parent    - The menu containing this toggle.
-   * @property {HTMLElement} container - The element that controlls the visibility of the child menu.
+   * @property {HTMLElement} container - The element that controls the visibility of the child menu.
    * @protected
    */
   _dom = {
@@ -64,9 +64,6 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
   initialize() {
     super.initialize();
 
-    // Bootstrap uses transitions on height for the main collapse component.
-    // To match that style _and_ make sure you can still control it through the
-    // menu config, we need to set the transition property on the container.
     if (
       this.elements.controlledMenu.bootstrapTransitions &&
       this.elements.controlledMenu.isTopLevel
@@ -88,7 +85,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
       openClass,
       closeClass,
       transitionClass,
-      transitionDuration,
+      openDuration,
       bootstrapTransitions,
       isTopLevel,
     } = this.elements.controlledMenu;
@@ -99,51 +96,54 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
     // If we're dealing with transition classes, then we need to utilize
     // requestAnimationFrame to add the transition class, remove the close class,
     // add the open class, and finally remove the transition class.
+    //
+    // Depending on if you're using bootstrap transitions or not, the process for
+    // expanding the menu will differ.
+    //
+    // If the menu is emulating bootstrap dropdown/collapse behaviour,
+    // we need to remove the inline style for the height of the menu
+    // as well as the transition class.
     if (transitionClass !== "") {
-      addClass(transitionClass, this.dom.container);
+      if (bootstrapTransitions) {
+        if (isTopLevel) {
+          addClass(transitionClass, this.dom.container);
+          removeClass(closeClass, this.dom.container);
 
-      requestAnimationFrame(() => {
-        removeClass(closeClass, this.dom.container);
-
-        // If the menu is emulating the bootstrap dropdown/collapse behaviour,
-        // set an inline style for the height of the menu.
-        if (bootstrapTransitions) {
           this.dom.container.style.height = `${this.dom.container.scrollHeight}px`;
-        }
 
-        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              addClass(openClass, this.dom.container);
+              addClass(closeClass, this.dom.container);
+              removeClass(transitionClass, this.dom.container);
+
+              this.dom.container.style.height = "";
+            }, openDuration);
+          });
+        } else {
+          // Add the open class
           addClass(openClass, this.dom.container);
 
-          // If the menu is emulating bootstrap dropdown/collapse behaviour,
-          // we need to remove the inline style for the height of the menu
-          // as well as the transition class.
-          //
-          // If the menu is top-level there will be a delay before removing the transition class.
-          //
-          // If the menu isn't emulating bootstrap dropdown/collapse behaviour,
-          // we treat it as the strandard accessible-menu transition process.
-          if (bootstrapTransitions) {
-            requestAnimationFrame(() => {
-              setTimeout(
-                () => {
-                  removeClass(transitionClass, this.dom.container);
+          // Remove the close class.
+          removeClass(closeClass, this.dom.container);
+        }
+      } else {
+        addClass(transitionClass, this.dom.container);
 
-                  // If the menu is emulating the bootstrap dropdown/collapse behaviour,
-                  // remove the inline style for the height of the menu.
-                  this.dom.container.style.height = "";
-                },
-                isTopLevel ? transitionDuration : 0
-              );
-            });
-          } else {
+        requestAnimationFrame(() => {
+          removeClass(closeClass, this.dom.container);
+
+          requestAnimationFrame(() => {
+            addClass(openClass, this.dom.container);
+
             requestAnimationFrame(() => {
               setTimeout(() => {
                 removeClass(transitionClass, this.dom.container);
-              }, transitionDuration);
+              }, openDuration);
             });
-          }
+          });
         });
-      });
+      }
     } else {
       // Add the open class
       addClass(openClass, this.dom.container);
@@ -169,7 +169,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
       closeClass,
       openClass,
       transitionClass,
-      transitionDuration,
+      closeDuration,
       bootstrapTransitions,
       isTopLevel,
     } = this.elements.controlledMenu;
@@ -179,43 +179,58 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
     // If we're dealing with transition classes, then we need to utilize
     // requestAnimationFrame to add the transition class, remove the open class,
     // add the close class, and finally remove the transition class.
+    //
+    // Depending on if you're using bootstrap transitions or not, the process for
+    // collapsing the menu will differ.
+    //
+    // If the menu is emulating bootstrap dropdown/collapse behaviour,
+    // we need to add the inline style for the height of the menu
+    // as well as the transition class.
     if (transitionClass !== "") {
-      // If the menu is emulating the bootstrap dropdown/collapse behaviour,
-      // set an inline style for the height of the menu.
-      if (bootstrapTransitions && isTopLevel) {
-        this.dom.container.style.height = `${this.dom.container.offsetHeight}px`;
-      }
+      if (bootstrapTransitions) {
+        if (isTopLevel) {
+          this.dom.container.style.height = `${this.dom.container.offsetHeight}px`;
 
-      addClass(transitionClass, this.dom.container);
-
-      requestAnimationFrame(() => {
-        removeClass(openClass, this.dom.container);
-
-        // If the menu is emulating the bootstrap dropdown/collapse behaviour,
-        // remove the inline style for the height of the menu.
-        if (bootstrapTransitions && isTopLevel) {
           requestAnimationFrame(() => {
-            this.dom.container.style.height = "";
+            addClass(transitionClass, this.dom.container);
 
             requestAnimationFrame(() => {
-              setTimeout(() => {
-                removeClass(transitionClass, this.dom.container);
-                addClass(closeClass, this.dom.container);
-              }, transitionDuration);
+              removeClass(openClass, this.dom.container);
+              removeClass(closeClass, this.dom.container);
+              this.dom.container.style.height = "";
+
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  removeClass(transitionClass, this.dom.container);
+                  addClass(closeClass, this.dom.container);
+                }, closeDuration);
+              });
             });
           });
         } else {
+          // Add the close class
+          addClass(closeClass, this.dom.container);
+
+          // Remove the open class.
+          removeClass(openClass, this.dom.container);
+        }
+      } else {
+        addClass(transitionClass, this.dom.container);
+
+        requestAnimationFrame(() => {
+          removeClass(openClass, this.dom.container);
+
           requestAnimationFrame(() => {
             addClass(closeClass, this.dom.container);
 
             requestAnimationFrame(() => {
               setTimeout(() => {
                 removeClass(transitionClass, this.dom.container);
-              }, transitionDuration);
+              }, closeDuration);
             });
           });
-        }
-      });
+        });
+      }
     } else {
       // Add the close class
       addClass(closeClass, this.dom.container);
