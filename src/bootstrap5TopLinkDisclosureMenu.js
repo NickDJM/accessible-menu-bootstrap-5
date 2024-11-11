@@ -58,18 +58,54 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
   _pseudoDropdownElement = document.createElement("div");
 
   /**
-   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   * Bootstrap events that need to be intercepted to disable dropdowns.
    *
    * @type {string[]}
    *
    * @protected
    */
-  _bootstrapEvents = [
+  _bootstrapDropdownEvents = [
     "show.bs.dropdown",
     "shown.bs.dropdown",
     "hide.bs.dropdown",
     "hidden.bs.dropdown",
   ];
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's collapse events.
+   *
+   * @type {HTMLElement}
+   *
+   * @protected
+   */
+  _pseudoCollapseElement = document.createElement("div");
+
+  /**
+   * Bootstrap events that need to be intercepted to disable collapses.
+   *
+   * @type {string[]}
+   *
+   * @protected
+   */
+  _bootstrapCollapseEvents = [
+    "show.bs.collapse",
+    "shown.bs.collapse",
+    "hide.bs.collapse",
+    "hidden.bs.collapse",
+  ];
+
+  /**
+   * A flag to emulate bootstrap's transitions for dropdowns and collapses.
+   *
+   * This will add an inline style for height to the submenu when it is transitioning
+   * between "open" and "closed" states. This is to emulate the same behaviour as
+   * Bootstrap's dropdowns and collapses.
+   *
+   * @type {boolean}
+   *
+   * @protected
+   */
+  _bootstrapTransitions = true;
 
   /**
    * Constructs the menu.
@@ -86,15 +122,20 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
    * @param {(HTMLElement|null)}                     [options.containerElement = null]                     - The element containing the menu in the DOM.
    * @param {(string|string[]|null)}                 [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}                 [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
-   * @param {?(string|string[])}                     [options.transitionClass = transitioning]             - The class to apply when a menu is transitioning between "open" and "closed" states.
+   * @param {?(string|string[])}                     [options.transitionClass = collapsing]                - The class to apply when a menu is transitioning between "open" and "closed" states.
+   * @param {number}                                 [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in milliseconds).
+   * @param {boolean}                                [options.openDuration = -1]                           - The duration of the transition from "closed" to "open" states (in milliseconds).
+   * @param {boolean}                                [options.closeDuration = -1]                          - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}                                [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5TopLinkDisclosureMenu|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                                 [options.hoverType = off]                             - The type of hoverability a menu has.
-   * @param {number}                                 [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
-   * @param {number}                                 [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
-   * @param {number}                                 [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
+   * @param {number}                                 [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in milliseconds).
+   * @param {number}                                 [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in milliseconds).
+   * @param {number}                                 [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in milliseconds).
    * @param {boolean}                                [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
-   * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
+   * @param {?string}                                [options.prefix = am-]                                - The prefix to use for CSS custom properties.
+   * @param {boolean}                                [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
+   * @param {boolean}                                [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
    * @param {boolean}                                [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
   constructor({
@@ -109,7 +150,10 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
     containerElement = null,
     openClass = "show",
     closeClass = "collapse",
-    transitionClass = "transitioning",
+    transitionClass = "collapsing",
+    transitionDuration = 350,
+    openDuration = -1,
+    closeDuration = -1,
     isTopLevel = true,
     parentMenu = null,
     hoverType = "off",
@@ -117,6 +161,8 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
     enterDelay = -1,
     leaveDelay = -1,
     optionalKeySupport = false,
+    prefix = "am-",
+    bootstrapTransitions = true,
     disableBootstrap = true,
     initialize = true,
   }) {
@@ -133,6 +179,9 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
       openClass,
       closeClass,
       transitionClass,
+      transitionDuration,
+      openDuration,
+      closeDuration,
       isTopLevel,
       parentMenu,
       hoverType,
@@ -140,10 +189,13 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
       enterDelay,
       leaveDelay,
       optionalKeySupport,
+      prefix,
       initialize: false,
     });
 
     this._disableBootstrap = disableBootstrap;
+
+    this._bootstrapTransitions = bootstrapTransitions;
 
     if (initialize) {
       this.initialize();
@@ -154,7 +206,8 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
    * Initializes the menu.
    *
    * Initialize will call the {@link TopLinkDisclosureMenu#initialize|TopLinkDisclosureMenu's initialize method}
-   * as well as the {@link Bootstrap5TopLinkDisclosureMenu#_disableBootstrapDropdownBehaviour|disableBootstrapDropdown} event
+   * as well as the {@link Bootstrap5TopLinkDisclosureMenu#_disableBootstrapDropdownBehaviour|disableBootstrapDropdown}
+   * and {@link Bootstrap5TopLinkDisclosureMenu#_disableBootstrapCollapseBehaviour|disableBootstrapCollapseBehaviour} methods
    * for the menu.
    */
   initialize() {
@@ -162,7 +215,26 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
 
     if (this.bootstrapDisabled) {
       this._disableBootstrapDropdownBehaviour();
+      this._disableBootstrapCollapseBehaviour();
     }
+  }
+
+  /**
+   * A flag to emulate bootstrap's transitions for dropdowns and collapses.
+   *
+   * This functions differently for root vs. submenus.
+   * Submenus will always inherit their root menu's bootstrap transition state.
+   *
+   * @readonly
+   *
+   * @type {boolean}
+   *
+   * @see _bootstrapTransitions
+   */
+  get bootstrapTransitions() {
+    return this.isTopLevel
+      ? this._bootstrapTransitions
+      : this.elements.rootMenu.bootstrapTransitions;
   }
 
   /**
@@ -192,16 +264,42 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
   }
 
   /**
-   * Bootstrap events that need to be intercepted to disbaled dropdowns.
+   * Bootstrap events that need to be intercepted to disable dropdowns.
    *
    * @readonly
    *
    * @type {string[]}
    *
-   * @see _bootstrapEvents
+   * @see _bootstrapDropdownEvents
    */
-  get bootstrapEvents() {
-    return this._bootstrapEvents;
+  get bootstrapDropdownEvents() {
+    return this._bootstrapDropdownEvents;
+  }
+
+  /**
+   * The DOM element to use as a fake target for bootstrap's collapse events.
+   *
+   * @readonly
+   *
+   * @type {HTMLElement}
+   *
+   * @see _pseudoCollapseElement
+   */
+  get bootstrapPseudoCollapseElement() {
+    return this._pseudoCollapseElement;
+  }
+
+  /**
+   * Bootstrap events that need to be intercepted to disable collapses.
+   *
+   * @readonly
+   *
+   * @type {string[]}
+   *
+   * @see _bootstrapCollapseEvents
+   */
+  get bootstrapCollapseEvents() {
+    return this._bootstrapCollapseEvents;
   }
 
   /**
@@ -213,6 +311,16 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
    */
   _validate() {
     let check = super._validate();
+
+    // Bootstrap transitions check.
+    const bootstrapTransitionsCheck = isValidType("boolean", {
+      bootstrapTransitions: this._bootstrapTransitions,
+    });
+
+    if (!bootstrapTransitionsCheck.status) {
+      this._errors.push(bootstrapTransitionsCheck.error.message);
+      check = false;
+    }
 
     // Bootstrap disabled check.
     const bootstrapDisabledCheck = isValidType("boolean", {
@@ -244,7 +352,7 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
   _disableBootstrapDropdownBehaviour() {
     this.elements.submenuToggles.forEach((submenuToggle) => {
       // Intercept each bootstrap dropdown event once.
-      this.bootstrapEvents.forEach((eventType) => {
+      this.bootstrapDropdownEvents.forEach((eventType) => {
         submenuToggle.dom.toggle.addEventListener(
           eventType,
           (event) => {
@@ -268,6 +376,82 @@ class Bootstrap5TopLinkDisclosureMenu extends TopLinkDisclosureMenu {
         );
       });
     });
+  }
+
+  /**
+   * Disable bootstrap's collapse behaviour.
+   *
+   * This is done by intercepting the bootstrap collapse events (once) to get the
+   * collapse instance and then setting the collapse instance's menu to an empty
+   * element.
+   *
+   * We have to wait for the events because it's possible just selecting the
+   * DOM elements will happen before Bootstrap initializes it's collapse behaviour.
+   *
+   * This is a pretty brute-force method, but it works.
+   *
+   * @protected
+   */
+  _disableBootstrapCollapseBehaviour() {
+    if (!this.elements.controller) {
+      return;
+    }
+
+    // Intercept each bootstrap collapse event once.
+    this.bootstrapCollapseEvents.forEach((eventType) => {
+      this.dom.container.addEventListener(
+        eventType,
+        (event) => {
+          preventEvent(event);
+
+          const collapseInstance = bootstrap.Collapse.getInstance(event.target);
+
+          if (!collapseInstance) return;
+
+          if (
+            collapseInstance._element !== this.bootstrapPseudoCollapseElement
+          ) {
+            collapseInstance._element = this.bootstrapPseudoCollapseElement;
+          }
+        },
+        {
+          once: true,
+        }
+      );
+    });
+  }
+
+  /**
+   * Sets the transition durations of the menu as a CSS custom properties.
+   *
+   * The custom properties are:
+   *   - `--am-transition-duration`,
+   *   - `--am-open-transition-duration`, and
+   *   - `--am-close-transition-duration`.
+   *
+   * The prefix of `am-` can be changed by setting the menu's prefix value.
+   *
+   * @protected
+   */
+  _setTransitionDurations() {
+    super._setTransitionDurations();
+
+    if (this.isTopLevel && this.elements.controller) {
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}transition-duration`,
+        `${this.transitionDuration}ms`
+      );
+
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}open-transition-duration`,
+        `${this.openDuration}ms`
+      );
+
+      this.elements.controller.dom.container.style.setProperty(
+        `--${this.prefix}close-transition-duration`,
+        `${this.closeDuration}ms`
+      );
+    }
   }
 }
 

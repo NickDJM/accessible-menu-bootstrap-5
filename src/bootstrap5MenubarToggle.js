@@ -14,7 +14,7 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
    *
    * @property {HTMLElement} toggle    - The menu toggle.
    * @property {HTMLElement} parent    - The menu containing this toggle.
-   * @property {HTMLElement} container - The element that controlls the visibility of the child menu.
+   * @property {HTMLElement} container - The element that controls the visibility of the child menu.
    * @protected
    */
   _dom = {
@@ -61,6 +61,18 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
     }
   }
 
+  initialize() {
+    super.initialize();
+
+    if (
+      this.elements.controlledMenu.bootstrapTransitions &&
+      this.elements.controlledMenu.isTopLevel
+    ) {
+      this.dom.container.style.transition =
+        "height var(--am-transition-duration) ease";
+    }
+  }
+
   /**
    * Expands the controlled menu.
    *
@@ -69,25 +81,75 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
    * @param {boolean} [emit = true] - A toggle to emit the expand event once expanded.
    */
   _expand(emit = true) {
-    const { openClass, transitionClass } = this.elements.controlledMenu;
+    const {
+      openClass,
+      closeClass,
+      transitionClass,
+      openDuration,
+      bootstrapTransitions,
+      isTopLevel,
+    } = this.elements.controlledMenu;
 
     this.dom.toggle.setAttribute("aria-expanded", "true");
+    this.elements.controlledMenu.elements.rootMenu.hasOpened = true;
 
     // If we're dealing with transition classes, then we need to utilize
-    // requestAnimationFrame to add the transition class, add the open class,
-    // and then remove the transition class.
+    // requestAnimationFrame to add the transition class, remove the close class,
+    // add the open class, and finally remove the transition class.
+    //
+    // Depending on if you're using bootstrap transitions or not, the process for
+    // expanding the menu will differ.
+    //
+    // If the menu is emulating bootstrap dropdown/collapse behaviour,
+    // we need to remove the inline style for the height of the menu
+    // as well as the transition class.
     if (transitionClass !== "") {
-      addClass(transitionClass, this.dom.container);
+      if (bootstrapTransitions) {
+        if (isTopLevel) {
+          addClass(transitionClass, this.dom.container);
+          removeClass(closeClass, this.dom.container);
 
-      requestAnimationFrame(() => {
-        addClass(openClass, this.dom.container);
+          this.dom.container.style.height = `${this.dom.container.scrollHeight}px`;
+
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              addClass(openClass, this.dom.container);
+              addClass(closeClass, this.dom.container);
+              removeClass(transitionClass, this.dom.container);
+
+              this.dom.container.style.height = "";
+            }, openDuration);
+          });
+        } else {
+          // Add the open class
+          addClass(openClass, this.dom.container);
+
+          // Remove the close class.
+          removeClass(closeClass, this.dom.container);
+        }
+      } else {
+        addClass(transitionClass, this.dom.container);
 
         requestAnimationFrame(() => {
-          removeClass(transitionClass, this.dom.container);
+          removeClass(closeClass, this.dom.container);
+
+          requestAnimationFrame(() => {
+            addClass(openClass, this.dom.container);
+
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                removeClass(transitionClass, this.dom.container);
+              }, openDuration);
+            });
+          });
         });
-      });
-    } else if (openClass !== "") {
+      }
+    } else {
+      // Add the open class
       addClass(openClass, this.dom.container);
+
+      // Remove the close class.
+      removeClass(closeClass, this.dom.container);
     }
 
     if (emit) {
@@ -103,42 +165,78 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
    * @param {boolean} [emit = true] - A toggle to emit the collapse event once collapsed.
    */
   _collapse(emit = true) {
-    const { closeClass, openClass, transitionClass } =
-      this.elements.controlledMenu;
+    const {
+      closeClass,
+      openClass,
+      transitionClass,
+      closeDuration,
+      bootstrapTransitions,
+      isTopLevel,
+    } = this.elements.controlledMenu;
 
     this.dom.toggle.setAttribute("aria-expanded", "false");
 
     // If we're dealing with transition classes, then we need to utilize
     // requestAnimationFrame to add the transition class, remove the open class,
     // add the close class, and finally remove the transition class.
+    //
+    // Depending on if you're using bootstrap transitions or not, the process for
+    // collapsing the menu will differ.
+    //
+    // If the menu is emulating bootstrap dropdown/collapse behaviour,
+    // we need to add the inline style for the height of the menu
+    // as well as the transition class.
     if (transitionClass !== "") {
-      addClass(transitionClass, this.dom.container);
-
-      requestAnimationFrame(() => {
-        if (openClass !== "") {
-          removeClass(openClass, this.dom.container);
-        }
-
-        requestAnimationFrame(() => {
-          if (closeClass !== "") {
-            addClass(closeClass, this.dom.container);
-          }
+      if (bootstrapTransitions) {
+        if (isTopLevel) {
+          this.dom.container.style.height = `${this.dom.container.offsetHeight}px`;
 
           requestAnimationFrame(() => {
-            removeClass(transitionClass, this.dom.container);
+            addClass(transitionClass, this.dom.container);
+
+            requestAnimationFrame(() => {
+              removeClass(openClass, this.dom.container);
+              removeClass(closeClass, this.dom.container);
+              this.dom.container.style.height = "";
+
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  removeClass(transitionClass, this.dom.container);
+                  addClass(closeClass, this.dom.container);
+                }, closeDuration);
+              });
+            });
+          });
+        } else {
+          // Add the close class
+          addClass(closeClass, this.dom.container);
+
+          // Remove the open class.
+          removeClass(openClass, this.dom.container);
+        }
+      } else {
+        addClass(transitionClass, this.dom.container);
+
+        requestAnimationFrame(() => {
+          removeClass(openClass, this.dom.container);
+
+          requestAnimationFrame(() => {
+            addClass(closeClass, this.dom.container);
+
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                removeClass(transitionClass, this.dom.container);
+              }, closeDuration);
+            });
           });
         });
-      });
+      }
     } else {
       // Add the close class
-      if (closeClass !== "") {
-        addClass(closeClass, this.dom.container);
-      }
+      addClass(closeClass, this.dom.container);
 
       // Remove the open class.
-      if (openClass !== "") {
-        removeClass(openClass, this.dom.container);
-      }
+      removeClass(openClass, this.dom.container);
     }
 
     if (emit) {

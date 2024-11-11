@@ -24,31 +24,90 @@
           <div class="button-container">
             <button id="themeToggle" class="btn btn-primary">Dark Mode</button>
           </div>
-        </section>
-        <section aria-labelledby="menuStructureSettings" class="col-12">
+        </section><section aria-labelledby="menuStructureSettings">
           <h2 id="menuStructureSettings">Menu Structure Settings</h2>
           <div id="domButtons" class="button-container">
-            <button id="buttonSingleLevel" data-menu-structure="one" class="active btn btn-primary">Single-Level Menu</button>
-            <button id="buttonTwoLevel" data-menu-structure="two" class="btn btn-primary">Two-Level Menu</button>
-            <button id="buttonThreeLevel" data-menu-structure="three" class="btn btn-primary">Three-Level Menu</button>
+            <button id="buttonSingleLevel" data-menu-structure="one"
+              class="active btn btn-primary">Single-Level Menu</button>
+            <button id="buttonTwoLevel" data-menu-structure="two" class="btn btn-primary">Two-Level
+              Menu</button>
+            <button id="buttonThreeLevel" data-menu-structure="three" class="btn btn-primary">Three-Level
+              Menu</button>
           </div>
         </section>
-        <section aria-labelledby="menuTypeSettings" class="col-12">
+        <section aria-labelledby="menuTypeSettings">
           <h2 id="menuTypeSettings">Menu Type Settings</h2>
           <div id="menuButtons" class="button-container">
-            <button id="buttonReset" data-menu-type="" class="active btn btn-primary">Native Bootstrap 5</button>
-            <button id="buttonDisclosureMenu" data-menu-type="Bootstrap5DisclosureMenu" class="btn btn-primary">Disclosure Menu</button>
+            <button id="buttonReset" data-menu-type="native" class="active btn btn-primary">Native
+              Bootstrap</button>
+            <button id="buttonDisclosureMenu" data-menu-type="Bootstrap5DisclosureMenu" class="btn btn-primary">Disclosure
+              Menu</button>
             <button id="buttonMenubar" data-menu-type="Bootstrap5Menubar" class="btn btn-primary">Menubar</button>
-            <button id="buttonTopLinkDisclosureMenu" data-menu-type="Bootstrap5TopLinkDisclosureMenu" class="btn btn-primary">Top Link Disclosure Menu</button>
             <button id="buttonTreeview" data-menu-type="Bootstrap5Treeview" class="btn btn-primary">Treeview</button>
+            <button id="buttonTopLinkDisclosureMenu"
+              data-menu-type="Bootstrap5TopLinkDisclosureMenu" class="btn btn-primary">Top Link Disclosure Menu</button>
           </div>
         </section>
-        <section aria-labelledby="hoverSettings" class="col-12">
+        <section aria-labelledby="optionalKeySupportSettings">
+          <div>
+            <h2 id="optionalKeySupportSettings">Optional Key Support Settings</h2>
+            <p>Only applicable to Disclosure Menu and Top Link Disclosure Menu</p>
+          </div>
+          <div id="keyButtons" class="button-container">
+            <button id="buttonKeySupportOn" class="active btn btn-primary"
+              data-optional-key-support="true">On</button>
+            <button id="buttonKeySupportOff" class="btn btn-primary"
+              data-optional-key-support="false">Off</button>
+          </div>
+        </section>
+        <section aria-labelledby="hoverSettings">
           <h2 id="hoverSettings">Hover Settings</h2>
           <div id="hoverButtons" class="button-container">
-            <button id="buttonHoverOff" data-hover-type="off" class="active btn btn-primary">Off</button>
-            <button id="buttonHoverOn" data-hover-type="on" class="btn btn-primary">On</button>
-            <button id="buttonHoverDynamic" data-hover-type="dynamic" class="btn btn-primary">Dynamic</button>
+            <button id="buttonHoverOff" data-hover-type="off"
+              class="active btn btn-primary">Off</button>
+            <button id="buttonHoverOn" class="btn btn-primary" data-hover-type="on">On</button>
+            <button id="buttonHoverDynamic" class="btn btn-primary" data-hover-type="dynamic">Dynamic</button>
+          </div>
+          <div id="hoverDelays" class="input-container">
+            <div>
+              <label for="hoverDelay" class="form-label">Hover Delay (ms):</label>
+              <input id="hoverDelay" class="form-control" type="number" value="250" min="0" />
+            </div>
+            <div>
+              <label for="enterDelay" class="form-label">Enter Delay (ms):</label>
+              <input id="enterDelay" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+            <div>
+              <label for="leaveDelay" class="form-label">Leave Delay (ms):</label>
+              <input id="leaveDelay" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+        </section>
+        <section aria-labelledby="transitionSettings">
+          <h2 id="transitionSettings">Transition Settings</h2>
+          <div id="transitionButtons" class="button-container">
+            <button id="buttonTransitionOn" class="active btn btn-primary"
+              data-transition-class="collapsing">On</button>
+            <button id="buttonTransitionOff" class="btn btn-primary" data-transition-class="">Off</button>
+          </div>
+          <div id="transitionDelays" class="input-container">
+            <div>
+              <label for="transitionDuration" class="form-label">Transition Duration (ms):</label>
+              <input id="transitionDuration" class="form-control" type="number" value="350" min="0" />
+            </div>
+            <div>
+              <label for="openDuration" class="form-label">Open Duration (ms):</label>
+              <input id="openDuration" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+            <div>
+              <label for="closeDuration" class="form-label">Close Duration (ms):</label>
+              <input id="closeDuration" class="form-control" type="number" value="-1" min="-1" />
+            </div>
+          </div>
+          <div id="bootstrapTransitionButtons" class="button-container">
+            <button id="buttonTransitionBootstrapOn" class="active btn btn-primary"
+              data-transition-bootstrap="true">Bootstrap Transitions</button>
+            <button id="buttonTransitionBootstrapOff" class="btn btn-primary"
+              data-transition-bootstrap="false">No Bootstrap Transitions</button>
           </div>
         </section>
       </div>

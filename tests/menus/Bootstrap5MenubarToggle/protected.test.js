@@ -1,5 +1,7 @@
 /**
  * Tests for protected methods in the Bootstrap5MenubarToggle class.
+ *
+ * @todo Add tests for bootstrap-style transitions.
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
@@ -12,6 +14,9 @@ vi.mock("accessible-menu/src/domHelpers.js");
 
 beforeEach(() => {
   document.body.innerHTML = twoLevel;
+
+  // Make sure to use fake timers.
+  vi.useFakeTimers({ shouldAdvanceTime: true });
 });
 
 afterEach(() => {
@@ -132,6 +137,7 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
       const menu = new Bootstrap5Menubar({
         menuElement: document.querySelector("ul"),
         submenuItemSelector: ".dropdown",
+        bootstrapTransitions: false,
       });
 
       const menuToggle = menu.elements.submenuToggles[0];
@@ -140,6 +146,9 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
 
       // Expand the menu.
       menuToggle._expand();
+
+      // Advance the timers by the menu's transition duration.
+      vi.advanceTimersByTime(menu.transitionDuration);
 
       expect(spy).toHaveBeenCalledWith(
         menu.transitionClass,
@@ -165,6 +174,7 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
         menuElement: document.querySelector("ul"),
         submenuItemSelector: ".dropdown",
         transitionDuration: 0,
+        bootstrapTransitions: false,
       });
 
       const menuToggle = menu.elements.submenuToggles[0];
@@ -173,6 +183,9 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
 
       // Expand the menu.
       menuToggle._expand();
+
+      // Advance the timers by the menu's transition duration.
+      vi.advanceTimersByTime(menu.transitionDuration);
 
       expect(spy).toHaveBeenCalledWith(
         menu.transitionClass,
@@ -328,6 +341,7 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
       const menu = new Bootstrap5Menubar({
         menuElement: document.querySelector("ul"),
         submenuItemSelector: ".dropdown",
+        bootstrapTransitions: false,
       });
 
       const menuToggle = menu.elements.submenuToggles[0];
@@ -336,6 +350,9 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
 
       // Collapse the menu.
       menuToggle._collapse();
+
+      // Advance the timers by the menu's transition duration.
+      vi.advanceTimersByTime(menu.transitionDuration);
 
       expect(spy).toHaveBeenCalledWith(
         menu.transitionClass,
@@ -361,6 +378,7 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
         menuElement: document.querySelector("ul"),
         submenuItemSelector: ".dropdown",
         transitionDuration: 0,
+        bootstrapTransitions: false,
       });
 
       const menuToggle = menu.elements.submenuToggles[0];
@@ -369,6 +387,9 @@ describe("Bootstrap5MenubarToggle protected methods", () => {
 
       // Collapse the menu.
       menuToggle._collapse();
+
+      // Advance the timers by the menu's transition duration.
+      vi.advanceTimersByTime(menu.transitionDuration);
 
       expect(spy).toHaveBeenCalledWith(
         menu.transitionClass,

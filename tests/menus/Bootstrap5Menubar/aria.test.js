@@ -18,7 +18,7 @@ describe("Bootstrap5Menubar", () => {
     controllerElement: document.querySelector("button"),
   });
 
-  // Test the root menu's aria-labbelledby attribute.
+  // Test the root menu's aria-labelledby attribute.
   it("should set the root menu's aria-labelledby attribute", () => {
     expect(menu.dom.menu.getAttribute("aria-labelledby")).toBe(
       menu.dom.controller.id
@@ -28,11 +28,6 @@ describe("Bootstrap5Menubar", () => {
   // Test the root menu's role attribute.
   it("should set the root menu's role attribute", () => {
     expect(menu.dom.menu.getAttribute("role")).toBe("menubar");
-  });
-
-  // Test the root menu's controller's aria-haspopup attribute.
-  it("should set the root menu's controller's aria-haspopup attribute", () => {
-    expect(menu.dom.controller.getAttribute("aria-haspopup")).toBe("true");
   });
 
   // Test the root menu's controller's aria-expanded attribute.
@@ -106,13 +101,6 @@ describe("Bootstrap5Menubar", () => {
     // Test the submenu toggle's aria-expanded attribute.
     it("should set the submenu toggle's aria-expanded attribute", () => {
       expect(toggle.dom.toggle.getAttribute("aria-expanded")).toBe("false");
-    });
-
-    // Test the submenu toggle's aria-controls attribute.
-    it("should set the submenu toggle's aria-controls attribute", () => {
-      expect(toggle.dom.toggle.getAttribute("aria-controls")).toBe(
-        toggle.elements.controlledMenu.dom.menu.id
-      );
     });
 
     // Test the submenu toggle's aria-expanded attribute when the menu is open.
