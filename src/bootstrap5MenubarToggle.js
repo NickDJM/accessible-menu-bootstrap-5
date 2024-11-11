@@ -14,7 +14,7 @@ class Bootstrap5MenubarToggle extends MenubarToggle {
    *
    * @property {HTMLElement} toggle    - The menu toggle.
    * @property {HTMLElement} parent    - The menu containing this toggle.
-   * @property {HTMLElement} container - The element that controlls the visibility of the child menu.
+   * @property {HTMLElement} container - The element that controls the visibility of the child menu.
    * @protected
    */
   _dom = {

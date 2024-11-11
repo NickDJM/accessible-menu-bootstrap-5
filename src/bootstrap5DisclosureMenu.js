@@ -58,7 +58,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   _pseudoDropdownElement = document.createElement("div");
 
   /**
-   * Bootstrap events that need to be intercepted to disbale dropdowns.
+   * Bootstrap events that need to be intercepted to disable dropdowns.
    *
    * @type {string[]}
    *
@@ -81,7 +81,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   _pseudoCollapseElement = document.createElement("div");
 
   /**
-   * Bootstrap events that need to be intercepted to disbale collapses.
+   * Bootstrap events that need to be intercepted to disable collapses.
    *
    * @type {string[]}
    *
@@ -122,15 +122,15 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {(string|string[]|null)}          [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}          [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
    * @param {?(string|string[])}              [options.transitionClass = collapsing]                - The class to apply when a menu is transitioning between "open" and "closed" states.
-   * @param {number}                          [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
+   * @param {number}                          [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in milliseconds).
    * @param {boolean}                         [options.openDuration = -1]                           - The duration of the transition from "closed" to "open" states (in milliseconds).
    * @param {boolean}                         [options.closeDuration = -1]                          - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}                         [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5DisclosureMenu|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                          [options.hoverType = off]                             - The type of hoverability a menu has.
-   * @param {number}                          [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
-   * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
-   * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
+   * @param {number}                          [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in milliseconds).
+   * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in milliseconds).
+   * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in milliseconds).
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
    * @param {?string}                         [options.prefix = am-]                                - The prefix to use for CSS custom properties.
    * @param {boolean}                         [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
@@ -261,7 +261,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   }
 
   /**
-   * Bootstrap events that need to be intercepted to disbale dropdowns.
+   * Bootstrap events that need to be intercepted to disable dropdowns.
    *
    * @readonly
    *
@@ -287,7 +287,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   }
 
   /**
-   * Bootstrap events that need to be intercepted to disbale collapses.
+   * Bootstrap events that need to be intercepted to disable collapses.
    *
    * @readonly
    *

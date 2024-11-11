@@ -117,7 +117,7 @@
   },
   "homepage": "https://github.com/NickDJM/accessible-menu-bootstrap-5#readme",
   "dependencies": {
-    "accessible-menu": "github:NickDJM/accessible-menu#4.x"
+    "accessible-menu": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

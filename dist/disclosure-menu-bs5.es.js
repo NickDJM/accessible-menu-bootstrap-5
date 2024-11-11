@@ -681,15 +681,15 @@ class L {
    * @param {?(string|string[])} [options.openClass = show]                 - The class to apply when a menu is "open".
    * @param {?(string|string[])} [options.closeClass = hide]                - The class to apply when a menu is "closed".
    * @param {?(string|string[])} [options.transitionClass = transitioning]  - The class to apply when a menu is transitioning between "open" and "closed" states.
-   * @param {number}             [options.transitionDuration = 250]         - The duration of the transition between "open" and "closed" states (in miliseconds).
-   * @param {boolean}            [options.openDuration = -1]                - The duration of the transition from "closed" to "open" states (in miliseconds).
-   * @param {boolean}            [options.closeDuration = -1]               - The duration of the transition from "open" to "closed" states (in miliseconds).
+   * @param {number}             [options.transitionDuration = 250]         - The duration of the transition between "open" and "closed" states (in milliseconds).
+   * @param {boolean}            [options.openDuration = -1]                - The duration of the transition from "closed" to "open" states (in milliseconds).
+   * @param {boolean}            [options.closeDuration = -1]               - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}            [options.isTopLevel = false]               - A flag to mark the root menu.
    * @param {?BaseMenu}          [options.parentMenu = null]                - The parent menu to this menu.
    * @param {string}             [options.hoverType = off]                  - The type of hoverability a menu has.
-   * @param {number}             [options.hoverDelay = 250]                 - The delay for opening and closing menus if the menu is hoverable (in miliseconds).
-   * @param {number}             [options.enterDelay = -1]                  - The delay for opening menus if the menu is hoverable (in miliseconds).
-   * @param {number}             [options.leaveDelay = -1]                  - The delay for closing menus if the menu is hoverable (in miliseconds).
+   * @param {number}             [options.hoverDelay = 250]                 - The delay for opening and closing menus if the menu is hoverable (in milliseconds).
+   * @param {number}             [options.enterDelay = -1]                  - The delay for opening menus if the menu is hoverable (in milliseconds).
+   * @param {number}             [options.leaveDelay = -1]                  - The delay for closing menus if the menu is hoverable (in milliseconds).
    * @param {?string}            [options.prefix = am-]                     - The prefix to use for CSS custom properties.
    */
   constructor({
@@ -828,7 +828,7 @@ class L {
      */
     r(this, "_transitionClass", "transitioning");
     /**
-     * The duration time (in miliseconds) for the transition between open and closed states.
+     * The duration time (in milliseconds) for the transition between open and closed states.
      *
      * @protected
      *
@@ -836,7 +836,7 @@ class L {
      */
     r(this, "_transitionDuration", 250);
     /**
-     * The duration time (in miliseconds) for the transition from closed to open states.
+     * The duration time (in milliseconds) for the transition from closed to open states.
      *
      * @protected
      *
@@ -844,7 +844,7 @@ class L {
      */
     r(this, "_openDuration", -1);
     /**
-     * The duration time (in miliseconds) for the transition from open to closed states.
+     * The duration time (in milliseconds) for the transition from open to closed states.
      *
      * @protected
      *
@@ -892,7 +892,7 @@ class L {
      */
     r(this, "_hoverType", "off");
     /**
-     * The delay time (in miliseconds) used for pointerenter/pointerleave events to take place.
+     * The delay time (in milliseconds) used for pointerenter/pointerleave events to take place.
      *
      * @protected
      *
@@ -900,7 +900,7 @@ class L {
      */
     r(this, "_hoverDelay", 250);
     /**
-     * The delay time (in miliseconds) used for pointerenter events to take place.
+     * The delay time (in milliseconds) used for pointerenter events to take place.
      *
      * @protected
      *
@@ -908,7 +908,7 @@ class L {
      */
     r(this, "_enterDelay", -1);
     /**
-     * The delay time (in miliseconds) used for pointerleave events to take place.
+     * The delay time (in milliseconds) used for pointerleave events to take place.
      *
      * @protected
      *
@@ -968,7 +968,7 @@ class L {
   initialize() {
     if (!this._validate())
       throw new Error(
-        `AccesibleMenu: cannot initialize menu. The following errors have been found:
+        `AccessibleMenu: cannot initialize menu. The following errors have been found:
  - ${this.errors.join(
           `
  - `
@@ -1074,7 +1074,7 @@ class L {
     return this.isTopLevel ? this._transitionClass : this.elements.rootMenu.transitionClass;
   }
   /**
-   * The duration time (in miliseconds) for the transition between open and closed states.
+   * The duration time (in milliseconds) for the transition between open and closed states.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's transition duration.
@@ -1089,7 +1089,7 @@ class L {
     return this.isTopLevel ? this._transitionDuration : this.elements.rootMenu.transitionDuration;
   }
   /**
-   * The duration time (in miliseconds) for the transition from closed to open states.
+   * The duration time (in milliseconds) for the transition from closed to open states.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's openDuration.
@@ -1106,7 +1106,7 @@ class L {
     return this._openDuration === -1 ? this.transitionDuration : this.isTopLevel ? this._openDuration : this.elements.rootMenu.openDuration;
   }
   /**
-   * The duration time (in miliseconds) for the transition from open to closed states.
+   * The duration time (in milliseconds) for the transition from open to closed states.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's closeDuration.
@@ -1132,7 +1132,7 @@ class L {
    * If the current menu has a parent menu _and_ the menu's
    * current event is "mouse", The parent menu
    * will have it's current child updated as well to help with transitioning
-   * between mouse and keyboard naviation.
+   * between mouse and keyboard navigation.
    *
    * @type {number}
    *
@@ -1190,7 +1190,7 @@ class L {
     return this._root ? this._hoverType : this.elements.rootMenu.hoverType;
   }
   /**
-   * The delay time (in miliseconds) used for pointerenter/pointerleave events to take place.
+   * The delay time (in milliseconds) used for pointerenter/pointerleave events to take place.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's hover delay.
@@ -1203,7 +1203,7 @@ class L {
     return this._root ? this._hoverDelay : this.elements.rootMenu.hoverDelay;
   }
   /**
-   * The delay time (in miliseconds) used for pointerenter events to take place.
+   * The delay time (in milliseconds) used for pointerenter events to take place.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's enter delay.
@@ -1218,7 +1218,7 @@ class L {
     return this._enterDelay === -1 ? this.hoverDelay : this._root ? this._enterDelay : this.elements.rootMenu.enterDelay;
   }
   /**
-   * The delay time (in miliseconds) used for pointerleave events to take place.
+   * The delay time (in milliseconds) used for pointerleave events to take place.
    *
    * This functions differently for root vs. submenus.
    * Submenus will always inherit their root menu's leave delay.
@@ -1480,7 +1480,7 @@ class L {
   /**
    * Sets all DOM elements within the menu.
    *
-   * Utiliizes _setDOMElementType and
+   * Utilizes _setDOMElementType and
    * _resetDOMElementType.
    *
    * @protected
@@ -1583,6 +1583,8 @@ class L {
    * - Adds a `focus` listener to every menu item so when it gains focus,
    *   it will set the item's containing menu's focus state
    *   to "self".
+   * - Adds a `focusout` listener to the menu so when the menu loses focus,
+   *   it will close.
    *
    * @protected
    */
@@ -1591,6 +1593,8 @@ class L {
       e.dom.link.addEventListener("focus", () => {
         this.focusState = "self", this.currentChild = t;
       });
+    }), this.dom.menu.addEventListener("focusout", (e) => {
+      this.currentEvent !== "keyboard" || e.relatedTarget === null || this.dom.menu.contains(e.relatedTarget) || (this.focusState = "none", this.closeChildren());
     });
   }
   /**
@@ -1609,7 +1613,7 @@ class L {
    */
   _handleClick() {
     function e(t, s, i) {
-      d(i), s.toggle(), s.isOpen && (t.focusState = "self", s.elements.controlledMenu.focusState = "none");
+      d(i), i.button === 0 && (s.toggle(), s.isOpen && (t.focusState = "self", s.elements.controlledMenu.focusState = "none"));
     }
     this.elements.menuItems.forEach((t, s) => {
       t.dom.link.addEventListener(
@@ -1704,7 +1708,7 @@ class L {
   /**
    * Handles keydown events throughout the menu for proper menu use.
    *
-   * This method exists to assit the _handleKeyup method.
+   * This method exists to assist the _handleKeyup method.
    *
    * - Adds a `keydown` listener to the menu's controller (if the menu is the root menu).
    *   - Blocks propagation on "Space", "Enter", and "Escape" keys.
@@ -1777,7 +1781,7 @@ class L {
    *
    * Sets the menu's focus state to "none"
    * and blurs the menu if the menu's shouldFocus
-   * vallue is `true`.
+   * value is `true`.
    *
    * @public
    */
@@ -1803,7 +1807,7 @@ class L {
     this.blurCurrentChild(), this.currentChild = e, this.focusCurrentChild();
   }
   /**
-   * Focues the menu's first child.
+   * Focuses the menu's first child.
    *
    * @public
    */
@@ -2003,15 +2007,15 @@ class F extends L {
    * @param {?(string|string[])} [options.openClass = show]                 - The class to apply when a menu is "open".
    * @param {?(string|string[])} [options.closeClass = hide]                - The class to apply when a menu is "closed".
    * @param {?(string|string[])} [options.transitionClass = transitioning]  - The class to apply when a menu is transitioning between "open" and "closed" states.
-   * @param {number}             [options.transitionDuration = 250]         - The duration of the transition between "open" and "closed" states (in miliseconds).
-   * @param {boolean}            [options.openDuration = -1]                - The duration of the transition from "closed" to "open" states (in miliseconds).
-   * @param {boolean}            [options.closeDuration = -1]               - The duration of the transition from "open" to "closed" states (in miliseconds).
+   * @param {number}             [options.transitionDuration = 250]         - The duration of the transition between "open" and "closed" states (in milliseconds).
+   * @param {boolean}            [options.openDuration = -1]                - The duration of the transition from "closed" to "open" states (in milliseconds).
+   * @param {boolean}            [options.closeDuration = -1]               - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}            [options.isTopLevel = true]                - A flag to mark the root menu.
    * @param {?DisclosureMenu}    [options.parentMenu = null]                - The parent menu to this menu.
    * @param {string}             [options.hoverType = off]                  - The type of hoverability a menu has.
-   * @param {number}             [options.hoverDelay = 250]                 - The delay for opening and closing menus if the menu is hoverable (in miliseconds).
-   * @param {number}             [options.enterDelay = -1]                  - The delay for opening a menu if the menu is focusable (in miliseconds).
-   * @param {number}             [options.leaveDelay = -1]                  - The delay for closing a menu if the menu is focusable (in miliseconds).
+   * @param {number}             [options.hoverDelay = 250]                 - The delay for opening and closing menus if the menu is hoverable (in milliseconds).
+   * @param {number}             [options.enterDelay = -1]                  - The delay for opening a menu if the menu is focusable (in milliseconds).
+   * @param {number}             [options.leaveDelay = -1]                  - The delay for closing a menu if the menu is focusable (in milliseconds).
    * @param {boolean}            [options.optionalKeySupport = false]       - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
    * @param {?string}            [options.prefix = am-]                     - The prefix to use for CSS custom properties.
    * @param {boolean}            [options.initialize = true]                - A flag to initialize the menu immediately upon creation.
@@ -2207,7 +2211,7 @@ class F extends L {
    * Adds all `keyup` listeners from BaseMenu's _handleKeyup method.
    *
    * Adds the following keybindings (explanations are taken from the
-   * WAI ARIA Pracitices Example Disclosure for Navigation Menus):
+   * WAI ARIA Practices Example Disclosure for Navigation Menus):
    *
    * | Key | Function |
    * | --- | --- |
@@ -2392,15 +2396,15 @@ class B extends F {
    * @param {(string|string[]|null)}          [options.openClass = show]                            - The class to apply when a menu is "open".
    * @param {(string|string[]|null)}          [options.closeClass = collapse]                       - The class to apply when a menu is "closed".
    * @param {?(string|string[])}              [options.transitionClass = collapsing]                - The class to apply when a menu is transitioning between "open" and "closed" states.
-   * @param {number}                          [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in miliseconds).
+   * @param {number}                          [options.transitionDuration = 350]                    - The duration of the transition between "open" and "closed" states (in milliseconds).
    * @param {boolean}                         [options.openDuration = -1]                           - The duration of the transition from "closed" to "open" states (in milliseconds).
    * @param {boolean}                         [options.closeDuration = -1]                          - The duration of the transition from "open" to "closed" states (in milliseconds).
    * @param {boolean}                         [options.isTopLevel = false]                          - A flag to mark the root menu.
    * @param {(Bootstrap5DisclosureMenu|null)} [options.parentMenu = null]                           - The parent menu to this menu.
    * @param {string}                          [options.hoverType = off]                             - The type of hoverability a menu has.
-   * @param {number}                          [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in miliseconds).
-   * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in miliseconds).
-   * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in miliseconds).
+   * @param {number}                          [options.hoverDelay = 250]                            - The delay for closing menus if the menu is hoverable (in milliseconds).
+   * @param {number}                          [options.enterDelay = -1]                             - The delay for opening a menu if the menu is focusable (in milliseconds).
+   * @param {number}                          [options.leaveDelay = -1]                             - The delay for closing a menu if the menu is focusable (in milliseconds).
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
    * @param {?string}                         [options.prefix = am-]                                - The prefix to use for CSS custom properties.
    * @param {boolean}                         [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
@@ -2500,7 +2504,7 @@ class B extends F {
      */
     r(this, "_pseudoDropdownElement", document.createElement("div"));
     /**
-     * Bootstrap events that need to be intercepted to disbale dropdowns.
+     * Bootstrap events that need to be intercepted to disable dropdowns.
      *
      * @type {string[]}
      *
@@ -2521,7 +2525,7 @@ class B extends F {
      */
     r(this, "_pseudoCollapseElement", document.createElement("div"));
     /**
-     * Bootstrap events that need to be intercepted to disbale collapses.
+     * Bootstrap events that need to be intercepted to disable collapses.
      *
      * @type {string[]}
      *
@@ -2598,7 +2602,7 @@ class B extends F {
     return this._pseudoDropdownElement;
   }
   /**
-   * Bootstrap events that need to be intercepted to disbale dropdowns.
+   * Bootstrap events that need to be intercepted to disable dropdowns.
    *
    * @readonly
    *
@@ -2622,7 +2626,7 @@ class B extends F {
     return this._pseudoCollapseElement;
   }
   /**
-   * Bootstrap events that need to be intercepted to disbale collapses.
+   * Bootstrap events that need to be intercepted to disable collapses.
    *
    * @readonly
    *
