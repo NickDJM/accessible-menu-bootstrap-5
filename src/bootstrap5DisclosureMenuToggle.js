@@ -62,8 +62,6 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
   }
 
   initialize() {
-    super.initialize();
-
     if (
       this.elements.controlledMenu.bootstrapTransitions &&
       this.elements.controlledMenu.isTopLevel
@@ -71,6 +69,8 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
       this.dom.container.style.transition =
         "height var(--am-transition-duration) ease";
     }
+
+    super.initialize();
   }
 
   /**
@@ -78,9 +78,10 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
    *
    * Alters ARIA attributes and classes.
    *
-   * @param {boolean} [emit = true] - A toggle to emit the expand event once expanded.
+   * @param {boolean} [emit = true]       - A toggle to emit the expand event once expanded.
+   * @param {boolean} [transition = true] - A toggle to respect transitions when expanding.
    */
-  _expand(emit = true) {
+  _expand(emit = true, transition = true) {
     const {
       openClass,
       closeClass,
@@ -89,6 +90,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
       bootstrapTransitions,
       isTopLevel,
     } = this.elements.controlledMenu;
+    const shouldTransition = transition && transitionClass !== "";
 
     this.dom.toggle.setAttribute("aria-expanded", "true");
     this.elements.controlledMenu.elements.rootMenu.hasOpened = true;
@@ -103,7 +105,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
     // If the menu is emulating bootstrap dropdown/collapse behaviour,
     // we need to remove the inline style for the height of the menu
     // as well as the transition class.
-    if (transitionClass !== "") {
+    if (shouldTransition) {
       if (bootstrapTransitions) {
         if (isTopLevel) {
           addClass(transitionClass, this.dom.container);
@@ -162,9 +164,10 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
    *
    * Alters ARIA attributes and classes.
    *
-   * @param {boolean} [emit = true] - A toggle to emit the collapse event once collapsed.
+   * @param {boolean} [emit = true]       - A toggle to emit the collapse event once collapsed.
+   * @param {boolean} [transition = true] - A toggle to respect transitions when collapsing.
    */
-  _collapse(emit = true) {
+  _collapse(emit = true, transition = true) {
     const {
       closeClass,
       openClass,
@@ -173,6 +176,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
       bootstrapTransitions,
       isTopLevel,
     } = this.elements.controlledMenu;
+    const shouldTransition = transition && transitionClass !== "";
 
     this.dom.toggle.setAttribute("aria-expanded", "false");
 
@@ -186,7 +190,7 @@ class Bootstrap5DisclosureMenuToggle extends DisclosureMenuToggle {
     // If the menu is emulating bootstrap dropdown/collapse behaviour,
     // we need to add the inline style for the height of the menu
     // as well as the transition class.
-    if (transitionClass !== "") {
+    if (shouldTransition) {
       if (bootstrapTransitions) {
         if (isTopLevel) {
           this.dom.container.style.height = `${this.dom.container.offsetHeight}px`;
