@@ -2,13 +2,18 @@
  * Tests for Bootstrap5Treeview's axe compliance.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll, vi } from "vitest";
 import { axe } from "vitest-axe";
 import * as AxeMatchers from "vitest-axe/matchers";
 import { twoLevel } from "../../../demo/menus.js";
 import Bootstrap5Treeview from "../../../src/bootstrap5Treeview.js";
 
 expect.extend(AxeMatchers);
+
+beforeAll(() => {
+  // Mock HTMLCanvasElement.prototype.getContext.
+  HTMLCanvasElement.prototype.getContext = vi.fn();
+});
 
 describe("Bootstrap5Treeview", () => {
   // Create the test menu.
