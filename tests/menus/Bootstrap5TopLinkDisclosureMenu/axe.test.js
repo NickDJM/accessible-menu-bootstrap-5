@@ -2,13 +2,18 @@
  * Tests for Bootstrap5TopLinkDisclosureMenu's axe compliance.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll, vi } from "vitest";
 import { axe } from "vitest-axe";
 import * as AxeMatchers from "vitest-axe/matchers";
 import { twoLevelDisclosureTopLink } from "../../../demo/menus.js";
 import Bootstrap5TopLinkDisclosureMenu from "../../../src/bootstrap5TopLinkDisclosureMenu.js";
 
 expect.extend(AxeMatchers);
+
+beforeAll(() => {
+  // Mock HTMLCanvasElement.prototype.getContext.
+  HTMLCanvasElement.prototype.getContext = vi.fn();
+});
 
 describe("Bootstrap5TopLinkDisclosureMenu", () => {
   // Create the test menu.

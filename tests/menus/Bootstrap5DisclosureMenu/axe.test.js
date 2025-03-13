@@ -2,13 +2,18 @@
  * Tests for Bootstrap5DisclosureMenu's axe compliance.
  */
 
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll, vi } from "vitest";
 import { axe } from "vitest-axe";
 import * as AxeMatchers from "vitest-axe/matchers";
 import { twoLevelDisclosure } from "../../../demo/menus.js";
 import Bootstrap5DisclosureMenu from "../../../src/bootstrap5DisclosureMenu.js";
 
 expect.extend(AxeMatchers);
+
+beforeAll(() => {
+  // Mock HTMLCanvasElement.prototype.getContext.
+  HTMLCanvasElement.prototype.getContext = vi.fn();
+});
 
 describe("Bootstrap5DisclosureMenu", () => {
   // Create the test menu.
@@ -18,7 +23,6 @@ describe("Bootstrap5DisclosureMenu", () => {
   /* eslint-disable-next-line no-unused-vars */
   const menu = new Bootstrap5DisclosureMenu({
     menuElement: document.querySelector("ul"),
-    submenuItemSelector: "li.dropdown",
     containerElement: document.querySelector("nav"),
     controllerElement: document.querySelector("button"),
   });
