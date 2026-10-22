@@ -2,6 +2,7 @@ import DisclosureMenu from "accessible-menu/src/disclosureMenu.js";
 import Bootstrap5DisclosureMenuItem from "./bootstrap5DisclosureMenuItem.js";
 import Bootstrap5DisclosureMenuToggle from "./bootstrap5DisclosureMenuToggle.js";
 import { preventEvent } from "accessible-menu/src/eventHandlers.js";
+import { disableBootstrapDropdownKeyboardBehaviour } from "./bootstrapDropdowns.js";
 import { isValidType } from "accessible-menu/src/validate.js";
 
 /**
@@ -49,7 +50,9 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   _disableBootstrap = true;
 
   /**
-   * The DOM element to use as a fake target for bootstrap's dropdown events.
+   * An empty element available to subclasses that redirect bootstrap dropdown events.
+   *
+   * Built-in dropdown suppression does not create native Bootstrap instances.
    *
    * @type {HTMLElement}
    *
@@ -72,7 +75,9 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   ];
 
   /**
-   * The DOM element to use as a fake target for bootstrap's collapse events.
+   * An empty element available to subclasses that redirect bootstrap collapse events.
+   *
+   * Built-in collapse suppression cancels events on the real container.
    *
    * @type {HTMLElement}
    *
@@ -134,7 +139,7 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @param {boolean}                         [options.optionalKeySupport = false]                  - A flag to add optional keyboard support (Arrow keys, Home, and End) to the menu.
    * @param {?string}                         [options.prefix = am-]                                - The prefix to use for CSS custom properties.
    * @param {boolean}                         [options.bootstrapTransitions = true]                 - A flag to emulate bootstrap's transitions for dropdowns and collapses.
-   * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's dropdown behaviour by making their events target a pseudo element.
+   * @param {boolean}                         [options.disableBootstrap = true]                     - A flag to disable bootstrap's native dropdown and collapse behaviour.
    * @param {boolean}                         [options.initialize = true]                           - A flag to initialize the menu immediately upon creation.
    */
   constructor({
@@ -235,7 +240,9 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   }
 
   /**
-   * A flag to disable bootstrap's dropdown behaviour.
+   * A flag to disable bootstrap's native dropdown and collapse behaviour.
+   *
+   * Submenus inherit their root menu's value.
    *
    * @readonly
    *
@@ -244,11 +251,15 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
    * @see _disableBootstrapDropdownBehaviour;
    */
   get bootstrapDisabled() {
-    return this._disableBootstrap;
+    return this.isTopLevel
+      ? this._disableBootstrap
+      : this.elements.rootMenu.bootstrapDisabled;
   }
 
   /**
-   * The DOM element to use as a fake target for bootstrap's dropdown events.
+   * An empty element available to subclasses that redirect bootstrap dropdown events.
+   *
+   * Built-in dropdown suppression does not create native Bootstrap instances.
    *
    * @readonly
    *
@@ -274,7 +285,9 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   }
 
   /**
-   * The DOM element to use as a fake target for bootstrap's collapse events.
+   * An empty element available to subclasses that redirect bootstrap collapse events.
+   *
+   * Built-in collapse suppression cancels events on the real container.
    *
    * @readonly
    *
@@ -335,57 +348,63 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
   /**
    * Disable bootstrap's dropdown behaviour.
    *
-   * This is done by intercepting the bootstrap dropdown events (once) to get the
-   * dropdown instance and then setting the dropdown instance's menu to an empty
-   * element.
-   *
-   * We have to wait for the events because it's possible just selecting the
-   * DOM elements will happen before Bootstrap initializes it's dropdown behaviour.
-   *
-   * This is a pretty brute-force method, but it works.
+   * Remove native dropdown data hooks, cancel native lifecycle events, and
+   * handle submenu keys before Bootstrap's delegated keyboard listener runs.
    *
    * @protected
    */
   _disableBootstrapDropdownBehaviour() {
     this.elements.submenuToggles.forEach((submenuToggle) => {
-      // Intercept each bootstrap dropdown event once.
+      // Accessible Menu owns this control, including its click behaviour.
+      if (
+        submenuToggle.dom.toggle.getAttribute("data-bs-toggle") === "dropdown"
+      ) {
+        submenuToggle.dom.toggle.removeAttribute("data-bs-toggle");
+      }
+
       this.bootstrapDropdownEvents.forEach((eventType) => {
-        submenuToggle.dom.toggle.addEventListener(
-          eventType,
-          (event) => {
-            preventEvent(event);
-
-            const dropdownInstance = bootstrap.Dropdown.getInstance(
-              event.target
-            );
-
-            if (!dropdownInstance) return;
-
-            if (
-              dropdownInstance._menu !== this.bootstrapPseudoDropdownElement
-            ) {
-              dropdownInstance._menu = this.bootstrapPseudoDropdownElement;
-            }
-          },
-          {
-            once: true,
-          }
-        );
+        submenuToggle.dom.toggle.addEventListener(eventType, (event) => {
+          preventEvent(event);
+        });
       });
     });
+
+    disableBootstrapDropdownKeyboardBehaviour(this);
+  }
+
+  /**
+   * Handle submenu keydown defaults before Bootstrap can intercept the event.
+   *
+   * Only ArrowUp, ArrowDown, and Escape reach this method. Their navigation
+   * actions remain in the inherited keyup handler.
+   *
+   * @param {KeyboardEvent} event - The submenu keydown event.
+   * @return {boolean} - Whether this menu handled the keydown defaults.
+   *
+   * @protected
+   */
+  _handleBootstrapKeydown(event) {
+    this.currentEvent = "keyboard";
+
+    if (
+      this.focusState === "self" &&
+      ((event.key === "Escape" &&
+        (this.elements.controller || this.elements.parentMenu)) ||
+        (event.key !== "Escape" && this.optionalKeySupport))
+    ) {
+      event.preventDefault();
+
+      return true;
+    }
+
+    return false;
   }
 
   /**
    * Disable bootstrap's collapse behaviour.
    *
-   * This is done by intercepting the bootstrap collapse events (once) to get the
-   * collapse instance and then setting the collapse instance's menu to an empty
-   * element.
-   *
-   * We have to wait for the events because it's possible just selecting the
-   * DOM elements will happen before Bootstrap initializes it's collapse behaviour.
-   *
-   * This is a pretty brute-force method, but it works.
+   * Cancel every native collapse event on the controlled container so repeated
+   * calls cannot change its classes, dimensions, or controller's ARIA state.
    *
    * @protected
    */
@@ -394,27 +413,17 @@ class Bootstrap5DisclosureMenu extends DisclosureMenu {
       return;
     }
 
-    // Intercept each bootstrap collapse event once.
+    // Keep Bootstrap from creating a collapse instance on controller clicks.
+    if (this.dom.controller.getAttribute("data-bs-toggle") === "collapse") {
+      this.dom.controller.removeAttribute("data-bs-toggle");
+    }
+
     this.bootstrapCollapseEvents.forEach((eventType) => {
-      this.dom.container.addEventListener(
-        eventType,
-        (event) => {
+      this.dom.container.addEventListener(eventType, (event) => {
+        if (event.target === this.dom.container) {
           preventEvent(event);
-
-          const collapseInstance = bootstrap.Collapse.getInstance(event.target);
-
-          if (!collapseInstance) return;
-
-          if (
-            collapseInstance._element !== this.bootstrapPseudoCollapseElement
-          ) {
-            collapseInstance._element = this.bootstrapPseudoCollapseElement;
-          }
-        },
-        {
-          once: true,
         }
-      );
+      });
     });
   }
 

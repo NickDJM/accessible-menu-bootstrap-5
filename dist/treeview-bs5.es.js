@@ -964,7 +964,36 @@ var v = class e {
 			});
 		})), n && this.dom.toggle.dispatchEvent(this._collapseEvent);
 	}
-}, w = class e extends x {
+};
+// src/bootstrapDropdowns.js
+const w = /* @__PURE__ */ new WeakMap();
+function T(e) {
+	let t = e.dom.menu.ownerDocument.defaultView;
+	if (!w.has(t)) {
+		let e = /* @__PURE__ */ new WeakMap();
+		t.addEventListener("keydown", (t) => {
+			if (![
+				"ArrowUp",
+				"ArrowDown",
+				"Escape"
+			].includes(t.key)) return;
+			let n = t.composedPath();
+			if (n.find((t) => e.has(t)) && n.some((e) => {
+				var t;
+				return (t = e.classList) == null ? void 0 : t.contains("dropdown-menu");
+			})) {
+				t.stopPropagation();
+				for (let r of n) {
+					let n = e.get(r);
+					if (n && n._handleBootstrapKeydown(t)) break;
+				}
+			}
+		}, !0), w.set(t, e);
+	}
+	w.get(t).set(e.dom.menu, e);
+}
+// src/bootstrap5Treeview.js
+var E = class e extends x {
 	constructor({ menuElement: t, menuItemSelector: n = ".nav-item,li", menuLinkSelector: r = ".nav-link,.dropdown-item", submenuItemSelector: i = ".dropdown", submenuToggleSelector: a = ".dropdown-toggle", submenuSelector: o = ".dropdown-menu", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "collapse", transitionClass: d = "collapsing", transitionDuration: f = 350, openDuration: m = -1, closeDuration: h = -1, isTopLevel: g = !0, parentMenu: _ = null, hoverType: v = "off", hoverDelay: y = 250, enterDelay: b = -1, leaveDelay: x = -1, prefix: w = "am-", bootstrapTransitions: T = !0, disableBootstrap: E = !0, initialize: D = !0 }) {
 		super({
 			menuElement: t,
@@ -1008,7 +1037,7 @@ var v = class e {
 		return this.isTopLevel ? this._bootstrapTransitions : this.elements.rootMenu.bootstrapTransitions;
 	}
 	get bootstrapDisabled() {
-		return this._disableBootstrap;
+		return this.isTopLevel ? this._disableBootstrap : this.elements.rootMenu.bootstrapDisabled;
 	}
 	get bootstrapPseudoDropdownElement() {
 		return this._pseudoDropdownElement;
@@ -1030,26 +1059,25 @@ var v = class e {
 	}
 	_disableBootstrapDropdownBehaviour() {
 		this.elements.submenuToggles.forEach((e) => {
-			this.bootstrapDropdownEvents.forEach((t) => {
+			e.dom.toggle.getAttribute("data-bs-toggle") === "dropdown" && e.dom.toggle.removeAttribute("data-bs-toggle"), this.bootstrapDropdownEvents.forEach((t) => {
 				e.dom.toggle.addEventListener(t, (e) => {
 					_(e);
-					let t = bootstrap.Dropdown.getInstance(e.target);
-					t && t._menu !== this.bootstrapPseudoDropdownElement && (t._menu = this.bootstrapPseudoDropdownElement);
-				}, { once: !0 });
+				});
 			});
-		});
+		}), T(this);
+	}
+	_handleBootstrapKeydown(e) {
+		return this.currentEvent = "keyboard", this.focusState === "self" && (e.key !== "Escape" || this.elements.controller) ? (e.preventDefault(), !0) : !1;
 	}
 	_disableBootstrapCollapseBehaviour() {
-		this.elements.controller && this.bootstrapCollapseEvents.forEach((e) => {
+		this.elements.controller && (this.dom.controller.getAttribute("data-bs-toggle") === "collapse" && this.dom.controller.removeAttribute("data-bs-toggle"), this.bootstrapCollapseEvents.forEach((e) => {
 			this.dom.container.addEventListener(e, (e) => {
-				_(e);
-				let t = bootstrap.Collapse.getInstance(e.target);
-				t && t._element !== this.bootstrapPseudoCollapseElement && (t._element = this.bootstrapPseudoCollapseElement);
-			}, { once: !0 });
-		});
+				e.target === this.dom.container && _(e);
+			});
+		}));
 	}
 	_setTransitionDurations() {
 		super._setTransitionDurations(), this.isTopLevel && this.elements.controller && (this.elements.controller.dom.container.style.setProperty(`--${this.prefix}transition-duration`, `${this.transitionDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}open-transition-duration`, `${this.openDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}close-transition-duration`, `${this.closeDuration}ms`));
 	}
 };
-export { w as default };
+export { E as default };
