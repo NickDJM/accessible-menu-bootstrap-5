@@ -112,7 +112,7 @@
   },
   "homepage": "https://github.com/NickDJM/accessible-menu-bootstrap-5#readme",
   "dependencies": {
-    "accessible-menu": "^4.4.1"
+    "accessible-menu": "^4.4.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
@@ -138,5 +138,8 @@
     "vite": "^8.3.5",
     "vitest": "^5.0.5",
     "vitest-axe": "^0.1.0"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
   }
 }
