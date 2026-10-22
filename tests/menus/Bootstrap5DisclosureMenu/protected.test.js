@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import * as bootstrap from "bootstrap-5-1";
+import * as bootstrap from "bootstrap";
 import { twoLevelDisclosure } from "../../../demo/menus.js";
 import Bootstrap5DisclosureMenu from "../../../src/bootstrap5DisclosureMenu.js";
 import DisclosureMenu from "accessible-menu/src/disclosureMenu.js";
