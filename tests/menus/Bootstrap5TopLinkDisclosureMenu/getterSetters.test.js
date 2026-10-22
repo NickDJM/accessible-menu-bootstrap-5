@@ -340,6 +340,16 @@ describe("Bootstrap5TopLinkDisclosureMenu getter/setters", () => {
 
   // Test Bootstrap5TopLinkDisclosureMenu bootstrapDisabled.
   describe("bootstrapDisabled", () => {
+    it("should inherit the root menu's value", () => {
+      const menu = new Bootstrap5TopLinkDisclosureMenu({
+        menuElement: document.querySelector("ul"),
+        disableBootstrap: false,
+      });
+      const submenu = menu.elements.submenuToggles[0].elements.controlledMenu;
+
+      expect(submenu.bootstrapDisabled).toBe(false);
+    });
+
     // Test that bootstrapDisabled gets the bootstrap disabled value.
     it("should get the bootstrap disabled value", () => {
       // Create a new Bootstrap5TopLinkDisclosureMenu instance for testing.
