@@ -914,7 +914,36 @@ var v = class e {
 			});
 		})), n && this.dom.toggle.dispatchEvent(this._collapseEvent);
 	}
-}, w = class e extends x {
+};
+// src/bootstrapDropdowns.js
+const w = /* @__PURE__ */ new WeakMap();
+function T(e) {
+	let t = e.dom.menu.ownerDocument.defaultView;
+	if (!w.has(t)) {
+		let e = /* @__PURE__ */ new WeakMap();
+		t.addEventListener("keydown", (t) => {
+			if (![
+				"ArrowUp",
+				"ArrowDown",
+				"Escape"
+			].includes(t.key)) return;
+			let n = t.composedPath();
+			if (n.find((t) => e.has(t)) && n.some((e) => {
+				var t;
+				return (t = e.classList) == null ? void 0 : t.contains("dropdown-menu");
+			})) {
+				t.stopPropagation();
+				for (let r of n) {
+					let n = e.get(r);
+					if (n && n._handleBootstrapKeydown(t)) break;
+				}
+			}
+		}, !0), w.set(t, e);
+	}
+	w.get(t).set(e.dom.menu, e);
+}
+// src/bootstrap5DisclosureMenu.js
+var E = class e extends x {
 	constructor({ menuElement: t, menuItemSelector: n = ".nav-item,li", menuLinkSelector: r = ".nav-link,.dropdown-item", submenuItemSelector: i = ".dropdown", submenuToggleSelector: a = ".dropdown-toggle", submenuSelector: o = ".dropdown-menu", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "collapse", transitionClass: d = "collapsing", transitionDuration: f = 350, openDuration: m = -1, closeDuration: h = -1, isTopLevel: g = !0, parentMenu: _ = null, hoverType: v = "off", hoverDelay: y = 250, enterDelay: b = -1, leaveDelay: x = -1, optionalKeySupport: w = !1, prefix: T = "am-", bootstrapTransitions: E = !0, disableBootstrap: D = !0, initialize: O = !0 }) {
 		super({
 			menuElement: t,
@@ -959,7 +988,7 @@ var v = class e {
 		return this.isTopLevel ? this._bootstrapTransitions : this.elements.rootMenu.bootstrapTransitions;
 	}
 	get bootstrapDisabled() {
-		return this._disableBootstrap;
+		return this.isTopLevel ? this._disableBootstrap : this.elements.rootMenu.bootstrapDisabled;
 	}
 	get bootstrapPseudoDropdownElement() {
 		return this._pseudoDropdownElement;
@@ -981,28 +1010,27 @@ var v = class e {
 	}
 	_disableBootstrapDropdownBehaviour() {
 		this.elements.submenuToggles.forEach((e) => {
-			this.bootstrapDropdownEvents.forEach((t) => {
+			e.dom.toggle.getAttribute("data-bs-toggle") === "dropdown" && e.dom.toggle.removeAttribute("data-bs-toggle"), this.bootstrapDropdownEvents.forEach((t) => {
 				e.dom.toggle.addEventListener(t, (e) => {
 					_(e);
-					let t = bootstrap.Dropdown.getInstance(e.target);
-					t && t._menu !== this.bootstrapPseudoDropdownElement && (t._menu = this.bootstrapPseudoDropdownElement);
-				}, { once: !0 });
+				});
 			});
-		});
+		}), T(this);
+	}
+	_handleBootstrapKeydown(e) {
+		return this.currentEvent = "keyboard", this.focusState === "self" && (e.key === "Escape" && (this.elements.controller || this.elements.parentMenu) || e.key !== "Escape" && this.optionalKeySupport) ? (e.preventDefault(), !0) : !1;
 	}
 	_disableBootstrapCollapseBehaviour() {
-		this.elements.controller && this.bootstrapCollapseEvents.forEach((e) => {
+		this.elements.controller && (this.dom.controller.getAttribute("data-bs-toggle") === "collapse" && this.dom.controller.removeAttribute("data-bs-toggle"), this.bootstrapCollapseEvents.forEach((e) => {
 			this.dom.container.addEventListener(e, (e) => {
-				_(e);
-				let t = bootstrap.Collapse.getInstance(e.target);
-				t && t._element !== this.bootstrapPseudoCollapseElement && (t._element = this.bootstrapPseudoCollapseElement);
-			}, { once: !0 });
-		});
+				e.target === this.dom.container && _(e);
+			});
+		}));
 	}
 	_setTransitionDurations() {
 		super._setTransitionDurations(), this.isTopLevel && this.elements.controller && (this.elements.controller.dom.container.style.setProperty(`--${this.prefix}transition-duration`, `${this.transitionDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}open-transition-duration`, `${this.openDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}close-transition-duration`, `${this.closeDuration}ms`));
 	}
-}, T = class extends h {
+}, D = class extends h {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0 }) {
 		super({
 			menuItemElement: e,
@@ -1022,7 +1050,7 @@ var v = class e {
 	blur() {
 		super.blur(), this.elements.parentMenu.isTopLevel && (this.dom.link.tabIndex = -1);
 	}
-}, E = class extends m {
+}, O = class extends m {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1043,7 +1071,7 @@ var v = class e {
 	close() {
 		this.isOpen && (this.closeChildren(), this.elements.parentMenu && this.elements.parentMenu.focusCurrentChild()), super.close();
 	}
-}, D = class e extends v {
+}, k = class e extends v {
 	constructor({ menuElement: t, menuItemSelector: n = "li", menuLinkSelector: r = "a", submenuItemSelector: i = "li:has(ul)", submenuToggleSelector: a = "a", submenuSelector: o = "ul", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "hide", transitionClass: d = "transitioning", transitionDuration: f = 250, isTopLevel: m = !0, parentMenu: h = null, hoverType: g = "off", hoverDelay: _ = 250, enterDelay: v = -1, leaveDelay: y = -1, prefix: b = "am-", key: x = null, initialize: S = !0 }) {
 		super({
 			menuElement: t,
@@ -1066,7 +1094,7 @@ var v = class e {
 			leaveDelay: y,
 			prefix: b,
 			key: x
-		}), p(this, "_MenuType", e), p(this, "_MenuItemType", T), p(this, "_MenuToggleType", E), S && this.initialize();
+		}), p(this, "_MenuType", e), p(this, "_MenuItemType", D), p(this, "_MenuToggleType", O), S && this.initialize();
 	}
 	initialize() {
 		try {
@@ -1148,7 +1176,7 @@ var v = class e {
 			e = this.elements.menuItems[n].dom.item.innerText ? this.elements.menuItems[n].dom.item.innerText : this.elements.menuItems[n].dom.item.textContent, e = e.replace(/[\s]/g, "").toLowerCase().charAt(0), e === t && (r = !0, this.focusChild(n)), n++;
 		}
 	}
-}, O = class extends T {
+}, A = class extends D {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0 }) {
 		super({
 			menuItemElement: e,
@@ -1160,7 +1188,7 @@ var v = class e {
 			initialize: !1
 		}), o && this.initialize();
 	}
-}, k = class extends E {
+}, j = class extends O {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1213,7 +1241,7 @@ var v = class e {
 			});
 		})), n && this.dom.toggle.dispatchEvent(this._collapseEvent);
 	}
-}, A = class e extends D {
+}, M = class e extends k {
 	constructor({ menuElement: t, menuItemSelector: n = ".nav-item,li", menuLinkSelector: r = ".nav-link,.dropdown-item", submenuItemSelector: i = ".dropdown", submenuToggleSelector: a = ".dropdown-toggle", submenuSelector: o = ".dropdown-menu", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "collapse", transitionClass: d = "collapsing", transitionDuration: f = 350, openDuration: m = -1, closeDuration: h = -1, isTopLevel: g = !0, parentMenu: _ = null, hoverType: v = "off", hoverDelay: y = 250, enterDelay: b = -1, leaveDelay: x = -1, prefix: S = "am-", bootstrapTransitions: C = !0, disableBootstrap: w = !0, initialize: T = !0 }) {
 		super({
 			menuElement: t,
@@ -1238,7 +1266,7 @@ var v = class e {
 			leaveDelay: x,
 			prefix: S,
 			initialize: !1
-		}), p(this, "_MenuType", e), p(this, "_MenuItemType", O), p(this, "_MenuToggleType", k), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
+		}), p(this, "_MenuType", e), p(this, "_MenuItemType", A), p(this, "_MenuToggleType", j), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
 			"show.bs.dropdown",
 			"shown.bs.dropdown",
 			"hide.bs.dropdown",
@@ -1257,7 +1285,7 @@ var v = class e {
 		return this.isTopLevel ? this._bootstrapTransitions : this.elements.rootMenu.bootstrapTransitions;
 	}
 	get bootstrapDisabled() {
-		return this._disableBootstrap;
+		return this.isTopLevel ? this._disableBootstrap : this.elements.rootMenu.bootstrapDisabled;
 	}
 	get bootstrapPseudoDropdownElement() {
 		return this._pseudoDropdownElement;
@@ -1279,28 +1307,27 @@ var v = class e {
 	}
 	_disableBootstrapDropdownBehaviour() {
 		this.elements.submenuToggles.forEach((e) => {
-			this.bootstrapDropdownEvents.forEach((t) => {
+			e.dom.toggle.getAttribute("data-bs-toggle") === "dropdown" && e.dom.toggle.removeAttribute("data-bs-toggle"), this.bootstrapDropdownEvents.forEach((t) => {
 				e.dom.toggle.addEventListener(t, (e) => {
 					_(e);
-					let t = bootstrap.Dropdown.getInstance(e.target);
-					t && t._menu !== this.bootstrapPseudoDropdownElement && (t._menu = this.bootstrapPseudoDropdownElement);
-				}, { once: !0 });
+				});
 			});
-		});
+		}), T(this);
+	}
+	_handleBootstrapKeydown(e) {
+		return this.currentEvent = "keyboard", !this.isTopLevel || this.focusState === "self" && (e.key === "Escape" && this.elements.controller || e.key !== "Escape" && this.currentMenuItem.isSubmenuItem) ? (e.preventDefault(), !0) : !1;
 	}
 	_disableBootstrapCollapseBehaviour() {
-		this.elements.controller && this.bootstrapCollapseEvents.forEach((e) => {
+		this.elements.controller && (this.dom.controller.getAttribute("data-bs-toggle") === "collapse" && this.dom.controller.removeAttribute("data-bs-toggle"), this.bootstrapCollapseEvents.forEach((e) => {
 			this.dom.container.addEventListener(e, (e) => {
-				_(e);
-				let t = bootstrap.Collapse.getInstance(e.target);
-				t && t._element !== this.bootstrapPseudoCollapseElement && (t._element = this.bootstrapPseudoCollapseElement);
-			}, { once: !0 });
-		});
+				e.target === this.dom.container && _(e);
+			});
+		}));
 	}
 	_setTransitionDurations() {
 		super._setTransitionDurations(), this.isTopLevel && this.elements.controller && (this.elements.controller.dom.container.style.setProperty(`--${this.prefix}transition-duration`, `${this.transitionDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}open-transition-duration`, `${this.openDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}close-transition-duration`, `${this.closeDuration}ms`));
 	}
-}, j = class extends h {
+}, N = class extends h {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0, submenuSibling: s = null }) {
 		super({
 			menuItemElement: e,
@@ -1316,7 +1343,7 @@ var v = class e {
 			sibling: null
 		}), this._elements.parentMenu = n, this._elements.childMenu = i, this._elements.toggle = a, this._elements.sibling = s, o && this.initialize();
 	}
-}, M = class extends m {
+}, P = class extends m {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1337,7 +1364,7 @@ var v = class e {
 	close() {
 		this.isOpen && this.closeChildren(), super.close();
 	}
-}, N = class e extends v {
+}, F = class e extends v {
 	constructor({ menuElement: t, menuItemSelector: n = "li", menuLinkSelector: r = "a", submenuItemSelector: i = "li:has(ul)", submenuToggleSelector: a = "button", submenuSelector: o = "ul", submenuSubtoggleSelector: s = "a", controllerElement: c = null, containerElement: l = null, openClass: u = "show", closeClass: d = "hide", transitionClass: f = "transitioning", transitionDuration: m = 250, isTopLevel: h = !0, parentMenu: g = null, hoverType: _ = "off", hoverDelay: v = 250, enterDelay: y = -1, leaveDelay: b = -1, optionalKeySupport: x = !1, prefix: S = "am-", key: C = null, initialize: w = !0 }) {
 		super({
 			menuElement: t,
@@ -1360,7 +1387,7 @@ var v = class e {
 			leaveDelay: b,
 			prefix: S,
 			key: C
-		}), p(this, "_MenuType", e), p(this, "_MenuItemType", j), p(this, "_MenuToggleType", M), p(this, "_currentChild", -1), p(this, "_selectors", {
+		}), p(this, "_MenuType", e), p(this, "_MenuItemType", N), p(this, "_MenuToggleType", P), p(this, "_currentChild", -1), p(this, "_selectors", {
 			menuItems: "",
 			menuLinks: "",
 			submenuItems: "",
@@ -1501,7 +1528,7 @@ var v = class e {
 			this.focusState === "self" && (t === "Space" || t === "Enter" ? (_(e), this.currentMenuItem.isSubmenuItem ? this.currentMenuItem.elements.toggle.isOpen ? this.currentMenuItem.elements.toggle.close() : this.currentMenuItem.elements.toggle.preview() : this.currentMenuItem.dom.link.click()) : t === "Escape" ? this.elements.submenuToggles.some((e) => e.isOpen) ? (_(e), this.closeChildren()) : this.elements.parentMenu ? (_(e), this.elements.parentMenu.currentEvent = this.currentEvent, this.elements.parentMenu.closeChildren(), this.elements.parentMenu.focusCurrentChild()) : this.isTopLevel && this.elements.controller && this.elements.controller.isOpen && (this.elements.controller.close(), this.focusController()) : this.optionalKeySupport && (t === "ArrowDown" || t === "ArrowRight" ? (_(e), this.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.toggle.isOpen ? (this.currentMenuItem.elements.childMenu.currentEvent = "keyboard", this.currentMenuItem.elements.childMenu.focusFirstChild()) : this.focusNextChild()) : t === "ArrowUp" || t === "ArrowLeft" ? (_(e), this.focusPreviousChild()) : t === "Home" ? (_(e), this.focusFirstChild()) : t === "End" && (_(e), this.focusLastChild())));
 		});
 	}
-}, P = class extends j {
+}, I = class extends N {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0, submenuSibling: s = null }) {
 		super({
 			menuItemElement: e,
@@ -1514,7 +1541,7 @@ var v = class e {
 			submenuSibling: s
 		}), o && this.initialize();
 	}
-}, F = class extends M {
+}, L = class extends P {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1567,7 +1594,7 @@ var v = class e {
 			});
 		})), n && this.dom.toggle.dispatchEvent(this._collapseEvent);
 	}
-}, I = class e extends N {
+}, R = class e extends F {
 	constructor({ menuElement: t, menuItemSelector: n = ".nav-item,li", menuLinkSelector: r = ".nav-link,.dropdown-item", submenuItemSelector: i = ".dropdown", submenuToggleSelector: a = ".dropdown-toggle", submenuSelector: o = ".dropdown-menu", submenuSubtoggleSelector: s = ".dropdown-toggle", controllerElement: c = null, containerElement: l = null, openClass: u = "show", closeClass: d = "collapse", transitionClass: f = "collapsing", transitionDuration: m = 350, openDuration: h = -1, closeDuration: g = -1, isTopLevel: _ = !0, parentMenu: v = null, hoverType: y = "off", hoverDelay: b = 250, enterDelay: x = -1, leaveDelay: S = -1, optionalKeySupport: C = !1, prefix: w = "am-", bootstrapTransitions: T = !0, disableBootstrap: E = !0, initialize: D = !0 }) {
 		super({
 			menuElement: t,
@@ -1594,7 +1621,7 @@ var v = class e {
 			optionalKeySupport: C,
 			prefix: w,
 			initialize: !1
-		}), p(this, "_MenuType", e), p(this, "_MenuItemType", P), p(this, "_MenuToggleType", F), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
+		}), p(this, "_MenuType", e), p(this, "_MenuItemType", I), p(this, "_MenuToggleType", L), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
 			"show.bs.dropdown",
 			"shown.bs.dropdown",
 			"hide.bs.dropdown",
@@ -1613,7 +1640,7 @@ var v = class e {
 		return this.isTopLevel ? this._bootstrapTransitions : this.elements.rootMenu.bootstrapTransitions;
 	}
 	get bootstrapDisabled() {
-		return this._disableBootstrap;
+		return this.isTopLevel ? this._disableBootstrap : this.elements.rootMenu.bootstrapDisabled;
 	}
 	get bootstrapPseudoDropdownElement() {
 		return this._pseudoDropdownElement;
@@ -1635,28 +1662,27 @@ var v = class e {
 	}
 	_disableBootstrapDropdownBehaviour() {
 		this.elements.submenuToggles.forEach((e) => {
-			this.bootstrapDropdownEvents.forEach((t) => {
+			e.dom.toggle.getAttribute("data-bs-toggle") === "dropdown" && e.dom.toggle.removeAttribute("data-bs-toggle"), this.bootstrapDropdownEvents.forEach((t) => {
 				e.dom.toggle.addEventListener(t, (e) => {
 					_(e);
-					let t = bootstrap.Dropdown.getInstance(e.target);
-					t && t._menu !== this.bootstrapPseudoDropdownElement && (t._menu = this.bootstrapPseudoDropdownElement);
-				}, { once: !0 });
+				});
 			});
-		});
+		}), T(this);
+	}
+	_handleBootstrapKeydown(e) {
+		return this.currentEvent = "keyboard", this.focusState === "self" && (e.key === "Escape" && (this.elements.controller || this.elements.parentMenu) || e.key !== "Escape" && this.optionalKeySupport) ? (e.preventDefault(), !0) : !1;
 	}
 	_disableBootstrapCollapseBehaviour() {
-		this.elements.controller && this.bootstrapCollapseEvents.forEach((e) => {
+		this.elements.controller && (this.dom.controller.getAttribute("data-bs-toggle") === "collapse" && this.dom.controller.removeAttribute("data-bs-toggle"), this.bootstrapCollapseEvents.forEach((e) => {
 			this.dom.container.addEventListener(e, (e) => {
-				_(e);
-				let t = bootstrap.Collapse.getInstance(e.target);
-				t && t._element !== this.bootstrapPseudoCollapseElement && (t._element = this.bootstrapPseudoCollapseElement);
-			}, { once: !0 });
-		});
+				e.target === this.dom.container && _(e);
+			});
+		}));
 	}
 	_setTransitionDurations() {
 		super._setTransitionDurations(), this.isTopLevel && this.elements.controller && (this.elements.controller.dom.container.style.setProperty(`--${this.prefix}transition-duration`, `${this.transitionDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}open-transition-duration`, `${this.openDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}close-transition-duration`, `${this.closeDuration}ms`));
 	}
-}, L = class extends h {
+}, z = class extends h {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0 }) {
 		super({
 			menuItemElement: e,
@@ -1676,7 +1702,7 @@ var v = class e {
 	blur() {
 		super.blur(), this.dom.link.tabIndex = -1;
 	}
-}, R = class extends m {
+}, B = class extends m {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1691,7 +1717,7 @@ var v = class e {
 	_setAriaAttributes() {
 		this.dom.toggle.getAttribute("aria-expanded") !== "true" && this.dom.toggle.setAttribute("aria-expanded", "false"), this.elements.controlledMenu.dom.menu.setAttribute("aria-labelledby", this.dom.toggle.id), this.dom.toggle.setAttribute("aria-owns", this.elements.controlledMenu.dom.menu.id);
 	}
-}, z = class e extends v {
+}, V = class e extends v {
 	constructor({ menuElement: t, menuItemSelector: n = "li", menuLinkSelector: r = "a", submenuItemSelector: i = "li:has(ul)", submenuToggleSelector: a = "a", submenuSelector: o = "ul", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "hide", transitionClass: d = "transitioning", transitionDuration: f = 250, isTopLevel: m = !0, parentMenu: h = null, hoverType: g = "off", hoverDelay: _ = 250, enterDelay: v = -1, leaveDelay: y = -1, prefix: b = "am-", key: x = null, initialize: S = !0 }) {
 		super({
 			menuElement: t,
@@ -1714,7 +1740,7 @@ var v = class e {
 			leaveDelay: y,
 			prefix: b,
 			key: x
-		}), p(this, "_MenuType", e), p(this, "_MenuItemType", L), p(this, "_MenuToggleType", R), S && this.initialize();
+		}), p(this, "_MenuType", e), p(this, "_MenuItemType", z), p(this, "_MenuToggleType", B), S && this.initialize();
 	}
 	initialize() {
 		try {
@@ -1808,7 +1834,7 @@ var v = class e {
 	focusChildsLastNode() {
 		this.currentMenuItem.elements.childMenu.currentEvent = this.currentEvent, this.currentMenuItem.elements.childMenu.focusLastChild(), this.currentMenuItem.elements.childMenu.currentMenuItem.isSubmenuItem && this.currentMenuItem.elements.childMenu.currentMenuItem.elements.toggle.isOpen && (this.currentMenuItem.elements.childMenu.blurCurrentChild(), this.currentMenuItem.elements.childMenu.focusChildsLastNode());
 	}
-}, B = class extends L {
+}, H = class extends z {
 	constructor({ menuItemElement: e, menuLinkElement: t, parentMenu: n, isSubmenuItem: r = !1, childMenu: i = null, toggle: a = null, initialize: o = !0 }) {
 		super({
 			menuItemElement: e,
@@ -1820,7 +1846,7 @@ var v = class e {
 			initialize: !1
 		}), o && this.initialize();
 	}
-}, V = class extends R {
+}, U = class extends B {
 	constructor({ menuToggleElement: e, parentElement: t, controlledMenu: n, parentMenu: r = null, initialize: i = !0 }) {
 		super({
 			menuToggleElement: e,
@@ -1873,11 +1899,11 @@ var v = class e {
 			});
 		})), n && this.dom.toggle.dispatchEvent(this._collapseEvent);
 	}
-}, H = {
-	Bootstrap5DisclosureMenu: w,
-	Bootstrap5Menubar: A,
-	Bootstrap5TopLinkDisclosureMenu: I,
-	Bootstrap5Treeview: class e extends z {
+}, W = {
+	Bootstrap5DisclosureMenu: E,
+	Bootstrap5Menubar: M,
+	Bootstrap5TopLinkDisclosureMenu: R,
+	Bootstrap5Treeview: class e extends V {
 		constructor({ menuElement: t, menuItemSelector: n = ".nav-item,li", menuLinkSelector: r = ".nav-link,.dropdown-item", submenuItemSelector: i = ".dropdown", submenuToggleSelector: a = ".dropdown-toggle", submenuSelector: o = ".dropdown-menu", controllerElement: s = null, containerElement: c = null, openClass: l = "show", closeClass: u = "collapse", transitionClass: d = "collapsing", transitionDuration: f = 350, openDuration: m = -1, closeDuration: h = -1, isTopLevel: g = !0, parentMenu: _ = null, hoverType: v = "off", hoverDelay: y = 250, enterDelay: b = -1, leaveDelay: x = -1, prefix: S = "am-", bootstrapTransitions: C = !0, disableBootstrap: w = !0, initialize: T = !0 }) {
 			super({
 				menuElement: t,
@@ -1902,7 +1928,7 @@ var v = class e {
 				leaveDelay: x,
 				prefix: S,
 				initialize: !1
-			}), p(this, "_MenuType", e), p(this, "_MenuItemType", B), p(this, "_MenuToggleType", V), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
+			}), p(this, "_MenuType", e), p(this, "_MenuItemType", H), p(this, "_MenuToggleType", U), p(this, "_disableBootstrap", !0), p(this, "_pseudoDropdownElement", document.createElement("div")), p(this, "_bootstrapDropdownEvents", [
 				"show.bs.dropdown",
 				"shown.bs.dropdown",
 				"hide.bs.dropdown",
@@ -1921,7 +1947,7 @@ var v = class e {
 			return this.isTopLevel ? this._bootstrapTransitions : this.elements.rootMenu.bootstrapTransitions;
 		}
 		get bootstrapDisabled() {
-			return this._disableBootstrap;
+			return this.isTopLevel ? this._disableBootstrap : this.elements.rootMenu.bootstrapDisabled;
 		}
 		get bootstrapPseudoDropdownElement() {
 			return this._pseudoDropdownElement;
@@ -1943,27 +1969,26 @@ var v = class e {
 		}
 		_disableBootstrapDropdownBehaviour() {
 			this.elements.submenuToggles.forEach((e) => {
-				this.bootstrapDropdownEvents.forEach((t) => {
+				e.dom.toggle.getAttribute("data-bs-toggle") === "dropdown" && e.dom.toggle.removeAttribute("data-bs-toggle"), this.bootstrapDropdownEvents.forEach((t) => {
 					e.dom.toggle.addEventListener(t, (e) => {
 						_(e);
-						let t = bootstrap.Dropdown.getInstance(e.target);
-						t && t._menu !== this.bootstrapPseudoDropdownElement && (t._menu = this.bootstrapPseudoDropdownElement);
-					}, { once: !0 });
+					});
 				});
-			});
+			}), T(this);
+		}
+		_handleBootstrapKeydown(e) {
+			return this.currentEvent = "keyboard", this.focusState === "self" && (e.key !== "Escape" || this.elements.controller) ? (e.preventDefault(), !0) : !1;
 		}
 		_disableBootstrapCollapseBehaviour() {
-			this.elements.controller && this.bootstrapCollapseEvents.forEach((e) => {
+			this.elements.controller && (this.dom.controller.getAttribute("data-bs-toggle") === "collapse" && this.dom.controller.removeAttribute("data-bs-toggle"), this.bootstrapCollapseEvents.forEach((e) => {
 				this.dom.container.addEventListener(e, (e) => {
-					_(e);
-					let t = bootstrap.Collapse.getInstance(e.target);
-					t && t._element !== this.bootstrapPseudoCollapseElement && (t._element = this.bootstrapPseudoCollapseElement);
-				}, { once: !0 });
-			});
+					e.target === this.dom.container && _(e);
+				});
+			}));
 		}
 		_setTransitionDurations() {
 			super._setTransitionDurations(), this.isTopLevel && this.elements.controller && (this.elements.controller.dom.container.style.setProperty(`--${this.prefix}transition-duration`, `${this.transitionDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}open-transition-duration`, `${this.openDuration}ms`), this.elements.controller.dom.container.style.setProperty(`--${this.prefix}close-transition-duration`, `${this.closeDuration}ms`));
 		}
 	}
 };
-export { H as default };
+export { W as default };

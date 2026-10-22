@@ -39,6 +39,14 @@ You can use Accessible Menu Bootstrap 5 directly from a CDN via a script tag.
 
 We use [jsdelivr](https://www.jsdelivr.com/package/npm/accessible-menu-bootstrap-5) as the example, but you can use any cdn you prefer, such as [unpkg](https://unpkg.com). You can also download the files listed in the CDN and host them yourself if preferred.
 
+## Bootstrap behavior
+
+AMBS5 disables Bootstrap's native dropdown and collapse behavior by default. It removes `data-bs-toggle="dropdown"` from submenu controls and `data-bs-toggle="collapse"` from the root controller. Accessible Menu handles their interactions and cancels native Bootstrap expansion and collapse attempts. Set `disableBootstrap: false` to retain Bootstrap's native behavior. Submenus inherit this option from their root menu.
+
+Bootstrap also listens for arrow keys and Escape inside `.dropdown-menu`. AMBS5 handles those `keydown` events before Bootstrap's document listener can receive them. They do not reach `keydown` listeners on the menu elements or document. Navigation continues through Accessible Menu's `keyup` handlers. Disclosure menus still leave arrow-key defaults, such as scrolling, available when `optionalKeySupport` is `false`.
+
+`bootstrapTransitions` defaults to `true`. It emulates Bootstrap's height transition for a root navbar configured with `controllerElement` and `containerElement`. Dropdown submenus expand and collapse immediately, matching Bootstrap's dropdown behavior, so they do not receive an inline transition style.
+
 ## Examples
 
 The following codepens are available as examples of how to use `accessible-menu-bootstrap-5`:

@@ -309,6 +309,16 @@ describe("Bootstrap5Menubar getter/setters", () => {
 
   // Test Bootstrap5Menubar bootstrapDisabled.
   describe("bootstrapDisabled", () => {
+    it("should inherit the root menu's value", () => {
+      const menu = new Bootstrap5Menubar({
+        menuElement: document.querySelector("ul"),
+        disableBootstrap: false,
+      });
+      const submenu = menu.elements.submenuToggles[0].elements.controlledMenu;
+
+      expect(submenu.bootstrapDisabled).toBe(false);
+    });
+
     // Test that bootstrapDisabled gets the bootstrap disabled value.
     it("should get the bootstrap disabled value", () => {
       // Create a new Bootstrap5Menubar instance for testing.
